@@ -1,0 +1,192 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ColorPrimary"
+    tools:context="com.trekcoders.safar.Activity.RegisterActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="100dp"
+            android:background="@drawable/cell_shape"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="1dp"
+                android:background="@color/primary_white"
+                android:padding="8dp"
+                android:src="@mipmap/ic_action_username" />
+
+            <EditText
+                android:id="@+id/register_usermail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="1dp"
+                android:layout_marginRight="1dp"
+                android:layout_marginTop="1dp"
+                android:background="@color/primary_white"
+                android:gravity="center_vertical"
+                android:hint="Enter User Email"
+                android:inputType="text|textEmailAddress"
+                android:paddingLeft="20dp"
+                android:textColor="@color/primary_black"
+                android:textColorHint="@color/hintcolor_primary"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/cell_shape"
+            android:orientation="horizontal">
+
+            <ImageView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="1dp"
+                android:background="@color/primary_white"
+                android:padding="8dp"
+                android:src="@mipmap/ic_action_password" />
+
+            <EditText
+                android:id="@+id/register_pass"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="1dp"
+                android:layout_marginRight="1dp"
+                android:layout_marginTop="1dp"
+                android:background="@color/primary_white"
+                android:gravity="center_vertical"
+                android:hint="Enter Password"
+                android:inputType="text|textPassword"
+                android:paddingLeft="20dp"
+                android:textColor="@color/primary_black"
+                android:textColorHint="@color/hintcolor_primary"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/cell_shape"
+            android:orientation="horizontal">
+
+            <ImageView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="1dp"
+                android:background="@color/primary_white"
+                android:padding="8dp"
+                android:src="@mipmap/ic_action_password" />
+
+            <EditText
+                android:id="@+id/register_confirm_pass"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="1dp"
+                android:layout_marginRight="1dp"
+                android:layout_marginTop="1dp"
+                android:background="@color/primary_white"
+                android:gravity="center_vertical"
+                android:hint="Confirm Password"
+                android:inputType="text|textPassword"
+                android:paddingLeft="20dp"
+                android:textColor="@color/primary_black"
+                android:textColorHint="@color/hintcolor_primary"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/cell_shape"
+            android:orientation="horizontal">
+
+            <ImageView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="1dp"
+                android:background="@color/primary_white"
+                android:padding="8dp"
+                android:src="@mipmap/ic_action_mobile" />
+
+            <EditText
+                android:id="@+id/register_user_contact"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="1dp"
+                android:layout_marginRight="1dp"
+                android:layout_marginTop="1dp"
+                android:background="@color/primary_white"
+                android:gravity="center_vertical"
+                android:hint="Enter Mobile Number"
+                android:inputType="text|number"
+                android:paddingLeft="20dp"
+                android:textColor="@color/primary_black"
+                android:textColorHint="@color/hintcolor_primary"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/btn_submit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="40dp"
+            android:background="@color/login_btn_bg"
+            android:clickable="true"
+            android:elevation="4dp"
+            android:text="SUBMIT"
+            android:textColor="@color/primary_white"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btn_exit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="15dp"
+            android:background="@color/login_btn_bg"
+            android:clickable="true"
+            android:elevation="4dp"
+            android:text="EXIT"
+            android:textColor="@color/primary_white"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+
+    </LinearLayout>
+</ScrollView>

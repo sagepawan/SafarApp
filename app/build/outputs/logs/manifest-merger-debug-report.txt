@@ -1,0 +1,100 @@
+-- Merging decision tree log ---
+manifest
+ADDED from C:\Users\Sagepawan\Desktop\Safar\app\src\main\AndroidManifest.xml:2:1-44:12
+	xmlns:android
+		ADDED from C:\Users\Sagepawan\Desktop\Safar\app\src\main\AndroidManifest.xml:2:11-69
+	package
+		ADDED from C:\Users\Sagepawan\Desktop\Safar\app\src\main\AndroidManifest.xml:3:5-35
+		INJECTED from C:\Users\Sagepawan\Desktop\Safar\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Sagepawan\Desktop\Safar\app\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from C:\Users\Sagepawan\Desktop\Safar\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Sagepawan\Desktop\Safar\app\src\main\AndroidManifest.xml
+	android:versionCode
+		INJECTED from C:\Users\Sagepawan\Desktop\Safar\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Sagepawan\Desktop\Safar\app\src\main\AndroidManifest.xml
+uses-permission#android.permission.INTERNET
+ADDED from C:\Users\Sagepawan\Desktop\Safar\app\src\main\AndroidManifest.xml:5:5-66
+	android:name
+		ADDED from C:\Users\Sagepawan\Desktop\Safar\app\src\main\AndroidManifest.xml:5:22-64
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from C:\Users\Sagepawan\Desktop\Safar\app\src\main\AndroidManifest.xml:6:5-78
+	android:name
+		ADDED from C:\Users\Sagepawan\Desktop\Safar\app\src\main\AndroidManifest.xml:6:22-76
+application
+ADDED from C:\Users\Sagepawan\Desktop\Safar\app\src\main\AndroidManifest.xml:8:5-42:19
+MERGED from [com.android.support:appcompat-v7:22.2.1] C:\Users\Sagepawan\Desktop\Safar\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.2.1\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:22.2.1] C:\Users\Sagepawan\Desktop\Safar\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:design:22.2.1] C:\Users\Sagepawan\Desktop\Safar\app\build\intermediates\exploded-aar\com.android.support\design\22.2.1\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:appcompat-v7:22.2.1] C:\Users\Sagepawan\Desktop\Safar\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.2.1\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:22.2.1] C:\Users\Sagepawan\Desktop\Safar\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:22.2.1] C:\Users\Sagepawan\Desktop\Safar\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:22.2.1] C:\Users\Sagepawan\Desktop\Safar\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\AndroidManifest.xml:22:5-20
+	android:label
+		ADDED from C:\Users\Sagepawan\Desktop\Safar\app\src\main\AndroidManifest.xml:11:9-41
+	android:allowBackup
+		ADDED from C:\Users\Sagepawan\Desktop\Safar\app\src\main\AndroidManifest.xml:9:9-35
+	android:icon
+		ADDED from C:\Users\Sagepawan\Desktop\Safar\app\src\main\AndroidManifest.xml:10:9-43
+	android:theme
+		ADDED from C:\Users\Sagepawan\Desktop\Safar\app\src\main\AndroidManifest.xml:12:9-40
+	android:name
+		ADDED from C:\Users\Sagepawan\Desktop\Safar\app\src\main\AndroidManifest.xml:13:9-41
+activity#com.trekcoders.safar.Activity.SplashActivity
+ADDED from C:\Users\Sagepawan\Desktop\Safar\app\src\main\AndroidManifest.xml:17:9-26:20
+	android:screenOrientation
+		ADDED from C:\Users\Sagepawan\Desktop\Safar\app\src\main\AndroidManifest.xml:20:13-49
+	android:label
+		ADDED from C:\Users\Sagepawan\Desktop\Safar\app\src\main\AndroidManifest.xml:19:13-45
+	android:name
+		ADDED from C:\Users\Sagepawan\Desktop\Safar\app\src\main\AndroidManifest.xml:18:13-52
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from C:\Users\Sagepawan\Desktop\Safar\app\src\main\AndroidManifest.xml:21:13-25:29
+action#android.intent.action.MAIN
+ADDED from C:\Users\Sagepawan\Desktop\Safar\app\src\main\AndroidManifest.xml:22:17-69
+	android:name
+		ADDED from C:\Users\Sagepawan\Desktop\Safar\app\src\main\AndroidManifest.xml:22:25-66
+category#android.intent.category.LAUNCHER
+ADDED from C:\Users\Sagepawan\Desktop\Safar\app\src\main\AndroidManifest.xml:24:17-77
+	android:name
+		ADDED from C:\Users\Sagepawan\Desktop\Safar\app\src\main\AndroidManifest.xml:24:27-74
+activity#com.trekcoders.safar.Activity.MainActivity
+ADDED from C:\Users\Sagepawan\Desktop\Safar\app\src\main\AndroidManifest.xml:27:9-32:20
+	android:screenOrientation
+		ADDED from C:\Users\Sagepawan\Desktop\Safar\app\src\main\AndroidManifest.xml:30:13-49
+	android:label
+		ADDED from C:\Users\Sagepawan\Desktop\Safar\app\src\main\AndroidManifest.xml:29:13-56
+	android:theme
+		ADDED from C:\Users\Sagepawan\Desktop\Safar\app\src\main\AndroidManifest.xml:31:13-56
+	android:name
+		ADDED from C:\Users\Sagepawan\Desktop\Safar\app\src\main\AndroidManifest.xml:28:13-50
+activity#com.trekcoders.safar.Activity.LoginActivity
+ADDED from C:\Users\Sagepawan\Desktop\Safar\app\src\main\AndroidManifest.xml:33:9-37:20
+	android:screenOrientation
+		ADDED from C:\Users\Sagepawan\Desktop\Safar\app\src\main\AndroidManifest.xml:36:13-49
+	android:label
+		ADDED from C:\Users\Sagepawan\Desktop\Safar\app\src\main\AndroidManifest.xml:35:13-57
+	android:name
+		ADDED from C:\Users\Sagepawan\Desktop\Safar\app\src\main\AndroidManifest.xml:34:13-51
+activity#com.trekcoders.safar.Activity.RegisterActivity
+ADDED from C:\Users\Sagepawan\Desktop\Safar\app\src\main\AndroidManifest.xml:38:9-41:20
+	android:label
+		ADDED from C:\Users\Sagepawan\Desktop\Safar\app\src\main\AndroidManifest.xml:40:13-60
+	android:name
+		ADDED from C:\Users\Sagepawan\Desktop\Safar\app\src\main\AndroidManifest.xml:39:13-54
+uses-sdk
+INJECTED from C:\Users\Sagepawan\Desktop\Safar\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+MERGED from [com.android.support:appcompat-v7:22.2.1] C:\Users\Sagepawan\Desktop\Safar\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.2.1\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:22.2.1] C:\Users\Sagepawan\Desktop\Safar\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:design:22.2.1] C:\Users\Sagepawan\Desktop\Safar\app\build\intermediates\exploded-aar\com.android.support\design\22.2.1\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:appcompat-v7:22.2.1] C:\Users\Sagepawan\Desktop\Safar\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.2.1\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:22.2.1] C:\Users\Sagepawan\Desktop\Safar\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:22.2.1] C:\Users\Sagepawan\Desktop\Safar\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:recyclerview-v7:22.2.1] C:\Users\Sagepawan\Desktop\Safar\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\22.2.1\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:22.2.1] C:\Users\Sagepawan\Desktop\Safar\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\AndroidManifest.xml:20:5-43
+	android:targetSdkVersion
+		INJECTED from C:\Users\Sagepawan\Desktop\Safar\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Sagepawan\Desktop\Safar\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from C:\Users\Sagepawan\Desktop\Safar\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Sagepawan\Desktop\Safar\app\src\main\AndroidManifest.xml
