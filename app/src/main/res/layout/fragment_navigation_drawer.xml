@@ -12,11 +12,21 @@
         android:background="@color/ColorPrimary">
 
         <ImageView
+            android:id="@+id/imgProfile"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:src="@drawable/ic_profile"
             android:scaleType="fitCenter"
             android:layout_centerInParent="true" />
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_below="@+id/imgProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
+            android:textColor="#fff"/>
 
     </RelativeLayout>
 

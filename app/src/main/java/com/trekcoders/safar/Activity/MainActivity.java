@@ -1,5 +1,10 @@
 package com.trekcoders.safar.Activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -8,7 +13,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.TextView;
 
+import com.parse.ParseFile;
+import com.parse.ParseUser;
 import com.trekcoders.safar.Fragments.FragmentDrawer;
 import com.trekcoders.safar.Fragments.HomeFragment;
 import com.trekcoders.safar.Fragments.LogoutFragment;
@@ -21,10 +29,16 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
     private Toolbar mToolbar;
     private FragmentDrawer drawerFragment;
 
+    TextView name;
+
+    ParseUser parseUser;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        name = (TextView) findViewById(R.id.tvName);
 
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar_main);
@@ -46,6 +60,20 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         // display the first navigation drawer view on app launch
         displayView(0);
 
+
+        parseUser = ParseUser.getCurrentUser();
+        if (parseUser != null && parseUser.getSessionToken() != null)
+            getUserDetailsFromParse();
+        else {
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
+    }
+
+    private void getUserDetailsFromParse() {
+        name.setText(parseUser.getUsername());
     }
 
 
@@ -72,8 +100,36 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
                 break;
 
             case 3:
-                fragment = new LogoutFragment();
-                title = getString(R.string.title_logout);
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+
+                // set title
+                alertDialogBuilder.setTitle("LOG OUT");
+
+                // set dialog message
+                alertDialogBuilder
+                        .setMessage("Are you sure you want to logout?")
+                        .setCancelable(false)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                parseUser.logOut();
+                                MainActivity.this.finish();
+                            }
+
+
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // if this button is clicked, just close
+                                // the dialog box and do nothing
+                                dialog.cancel();
+                            }
+                        });
+
+                // create alert dialog
+                AlertDialog alertDialog = alertDialogBuilder.create();
+
+                // show it
+                alertDialog.show();
                 break;
             default:
                 break;
