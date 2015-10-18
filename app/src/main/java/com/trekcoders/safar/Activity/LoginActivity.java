@@ -66,6 +66,7 @@ public class LoginActivity extends AppCompatActivity {
                                 progressDialog.dismiss();
                                 System.out.println("login");
                                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                finish();
                             } else {
                                 progressDialog.dismiss();
                                 System.out.println("login eee:" + e);
