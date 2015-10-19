@@ -1,69 +1,83 @@
 package com.trekcoders.safar.adapter;
 
-import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.parse.ParseException;
+import com.parse.ParseFile;
 import com.trekcoders.safar.R;
+import com.trekcoders.safar.model.Trails;
+
+import java.util.ArrayList;
 
 
-
-public class MyListAdapter extends ArrayAdapter<String> {
+public class MyListAdapter extends BaseAdapter {
 
     private final Context context;
-    private final String[] trailNames;
-    private final Integer[] trailImages;
+    private final ArrayList<Trails> trails;
+    private LayoutInflater layoutInflater;
 
-    public MyListAdapter(Context context, String[] trailNames, Integer[] trailImages){
-
-        super(context, R.layout.custom_list_layout, trailNames);
-
+    public MyListAdapter(Context context, ArrayList<Trails> trails){
         this.context = context;
-        this.trailNames = trailNames;
-        this.trailImages = trailImages;
+        layoutInflater = LayoutInflater.from(context);
+        this.trails = trails;
 
     }
 
-    // Override getView which is responsible for creating the rows for our list
-    // position represents the index we are in for the array.
-
-    // convertView is a reference to the previous view that is available for reuse. As
-    // the user scrolls the information is populated as needed to conserve memory.
-
-    // A ViewGroup are invisible containers that hold a bunch of views and
-    // define their layout properties.
     @Override
+    public int getCount() {
+        return trails.size();
+    }
+
+    @Override
+    public Object getItem(int position) {
+        return trails.get(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
     public View getView(int position, View convertView, ViewGroup parent) {
+        final ViewHolder holder;
+        if (convertView == null) {
+            convertView = layoutInflater.inflate(R.layout.custom_list_layout, null);
+            holder = new ViewHolder();
+            holder.name = (TextView) convertView.findViewById(R.id.trail_title);
+            holder.imgPic = (ImageView) convertView.findViewById(R.id.trail_image);
 
-        // The LayoutInflator puts a layout into the right View
-        LayoutInflater theInflater = LayoutInflater.from(getContext());
+            convertView.setTag(holder);
+        } else {
+            holder = (ViewHolder) convertView.getTag();
+        }
 
-        // inflate takes the resource to load, the parent that the resource may be
-        // loaded into and true or false if we are loading into a parent view.
-        View theView = theInflater.inflate(R.layout.custom_list_layout, parent, false);
+        Trails t = (Trails) trails.get(position);
 
-        // We retrieve the text from the array
-        //String tvShow = getItem(position);
+        holder.name.setText(t.trailName);
+        byte[] data = new byte[0];
+        try {
+            data = t.trailPic.getData();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
+        holder.imgPic.setImageBitmap(bitmap);
 
 
-        // Get the TextView we want to edit
-        TextView theTextView = (TextView) theView.findViewById(R.id.trail_title);
+        return convertView;
+    }
 
-        // Put the next TV Show into the TextView
-        theTextView.setText(trailNames[position]);
-
-        // Get the ImageView in the layout
-        ImageView theImageView = (ImageView) theView.findViewById(R.id.trail_image);
-
-        // We can set a ImageView like this
-        theImageView.setImageResource(trailImages[position]);
-
-        return theView;
+    static class ViewHolder {
+        TextView name;
+        ImageView imgPic;
 
     }
 }
