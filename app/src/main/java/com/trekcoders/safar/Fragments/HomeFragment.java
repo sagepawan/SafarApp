@@ -69,15 +69,6 @@ public class HomeFragment extends Fragment {
         return rootView;
     }
 
-    /*@Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-    }*/
 
     private void getTrailsDetailsFromParse() {
         final ProgressDialog progressDialog = new ProgressDialog(getActivity());
@@ -116,7 +107,6 @@ public class HomeFragment extends Fragment {
                 }
             }
         });
-        //Fetch profile photo
 
     }
 }
