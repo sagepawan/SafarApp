@@ -2,8 +2,6 @@ package com.trekcoders.safar.Fragments;
 
 
 import android.app.ProgressDialog;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -73,7 +71,7 @@ public class HomeFragment extends Fragment {
     private void getTrailsDetailsFromParse() {
         final ProgressDialog progressDialog = new ProgressDialog(getActivity());
         progressDialog.setMessage("Getting trails lists..");
-        progressDialog.show();
+        //progressDialog.show();
 
         query = ParseQuery.getQuery("Trails");
         query.findInBackground(new FindCallback<ParseObject>() {
@@ -88,7 +86,7 @@ public class HomeFragment extends Fragment {
                         trail.trailPic = parseFile;
                         trails.add(trail);
                     }
-                    progressDialog.dismiss();
+                    //progressDialog.dismiss();
 
                     MyListAdapter adapter = new MyListAdapter(getActivity(), trails);
                     trailListView = (ListView) getView().findViewById(R.id.trail_list);
@@ -107,6 +105,5 @@ public class HomeFragment extends Fragment {
                 }
             }
         });
-
     }
 }

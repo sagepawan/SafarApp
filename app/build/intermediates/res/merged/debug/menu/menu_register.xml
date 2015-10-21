@@ -5,4 +5,4 @@
     <item android:id="@+id/action_settings" android:title="@string/action_settings"
         android:orderInCategory="100" app:showAsAction="never" />
 </menu>
-<!-- From: file:/home/akrmhrjn/AndroidStudioProjects/WorkinOnProjects/pawa/SafarApp/app/src/main/res/menu/menu_register.xml -->
+<!-- From: file:/C:/Users/Sagepawan/Documents/GitHub/SafarApp/app/src/main/res/menu/menu_register.xml -->
