@@ -1,0 +1,72 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/primary_white"
+    tools:context="com.trekcoders.safar.Fragments.SearchFriendFragment">
+
+    <include
+        android:id="@+id/toolbar_main"
+        layout="@layout/main_toolbar" />
+
+    <LinearLayout
+        android:id="@+id/customer_country_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:paddingTop="10dp">
+
+
+        <LinearLayout
+            android:id="@+id/choice_state"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/cell_shape"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="7">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="1dp"
+                    android:background="@color/ColorPrimary"
+                    android:padding="@dimen/form_field_image_dimen"
+                    android:src="@mipmap/ic_action_username" />
+
+                <EditText
+                    android:id="@+id/search_id"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="5"
+                    android:hint="Enter Friend's ID"
+                    android:padding="10dp"
+                    android:background="@color/primary_white"
+                    android:textColor="@color/ColorPrimaryDark"
+                    android:textColorHint="@color/primary_black"
+                    android:textSize="@dimen/form_field_textview" />
+
+                <ImageView
+                    android:id="@+id/btn_search_friend"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:paddingRight="10dp"
+                    android:src="@mipmap/ic_action_username" />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

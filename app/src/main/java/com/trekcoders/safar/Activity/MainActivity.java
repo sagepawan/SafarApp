@@ -52,6 +52,15 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setLogo(R.mipmap.ic_logo);
 
+        parseUser = ParseUser.getCurrentUser();
+        if (parseUser != null && parseUser.getSessionToken() != null)
+            getUserDetailsFromParse();
+        else {
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
         drawerFragment = (FragmentDrawer)
                 getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
         drawerFragment.setUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), mToolbar);
@@ -61,14 +70,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         displayView(0);
 
 
-        parseUser = ParseUser.getCurrentUser();
-        if (parseUser != null && parseUser.getSessionToken() != null)
-            getUserDetailsFromParse();
-        else {
-            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-            startActivity(intent);
-            finish();
-        }
+
 
     }
 
