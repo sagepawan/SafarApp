@@ -11,7 +11,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.parse.ParseException;
-import com.parse.ParseFile;
 import com.trekcoders.safar.R;
 import com.trekcoders.safar.model.Trails;
 

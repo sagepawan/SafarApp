@@ -2,6 +2,7 @@ package com.trekcoders.safar.Fragments;
 
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -16,6 +17,8 @@ import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
+import com.trekcoders.safar.Activity.AddFriendActivity;
 import com.trekcoders.safar.R;
 import com.trekcoders.safar.adapter.MyListAdapter;
 import com.trekcoders.safar.model.Trails;
@@ -46,6 +49,8 @@ public class HomeFragment extends Fragment {
 
     ArrayList<Trails> trails;
 
+    ParseUser parseUser;
+
     ParseQuery<ParseObject> query;
 
     @Override
@@ -60,7 +65,9 @@ public class HomeFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
 
         trails = new ArrayList<Trails>();
-        getTrailsDetailsFromParse();
+        parseUser = ParseUser.getCurrentUser();
+        if (parseUser != null && parseUser.getSessionToken() != null)
+            getTrailsDetailsFromParse();
 
 
         // Inflate the layout for this fragment
@@ -71,7 +78,7 @@ public class HomeFragment extends Fragment {
     private void getTrailsDetailsFromParse() {
         final ProgressDialog progressDialog = new ProgressDialog(getActivity());
         progressDialog.setMessage("Getting trails lists..");
-        //progressDialog.show();
+        progressDialog.show();
 
         query = ParseQuery.getQuery("Trails");
         query.findInBackground(new FindCallback<ParseObject>() {
@@ -86,18 +93,19 @@ public class HomeFragment extends Fragment {
                         trail.trailPic = parseFile;
                         trails.add(trail);
                     }
-                    //progressDialog.dismiss();
+
 
                     MyListAdapter adapter = new MyListAdapter(getActivity(), trails);
                     trailListView = (ListView) getView().findViewById(R.id.trail_list);
                     trailListView.setAdapter(adapter);
+                    progressDialog.dismiss();
 
                     trailListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                            AddFriendFragment addFriend = new AddFriendFragment();
-                            getActivity().getFragmentManager().beginTransaction().replace(R.id.container_body, addFriend).commit();
+                            Intent next = new Intent(getActivity(), AddFriendActivity.class);
+                            startActivity(next);
                         }
                     });
                 } else {
