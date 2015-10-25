@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.parse.ParseFile;
+import com.parse.ParseInstallation;
 import com.parse.ParseUser;
 import com.trekcoders.safar.Fragments.FragmentDrawer;
 import com.trekcoders.safar.Fragments.HomeFragment;
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
     TextView name;
 
     ParseUser parseUser;
+    ParseInstallation installation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +55,12 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         getSupportActionBar().setLogo(R.mipmap.ic_logo);
 
         parseUser = ParseUser.getCurrentUser();
-        if (parseUser != null && parseUser.getSessionToken() != null)
+        if (parseUser != null && parseUser.getSessionToken() != null) {
+            installation = ParseInstallation.getCurrentInstallation();
+            installation.put("user_objectId", parseUser.getObjectId());
+            installation.saveInBackground();
             getUserDetailsFromParse();
-        else {
+        }else {
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
             finish();

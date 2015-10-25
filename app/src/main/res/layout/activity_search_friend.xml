@@ -39,7 +39,7 @@
                     android:src="@mipmap/ic_action_username" />
 
                 <EditText
-                    android:id="@+id/search_id"
+                    android:id="@+id/etEmail"
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -67,6 +67,11 @@
         </LinearLayout>
 
     </LinearLayout>
+
+    <ListView
+        android:id="@+id/frenList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 
 </LinearLayout>
