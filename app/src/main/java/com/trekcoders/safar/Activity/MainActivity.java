@@ -22,6 +22,7 @@ import com.trekcoders.safar.Fragments.FragmentDrawer;
 import com.trekcoders.safar.Fragments.HomeFragment;
 import com.trekcoders.safar.Fragments.LogoutFragment;
 import com.trekcoders.safar.Fragments.NotificationFragment;
+import com.trekcoders.safar.Fragments.SafarFriendsFragment;
 import com.trekcoders.safar.Fragments.SettingsFragment;
 import com.trekcoders.safar.R;
 
@@ -101,12 +102,19 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
                 fragment = new NotificationFragment();
                 title = getString(R.string.title_notification);
                 break;
+
             case 2:
+                fragment = new SafarFriendsFragment();
+                title = getString(R.string.title_friends);
+                break;
+
+
+            case 3:
                 fragment = new SettingsFragment();
                 title = getString(R.string.title_settings);
                 break;
 
-            case 3:
+            case 4:
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 
                 // set title

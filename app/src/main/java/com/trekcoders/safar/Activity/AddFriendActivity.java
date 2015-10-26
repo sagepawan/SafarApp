@@ -8,7 +8,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import com.trekcoders.safar.Fragments.SearchFriendFragment;
 import com.trekcoders.safar.R;
 
 /**

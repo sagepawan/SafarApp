@@ -36,7 +36,7 @@
                     android:layout_margin="1dp"
                     android:background="@color/ColorPrimary"
                     android:padding="@dimen/form_field_image_dimen"
-                    android:src="@mipmap/ic_action_username" />
+                    android:src="@mipmap/ic_action_person" />
 
                 <EditText
                     android:id="@+id/etEmail"
@@ -58,7 +58,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:paddingRight="10dp"
-                    android:src="@mipmap/ic_action_username" />
+                    android:src="@mipmap/ic_action_search" />
 
 
             </LinearLayout>

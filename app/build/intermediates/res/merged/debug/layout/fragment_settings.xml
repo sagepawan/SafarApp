@@ -16,14 +16,48 @@
         >
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="0dip"
             android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_weight="5"
             android:text="Limit friend circle to 3 people"
+            android:textSize="16sp"
+            android:textColor="@color/primary_black"
+            android:textStyle="bold"
             />
 
         <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_below="@+id/layout_choice_settings1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:orientation="horizontal"
+        android:layout_centerInParent="true"
+        >
+
+        <TextView
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_weight="5"
+            android:text="Limit friend circle to 5 people"
+            android:textSize="16sp"
+            android:textColor="@color/primary_black"
+            android:textStyle="bold"
+            />
+
+        <CheckBox
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
 
     </LinearLayout>
 

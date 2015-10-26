@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/primary_white"
-    tools:context="info.androidhive.materialdesign.activity.FriendsFragment">
+    tools:context="com.trekcoders.safar.Fragments.NotificationFragment">
 
 
     <TextView
