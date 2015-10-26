@@ -19,9 +19,11 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.trekcoders.safar.Activity.AddFriendActivity;
+import com.trekcoders.safar.Activity.TrailMapActivity;
 import com.trekcoders.safar.R;
 import com.trekcoders.safar.adapter.MyListAdapter;
 import com.trekcoders.safar.model.Trails;
+import com.trekcoders.safar.model.Users;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -103,9 +105,35 @@ public class HomeFragment extends Fragment {
                     trailListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                            ParseQuery query = ParseQuery.getQuery("Friends");
+                            query.include("userObjId");
+                            query.include("frenObjId");
+                            query.findInBackground(new FindCallback<ParseObject>() {
+                                @Override
+                                public void done(List<ParseObject> list, ParseException e) {
+                                    if (e == null) {
+                                        boolean isFrenEmpty = true;
+                                        for (ParseObject obj : list) {
+                                            ParseObject usr = obj.getParseObject("userObjId");
 
-                            Intent next = new Intent(getActivity(), AddFriendActivity.class);
-                            startActivity(next);
+                                            if (usr.getObjectId().equalsIgnoreCase(parseUser.getObjectId())) {
+                                                isFrenEmpty = false;
+                                                Intent next = new Intent(getActivity(), TrailMapActivity.class);
+                                                startActivity(next);
+                                            }
+
+                                        }
+                                        if (isFrenEmpty) {
+                                            Intent next = new Intent(getActivity(), AddFriendActivity.class);
+                                            startActivity(next);
+                                        }
+
+                                    }
+
+                                }
+
+                            });
+
                         }
                     });
                 } else {
