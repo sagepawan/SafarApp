@@ -78,7 +78,7 @@ public class FrenListAdapter extends BaseAdapter {
 
                 ParsePush push = new ParsePush();
                 push.setQuery(pushQuery); // Set our Installation query
-                push.setMessage("You have been added as a fren by "+ parseUser.getUsername());
+                push.setMessage("You have been added as a friend by "+ parseUser.getUsername());
                 push.sendInBackground();
 
                 //insert
