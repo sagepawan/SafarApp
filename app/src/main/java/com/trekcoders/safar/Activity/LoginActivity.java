@@ -1,14 +1,18 @@
 package com.trekcoders.safar.Activity;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
@@ -26,6 +30,8 @@ public class LoginActivity extends AppCompatActivity {
     EditText user, password;
     Button login, register;
 
+    TextView passForget;
+
     ParseQuery<ParseUser> loginQuery;
     ProgressDialog progressDialog;
 
@@ -38,6 +44,7 @@ public class LoginActivity extends AppCompatActivity {
         password = (EditText)findViewById(R.id.password_edittext);
         login = (Button)findViewById(R.id.btn_login);
         register = (Button)findViewById(R.id.btn_register);
+        passForget = (TextView)findViewById(R.id.tvPassForget);
 
         loginQuery = ParseUser.getQuery();
 
@@ -75,36 +82,7 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     });
 
-                    /*loginQuery.findInBackground(new FindCallback<ParseObject>() {
-                        @Override
-                        public void done(List<ParseObject> list, ParseException e) {
 
-                            if(e==null) {
-
-                                for (ParseObject user : list) {
-
-                                    if (uName.equalsIgnoreCase(user.getString("username")) && uPass.equals(user.getString("password"))) {
-
-                                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                                        break;
-
-                                    }
-                                    else{
-                                        Toast.makeText(LoginActivity.this,"Incorrect Username or Password",Toast.LENGTH_SHORT).show();
-                                    }
-                                }
-                            }
-                            else{
-                                //Parse Error
-
-                            }
-                        }
-                    });
-
-*/
-
-                    //user_login.get("username")
-                    //user_login.get("password")
 
 
                 }
@@ -118,6 +96,40 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+            }
+        });
+
+        passForget.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                AlertDialog alertDialog = new AlertDialog.Builder(LoginActivity.this).create();
+                alertDialog.setTitle("");
+                //alertDialog.setMessage("Registration information sent for approval");
+
+                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Ask for new password",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        });
+
+                alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Cancel",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        });
+
+                LayoutInflater inflater = getLayoutInflater();
+                final View dialogLayout = inflater.inflate(R.layout.layout_dialogue_forgetpass, null);
+                alertDialog.setView(dialogLayout);
+
+                EditText email = (EditText)dialogLayout.findViewById(R.id.edEmailForgetPass);
+                //successText.setText(finalResult);
+
+
+                alertDialog.show();
             }
         });
     }

@@ -1,13 +1,31 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.trekcoders.safar.Fragments.SafarFriendsFragment">
 
     <ListView
         android:id="@+id/listUserFriends"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="0dip"
+        android:layout_weight="1">
 
     </ListView>
 
-</RelativeLayout>
+    <Button
+        android:id="@+id/addSafarFriends"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ADD NEW FRIEND"
+        android:textColor="@color/primary_white"
+        android:background="@color/ColorPrimaryDark"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:textSize="20sp"/>
+
+
+</LinearLayout>

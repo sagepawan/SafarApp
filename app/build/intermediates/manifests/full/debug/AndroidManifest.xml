@@ -67,13 +67,20 @@
         </activity>
         <activity
             android:name="com.trekcoders.safar.Activity.RegisterActivity"
-            android:label="@string/title_activity_register" >
+            android:label="@string/title_activity_register"
+            android:screenOrientation="portrait" >
         </activity>
-        <activity android:name="com.trekcoders.safar.Activity.AddFriendActivity" >
+        <activity
+            android:name="com.trekcoders.safar.Activity.AddFriendActivity"
+            android:screenOrientation="portrait" >
         </activity>
-        <activity android:name="com.trekcoders.safar.Activity.SearchFriendActivity" >
+        <activity
+            android:name="com.trekcoders.safar.Activity.SearchFriendActivity"
+            android:screenOrientation="portrait" >
         </activity>
-        <activity android:name="com.trekcoders.safar.Activity.TrailMapActivity" >
+        <activity
+            android:name="com.trekcoders.safar.Activity.TrailMapActivity"
+            android:screenOrientation="portrait" >
         </activity>
 
         <!-- For Push -->

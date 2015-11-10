@@ -48,7 +48,7 @@ public class TrailMapActivity extends AppCompatActivity {
             CameraUpdate yourLocation = CameraUpdateFactory.newLatLngZoom(Pos, 15);
             googleMap.animateCamera(yourLocation);
 
-            marker = googleMap.addMarker(new MarkerOptions().position(Pos).title("Mandala Theater"));
+            marker = googleMap.addMarker(new MarkerOptions().position(Pos).title("Safar Checkpoint"));
 
         }
 
