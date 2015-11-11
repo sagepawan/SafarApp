@@ -40,6 +40,7 @@
 
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_register">RegisterActivity</string>
+    <string name="google_map_api_key">AIzaSyAXeXIZIc9AQjNpATyI-e0oQkvXy_Blyi4</string>
 
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
