@@ -129,6 +129,7 @@ public class TrailMapActivity extends AppCompatActivity implements OnMapReadyCal
             Log.e("tag", err.getMessage());
         }
         return result.toString();
+
     }
 
     @Override
@@ -209,9 +210,7 @@ public class TrailMapActivity extends AppCompatActivity implements OnMapReadyCal
 
         double distanceTo = calculateDistance(toLat, toLong, lat, lng);
         double distanceFrom = calculateDistance(fromLat, fromLong, lat, lng);
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
-        alertDialog.setMessage("From: " + new DecimalFormat("##.##").format(distanceFrom)+ "m, To: " + new DecimalFormat("##.##").format(distanceTo) + "m");
-        alertDialog.show();
+
 
         LatLng latLng = new LatLng(lat, lng);
         MarkerOptions marker = new MarkerOptions();
@@ -219,6 +218,11 @@ public class TrailMapActivity extends AppCompatActivity implements OnMapReadyCal
         marker.title(address);
         map.addMarker(marker);
         map.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+        alertDialog.setTitle("Distance from current position");
+        alertDialog.setMessage("From: " + new DecimalFormat("##.##").format(distanceFrom) + "m, To: " + new DecimalFormat("##.##").format(distanceTo) + "m");
+        alertDialog.show();
 
 
     }

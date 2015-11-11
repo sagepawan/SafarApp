@@ -19,7 +19,7 @@ import com.trekcoders.safar.R;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    Button submit;
+    Button submit, exit;
     EditText email, pass, mobile;
     ParseUser user;
 
@@ -33,6 +33,7 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         submit = (Button)findViewById(R.id.btn_submit);
+        exit = (Button)findViewById(R.id.btn_exit);
         email = (EditText)findViewById(R.id.register_usermail);
         pass = (EditText)findViewById(R.id.register_pass);
         mobile = (EditText)findViewById(R.id.register_user_contact);
@@ -76,6 +77,13 @@ public class RegisterActivity extends AppCompatActivity {
 
                 //user.saveInBackground();
 
+            }
+        });
+
+        exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                RegisterActivity.this.finish();
             }
         });
     }

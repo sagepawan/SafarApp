@@ -1,7 +1,5 @@
 package com.trekcoders.safar.Activity;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -75,39 +73,6 @@ public class SearchFriendActivity extends AppCompatActivity {
                     System.out.println("asdfg"+usersArrayList.size());
                     FrenListAdapter adapter = new FrenListAdapter(SearchFriendActivity.this, usersArrayList);
                     frenlist.setAdapter(adapter);
-
-                    /*AlertDialog.Builder builderSingle = new AlertDialog.Builder(
-                            SearchFriendActivity.this);
-                    //builderSingle.setIcon(R.drawable.ic_launcher);
-                    builderSingle.setTitle("Add Friend");
-                    final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
-                            SearchFriendActivity.this,
-                            android.R.layout.select_dialog_item);
-
-                    *//*for (int i = 0; i < ob.size(); i++) {
-
-                        arrayAdapter.add(ob.get(i).getUsername());
-                    }*//*
-
-                    builderSingle.setNegativeButton("Cancel",
-                            new DialogInterface.OnClickListener() {
-
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    //String strName = arrayAdapter.getItem(which);
-                                    dialog.dismiss();
-                                }
-                            });
-
-                    builderSingle.setAdapter(arrayAdapter,
-                            new DialogInterface.OnClickListener() {
-
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    Toast.makeText(SearchFriendActivity.this, arrayAdapter.getItem(which),Toast.LENGTH_LONG).show();
-                                }
-                            });
-                    builderSingle.show();*/
 
 
                 } catch (com.parse.ParseException e) {

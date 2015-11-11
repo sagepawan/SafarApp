@@ -6,12 +6,24 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
+
+    <permission
+        android:name="com.trekcoders.safar.permission.MAPS_RECEIVE"
+        android:protectionLevel="signature" />
+
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
     <!--
       IMPORTANT: Change "com.parse.tutorials.pushnotifications.permission.C2D_MESSAGE" in the lines below
       to match your app's package name + ".permission.C2D_MESSAGE".
@@ -59,13 +71,17 @@
         </activity>
         <activity
             android:name=".Activity.RegisterActivity"
-            android:label="@string/title_activity_register" >
+            android:label="@string/title_activity_register"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".Activity.AddFriendActivity" >
+        <activity android:name=".Activity.AddFriendActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".Activity.SearchFriendActivity" >
+        <activity android:name=".Activity.SearchFriendActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".Activity.TrailMapActivity" >
+        <activity android:name=".Activity.TrailMapActivity"
+            android:screenOrientation="portrait">
         </activity>
 
         <!-- For Push -->
@@ -98,6 +114,7 @@
                 <action android:name="com.parse.push.intent.OPEN" />
             </intent-filter>
         </receiver>
+
     </application>
 
 </manifest>

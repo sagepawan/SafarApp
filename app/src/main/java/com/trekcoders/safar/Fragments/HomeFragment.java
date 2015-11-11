@@ -121,7 +121,6 @@ public class HomeFragment extends Fragment {
                                                 Intent next = new Intent(getActivity(), TrailMapActivity.class);
                                                 startActivity(next);
                                             }
-
                                         }
                                         if (isFrenEmpty) {
                                             Intent next = new Intent(getActivity(), AddFriendActivity.class);

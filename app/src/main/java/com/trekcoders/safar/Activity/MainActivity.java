@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 parseUser.logOut();
-                                MainActivity.this.finish();
+                                startActivity(new Intent(MainActivity.this,LoginActivity.class));
                             }
 
 

@@ -1,24 +1,24 @@
 package com.trekcoders.safar.adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.parse.ParseException;
 import com.parse.ParseInstallation;
 import com.parse.ParseObject;
 import com.parse.ParsePush;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.trekcoders.safar.Activity.LoginActivity;
+import com.trekcoders.safar.Activity.MainActivity;
 import com.trekcoders.safar.R;
-import com.trekcoders.safar.model.Trails;
 import com.trekcoders.safar.model.Users;
 
 import java.util.ArrayList;
@@ -55,7 +55,7 @@ public class FrenListAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         final ViewHolder holder;
         if (convertView == null) {
-            convertView = layoutInflater.inflate(R.layout.row_fren_list, null);
+            convertView = layoutInflater.inflate(R.layout.row_search_friend_list, null);
             holder = new ViewHolder();
             holder.email = (TextView) convertView.findViewById(R.id.tvEmail);
             holder.addFren = (Button) convertView.findViewById(R.id.addFren);
@@ -78,7 +78,7 @@ public class FrenListAdapter extends BaseAdapter {
 
                 ParsePush push = new ParsePush();
                 push.setQuery(pushQuery); // Set our Installation query
-                push.setMessage("You have been added as a fren by "+ parseUser.getUsername());
+                push.setMessage("You have been added as a friend by "+ parseUser.getUsername());
                 push.sendInBackground();
 
                 //insert
@@ -86,6 +86,37 @@ public class FrenListAdapter extends BaseAdapter {
                 parseObject.put("userObjId", ParseObject.createWithoutData("_User", parseUser.getObjectId()));
                 parseObject.put("frenObjId", ParseObject.createWithoutData("_User", user.objectId));
                 parseObject.saveInBackground();
+
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+
+                // set title
+                alertDialogBuilder.setTitle("Friend Added");
+
+                // set dialog message
+                alertDialogBuilder
+                        .setMessage("You successfully added a new friend!")
+                        .setCancelable(false)
+                        .setPositiveButton("Add More", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+
+                                dialog.cancel();
+                            }
+
+
+                        })
+                        .setNegativeButton("Home", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // if this button is clicked, just close
+                                // the dialog box and do nothing
+                                context.startActivity(new Intent(context, MainActivity.class));
+                            }
+                        });
+
+                // create alert dialog
+                AlertDialog alertDialog = alertDialogBuilder.create();
+
+                // show it
+                alertDialog.show();
             }
         });
 
