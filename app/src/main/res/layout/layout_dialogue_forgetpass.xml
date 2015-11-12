@@ -19,9 +19,22 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:hint="Enter Registered Email"
-        android:layout_marginRight="15dp"
-        android:layout_marginLeft="15dp"
-        android:paddingTop="30dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:paddingTop="20dp"
+        android:textColor="@color/ColorPrimaryDark"
+        android:textSize="15sp"
+        />
+
+    <EditText
+        android:id="@+id/edNewPass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:hint="Enter New Password"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:paddingTop="20dp"
         android:textColor="@color/ColorPrimaryDark"
         android:textSize="15sp"
         />

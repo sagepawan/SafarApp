@@ -34,6 +34,8 @@ public class LoginActivity extends AppCompatActivity {
 
     ParseQuery<ParseUser> loginQuery;
     ProgressDialog progressDialog;
+    ParseUser updateUser = new ParseUser();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,12 +107,34 @@ public class LoginActivity extends AppCompatActivity {
 
                 AlertDialog alertDialog = new AlertDialog.Builder(LoginActivity.this).create();
                 alertDialog.setTitle("");
+
+                LayoutInflater inflater = getLayoutInflater();
+                final View dialogLayout = inflater.inflate(R.layout.layout_dialogue_forgetpass, null);
+                alertDialog.setView(dialogLayout);
+
+                final EditText email = (EditText)dialogLayout.findViewById(R.id.edEmailForgetPass);
+                //successText.setText(finalResult);
+                final EditText pass = (EditText)dialogLayout.findViewById(R.id.edNewPass);
                 //alertDialog.setMessage("Registration information sent for approval");
 
-                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Ask for new password",
+                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Set New Password",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
 
+                                String userMail = email.getText().toString();
+                                final String userPass = pass.getText().toString();
+                                loginQuery.whereEqualTo("email", userMail);
+                                loginQuery.findInBackground(new FindCallback<ParseUser>() {
+                                    @Override
+                                    public void done(List<ParseUser> list, ParseException e) {
+
+                                        if(e==null){
+                                            updateUser.setPassword(userPass);
+                                        }else{
+
+                                        }
+                                    }
+                                });
                             }
                         });
 
@@ -121,12 +145,6 @@ public class LoginActivity extends AppCompatActivity {
                             }
                         });
 
-                LayoutInflater inflater = getLayoutInflater();
-                final View dialogLayout = inflater.inflate(R.layout.layout_dialogue_forgetpass, null);
-                alertDialog.setView(dialogLayout);
-
-                EditText email = (EditText)dialogLayout.findViewById(R.id.edEmailForgetPass);
-                //successText.setText(finalResult);
 
 
                 alertDialog.show();
