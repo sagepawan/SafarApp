@@ -77,7 +77,6 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
 
 
 
-
     }
 
     private void getUserDetailsFromParse() {

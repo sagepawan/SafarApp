@@ -70,7 +70,7 @@ public class SettingsFragment extends Fragment {
 
                             }
                         });
-                
+
                 alertDialog.show();
             }
         });
