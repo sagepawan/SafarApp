@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -20,7 +19,7 @@ import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.trekcoders.safar.Activity.SearchFriendActivity;
 import com.trekcoders.safar.R;
-import com.trekcoders.safar.adapter.UserFriendAdapter;
+import com.trekcoders.safar.Adapter.UserFriendAdapter;
 import com.trekcoders.safar.model.Friends;
 
 import java.util.ArrayList;

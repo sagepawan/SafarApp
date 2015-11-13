@@ -6,17 +6,14 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.trekcoders.safar.R;
-import com.trekcoders.safar.adapter.FrenListAdapter;
+import com.trekcoders.safar.Adapter.FrenListAdapter;
 import com.trekcoders.safar.model.Users;
 
 import java.util.ArrayList;

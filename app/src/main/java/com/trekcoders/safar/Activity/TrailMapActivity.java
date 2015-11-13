@@ -129,7 +129,6 @@ public class TrailMapActivity extends AppCompatActivity implements OnMapReadyCal
             Log.e("tag", err.getMessage());
         }
         return result.toString();
-
     }
 
     @Override
@@ -157,7 +156,6 @@ public class TrailMapActivity extends AppCompatActivity implements OnMapReadyCal
         getSupportActionBar().setLogo(R.mipmap.ic_logo);
     }
 
-
     public void getCurrentLocation() {
         map.clear();
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -184,7 +182,6 @@ public class TrailMapActivity extends AppCompatActivity implements OnMapReadyCal
             //gives null value when app is run for the first time
         }
     }
-
 
     private void utilizeLocation(double lat, double lng, Geocoder geocoder) {
         StringBuilder result = new StringBuilder();
@@ -223,8 +220,6 @@ public class TrailMapActivity extends AppCompatActivity implements OnMapReadyCal
         alertDialog.setTitle("Distance from current position");
         alertDialog.setMessage("From: " + new DecimalFormat("##.##").format(distanceFrom) + "m, To: " + new DecimalFormat("##.##").format(distanceTo) + "m");
         alertDialog.show();
-
-
     }
 
 
@@ -317,5 +312,4 @@ public class TrailMapActivity extends AppCompatActivity implements OnMapReadyCal
             return null;
         }
     }
-
 }

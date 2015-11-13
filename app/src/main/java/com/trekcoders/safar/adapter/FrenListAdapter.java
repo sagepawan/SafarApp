@@ -1,4 +1,4 @@
-package com.trekcoders.safar.adapter;
+package com.trekcoders.safar.Adapter;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -16,7 +16,6 @@ import com.parse.ParseObject;
 import com.parse.ParsePush;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
-import com.trekcoders.safar.Activity.LoginActivity;
 import com.trekcoders.safar.Activity.MainActivity;
 import com.trekcoders.safar.R;
 import com.trekcoders.safar.model.Users;

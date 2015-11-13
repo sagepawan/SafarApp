@@ -1,4 +1,4 @@
-package com.trekcoders.safar.adapter;
+package com.trekcoders.safar.Adapter;
 
 
 import android.content.Context;

@@ -21,9 +21,8 @@ import com.parse.ParseUser;
 import com.trekcoders.safar.Activity.AddFriendActivity;
 import com.trekcoders.safar.Activity.TrailMapActivity;
 import com.trekcoders.safar.R;
-import com.trekcoders.safar.adapter.MyListAdapter;
+import com.trekcoders.safar.Adapter.MyListAdapter;
 import com.trekcoders.safar.model.Trails;
-import com.trekcoders.safar.model.Users;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -15,7 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.trekcoders.safar.R;
-import com.trekcoders.safar.adapter.NavigationDrawerAdapter;
+import com.trekcoders.safar.Adapter.NavigationDrawerAdapter;
 import com.trekcoders.safar.model.NavDrawerItem;
 
 import java.util.ArrayList;
