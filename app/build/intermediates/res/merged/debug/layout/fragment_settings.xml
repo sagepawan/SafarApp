@@ -7,6 +7,20 @@
     tools:context="info.androidhive.materialdesign.activity.MessagesFragment">
 
 
+    <Button
+        android:id="@+id/btnChngPass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Change Password"
+        android:textSize="20sp"
+        android:layout_above="@+id/layout_choice_settings1"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
+        android:background="@color/ColorPrimary"
+        android:textColor="@color/primary_white"
+        android:layout_margin="40dp"
+        />
+
     <LinearLayout
         android:id="@+id/layout_choice_settings1"
         android:layout_width="match_parent"
@@ -58,6 +72,8 @@
             android:layout_width="0dip"
             android:layout_height="match_parent"
             android:layout_weight="1"/>
+
+
 
     </LinearLayout>
 

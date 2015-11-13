@@ -98,11 +98,8 @@ public class FrenListAdapter extends BaseAdapter {
                         .setCancelable(false)
                         .setPositiveButton("Add More", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-
                                 dialog.cancel();
                             }
-
-
                         })
                         .setNegativeButton("Home", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
