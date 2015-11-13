@@ -24,6 +24,7 @@ import com.trekcoders.safar.Fragments.LogoutFragment;
 import com.trekcoders.safar.Fragments.NotificationFragment;
 import com.trekcoders.safar.Fragments.SafarFriendsFragment;
 import com.trekcoders.safar.Fragments.SettingsFragment;
+import com.trekcoders.safar.Location.LocationService;
 import com.trekcoders.safar.R;
 
 public class MainActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener {
@@ -74,6 +75,9 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
 
         // display the first navigation drawer view on app launch
         displayView(0);
+
+        Intent serviceIntent = new Intent(MainActivity.this, LocationService.class);
+        MainActivity.this.startService(serviceIntent);
 
 
 

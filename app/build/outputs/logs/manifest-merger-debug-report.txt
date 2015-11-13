@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /home/akrmhrjn/AndroidStudioProjects/WorkinOnProjects/pawa/SafarApp/app/src/main/AndroidManifest.xml:2:1-120:12
+ADDED from /home/akrmhrjn/AndroidStudioProjects/WorkinOnProjects/pawa/SafarApp/app/src/main/AndroidManifest.xml:2:1-122:12
 	xmlns:android
 		ADDED from /home/akrmhrjn/AndroidStudioProjects/WorkinOnProjects/pawa/SafarApp/app/src/main/AndroidManifest.xml:2:11-69
 	package
@@ -80,7 +80,7 @@ ADDED from /home/akrmhrjn/AndroidStudioProjects/WorkinOnProjects/pawa/SafarApp/a
 	android:name
 		ADDED from /home/akrmhrjn/AndroidStudioProjects/WorkinOnProjects/pawa/SafarApp/app/src/main/AndroidManifest.xml:35:22-80
 application
-ADDED from /home/akrmhrjn/AndroidStudioProjects/WorkinOnProjects/pawa/SafarApp/app/src/main/AndroidManifest.xml:37:5-118:19
+ADDED from /home/akrmhrjn/AndroidStudioProjects/WorkinOnProjects/pawa/SafarApp/app/src/main/AndroidManifest.xml:37:5-120:19
 MERGED from [com.android.support:appcompat-v7:22.2.1] /home/akrmhrjn/AndroidStudioProjects/WorkinOnProjects/pawa/SafarApp/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:support-v4:22.2.1] /home/akrmhrjn/AndroidStudioProjects/WorkinOnProjects/pawa/SafarApp/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:design:22.2.1] /home/akrmhrjn/AndroidStudioProjects/WorkinOnProjects/pawa/SafarApp/app/build/intermediates/exploded-aar/com.android.support/design/22.2.1/AndroidManifest.xml:22:5-20
@@ -234,6 +234,12 @@ action#com.parse.push.intent.OPEN
 ADDED from /home/akrmhrjn/AndroidStudioProjects/WorkinOnProjects/pawa/SafarApp/app/src/main/AndroidManifest.xml:114:17-69
 	android:name
 		ADDED from /home/akrmhrjn/AndroidStudioProjects/WorkinOnProjects/pawa/SafarApp/app/src/main/AndroidManifest.xml:114:25-66
+service#com.trekcoders.safar.Location.LocationService
+ADDED from /home/akrmhrjn/AndroidStudioProjects/WorkinOnProjects/pawa/SafarApp/app/src/main/AndroidManifest.xml:118:9-84
+	android:enabled
+		ADDED from /home/akrmhrjn/AndroidStudioProjects/WorkinOnProjects/pawa/SafarApp/app/src/main/AndroidManifest.xml:118:18-40
+	android:name
+		ADDED from /home/akrmhrjn/AndroidStudioProjects/WorkinOnProjects/pawa/SafarApp/app/src/main/AndroidManifest.xml:118:41-81
 uses-sdk
 INJECTED from /home/akrmhrjn/AndroidStudioProjects/WorkinOnProjects/pawa/SafarApp/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [com.android.support:appcompat-v7:22.2.1] /home/akrmhrjn/AndroidStudioProjects/WorkinOnProjects/pawa/SafarApp/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/AndroidManifest.xml:20:5-43

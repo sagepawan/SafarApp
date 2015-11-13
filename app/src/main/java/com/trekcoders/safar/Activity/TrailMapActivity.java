@@ -27,6 +27,10 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.trekcoders.safar.R;
 import com.trekcoders.safar.utils.GMapV2GetRouteDirection;
 
@@ -58,6 +62,8 @@ public class TrailMapActivity extends AppCompatActivity implements OnMapReadyCal
 
     public final static double AVERAGE_RADIUS_OF_EARTH = 6371;
 
+    String frenObjId, trailObjId;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +72,8 @@ public class TrailMapActivity extends AppCompatActivity implements OnMapReadyCal
 
         initToolbar();
 
+        frenObjId = "TEklhW9wpH";
+        trailObjId = "FkdyO1nXFz";
 
         if (!isGooglePlayServicesAvailable()) {
             finish();
@@ -96,7 +104,65 @@ public class TrailMapActivity extends AppCompatActivity implements OnMapReadyCal
         map.getUiSettings().setCompassEnabled(true);
         map.getUiSettings().setRotateGesturesEnabled(true);
 
-        new GetRoute().execute();
+        //new GetRoute().execute();
+
+        ParseQuery parseQuery = ParseQuery.getQuery("Traces");
+        parseQuery.include("usrObjId");
+        parseQuery.include("trailObjId");
+        parseQuery.findInBackground(new FindCallback<ParseObject>() {
+
+            @Override
+            public void done(List<ParseObject> list, ParseException e) {
+
+                ArrayList<LatLng> points = new ArrayList<LatLng>();
+                for (ParseObject Obj : list) {
+                    ParseObject user = Obj.getParseObject("usrObjId");
+                    ParseObject trail = Obj.getParseObject("trailObjId");
+
+                    if (user.getObjectId().equals(frenObjId) && trail.getObjectId().equals("FkdyO1nXFz")) {
+                        LatLng latLng = new LatLng(Double.valueOf(Obj.getString("Latitude")), Double.valueOf(Obj.getString("Longitude")));
+                        points.add(latLng);
+                    }
+                }
+
+                String toAddress = getAddress(toLat, toLong);
+                String fromAddress = getAddress(fromLat, fromLong);
+                fromMarker.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
+                fromMarker.position(fromPosition);
+                fromMarker.draggable(false);
+                fromMarker.title(fromAddress);
+                map.addMarker(fromMarker);
+                toMarker.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
+                toMarker.position(toPosition);
+                toMarker.draggable(false);
+                toMarker.title(toAddress);
+                map.addMarker(toMarker);
+
+                LatLng coordinate = null;
+                for (int i = 0; i < points.size(); ++i) {
+                    coordinate = points.get(i);
+                    MarkerOptions marker = new MarkerOptions();
+                    marker.position(coordinate);
+                    map.addMarker(marker);
+                }
+                ArrayList<LatLng> path = new ArrayList<LatLng>();
+                LatLng from = new LatLng(Double.valueOf(fromLat), Double.valueOf(fromLong));
+                path.add(from);
+                for(LatLng ll: points){
+                    path.add(ll);
+                }
+                LatLng to = new LatLng(Double.valueOf(toLat), Double.valueOf(toLong));
+                path.add(to);
+                //map.moveCamera(CameraUpdateFactory.newLatLngZoom(coordinate, 15));
+                PolylineOptions polyLineOptions = new PolylineOptions();
+                polyLineOptions.addAll(path);
+                polyLineOptions.width(2);
+                polyLineOptions.color(Color.GREEN);
+                map.addPolyline(polyLineOptions);
+
+
+            }
+        });
     }
 
 
@@ -278,7 +344,7 @@ public class TrailMapActivity extends AppCompatActivity implements OnMapReadyCal
         return d;
     }
 
-    class GetRoute extends AsyncTask<Void, Void, Void> {
+    /*class GetRoute extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... params) {
             String response = "";
@@ -316,6 +382,6 @@ public class TrailMapActivity extends AppCompatActivity implements OnMapReadyCal
             });
             return null;
         }
-    }
+    }*/
 
 }
