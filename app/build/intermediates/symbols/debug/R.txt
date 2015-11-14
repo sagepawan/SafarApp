@@ -641,7 +641,7 @@ int id action_menu_presenter 0x7f0e0003
 int id action_mode_bar 0x7f0e0069
 int id action_mode_bar_stub 0x7f0e0068
 int id action_mode_close_button 0x7f0e0051
-int id action_settings 0x7f0e00b9
+int id action_settings 0x7f0e00ba
 int id activity_chooser_view_content 0x7f0e0052
 int id addFren 0x7f0e00b5
 int id addSafarFriends 0x7f0e009e
@@ -724,6 +724,7 @@ int id line1 0x7f0e00ac
 int id line3 0x7f0e00b0
 int id listMode 0x7f0e000b
 int id listUserFriends 0x7f0e009d
+int id listUserNotification 0x7f0e009c
 int id list_item 0x7f0e0056
 int id logo_splash 0x7f0e0091
 int id map 0x7f0e0093
@@ -801,7 +802,7 @@ int id trail_title 0x7f0e0095
 int id tvEmail 0x7f0e00b4
 int id tvEmailF 0x7f0e00b6
 int id tvName 0x7f0e009a
-int id tvNotification 0x7f0e009c
+int id tvNotification 0x7f0e00b9
 int id tvPassForget 0x7f0e0081
 int id tvRemove 0x7f0e00b8
 int id tvmobileF 0x7f0e00b7
@@ -879,10 +880,11 @@ int layout notification_template_part_chronometer 0x7f040039
 int layout notification_template_part_time 0x7f04003a
 int layout row_search_friend_list 0x7f04003b
 int layout row_user_friend_list 0x7f04003c
-int layout select_dialog_item_material 0x7f04003d
-int layout select_dialog_multichoice_material 0x7f04003e
-int layout select_dialog_singlechoice_material 0x7f04003f
-int layout support_simple_spinner_dropdown_item 0x7f040040
+int layout row_user_notifications 0x7f04003d
+int layout select_dialog_item_material 0x7f04003e
+int layout select_dialog_multichoice_material 0x7f04003f
+int layout select_dialog_singlechoice_material 0x7f040040
+int layout support_simple_spinner_dropdown_item 0x7f040041
 int menu menu_login 0x7f0f0000
 int menu menu_register 0x7f0f0001
 int menu menu_splash 0x7f0f0002

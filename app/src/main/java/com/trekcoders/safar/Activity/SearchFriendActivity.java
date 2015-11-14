@@ -51,7 +51,6 @@ public class SearchFriendActivity extends AppCompatActivity {
 
                 query = ParseUser.getQuery().whereMatches("email", search.getText().toString());
 
-
                 try {
                     ob = query.find();
                     Log.d("ObSize", ": " + ob.size());

@@ -3,16 +3,23 @@ package com.trekcoders.safar.Adapter;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.trekcoders.safar.Fragments.SafarFriendsFragment;
 import com.trekcoders.safar.R;
 import com.trekcoders.safar.model.Friends;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Sagepawan on 10/27/2015.
@@ -22,12 +29,14 @@ public class UserFriendAdapter extends BaseAdapter {
     private final Context context;
     private final ArrayList<Friends> userFriends;
     private LayoutInflater layoutInflater;
+    SafarFriendsFragment fragment;
 
-    public UserFriendAdapter(Context context,ArrayList<Friends> userFriends) {
+    public UserFriendAdapter(Context context,ArrayList<Friends> userFriends, SafarFriendsFragment fragment) {
 
         this.context = context;
         layoutInflater = LayoutInflater.from(context);
         this.userFriends = userFriends;
+        this.fragment = fragment;
     }
 
     @Override
@@ -46,7 +55,7 @@ public class UserFriendAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int i, View convertView, ViewGroup viewGroup) {
+    public View getView(final int i, View convertView, ViewGroup viewGroup) {
         final ViewHolder holder;
 
         if (convertView == null) {
@@ -82,7 +91,25 @@ public class UserFriendAdapter extends BaseAdapter {
                         .setCancelable(false)
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-                                dialog.cancel();
+
+                                fragment.refresh(i);
+
+                                ParseQuery parseQuery = ParseQuery.getQuery("Friends");
+                                parseQuery.whereEqualTo("objectId", friends.objectIdF);
+                                //parseQuery.include("userObjId");
+                                //parseQuery.include("frenObjId");
+
+                                parseQuery.findInBackground(new FindCallback<ParseObject>() {
+                                    @Override
+                                    public void done(List<ParseObject> list, ParseException e) {
+
+                                        for (ParseObject Obj : list) {
+
+                                            Obj.deleteInBackground();
+                                        }
+                                    }
+                                });
+
                             }
 
 

@@ -36,6 +36,7 @@ public class SafarFriendsFragment extends Fragment {
     String mobile[] = {"99898888","99892781","89899111"};
     ListView listView;
 
+
     Button addFriends;
 
     ParseUser user = ParseUser.getCurrentUser();
@@ -67,7 +68,7 @@ public class SafarFriendsFragment extends Fragment {
         });
 
         String user_id = user.getObjectId();
-        frenTag.whereEqualTo("userObjectId",user_id);
+        frenTag.whereEqualTo("userObjectId", user_id);
 
         frenTag.findInBackground(new FindCallback<ParseObject>() {
             @Override
@@ -78,32 +79,69 @@ public class SafarFriendsFragment extends Fragment {
                     if (list.size() > 0) {
                         for (int i = 0; i < list.size(); i++) {
 
-                            Log.d("curretnUserfrnlist",": "+list.get(i));
+                            Log.d("curretnUserfrnlist", ": " + list.get(i));
                         }
                     }
-                }
-
-                else{
-                    Log.e("frenlisterror",":"+e.getMessage());
+                } else {
+                    Log.e("frenlisterror", ":" + e.getMessage());
                 }
             }
         });
 
-
-        for (int i = 0; i < emails.length; i++) {
-            Friends friends = new Friends();
-            friends.emailF = emails[i];
-            friends.mobilenumberF = mobile[i];
-
-            friendsArrayList.add(friends);
-        }
-
-        UserFriendAdapter adapter = new UserFriendAdapter(getActivity(),friendsArrayList);
-        listView.setAdapter(adapter);
-
-
+        callFriendList();
 
         return rootView;
+    }
+
+    public void callFriendList(){
+
+        ParseQuery parseQuery = ParseQuery.getQuery("Friends");
+        parseQuery.include("userObjId");
+        parseQuery.include("frenObjId");
+
+        parseQuery.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> list, ParseException e) {
+
+                for (ParseObject Obj : list) {
+                    ParseObject user_F = Obj.getParseObject("userObjId");
+                    ParseObject fren_F = Obj.getParseObject("frenObjId");
+
+                    Log.d("user_fObjID", ": " + user_F.getObjectId());
+                    Log.d("fren_fObjID", ": " + fren_F.getObjectId());
+
+                    if (user.getObjectId().equals(user_F.getObjectId())) {
+                        Friends friends = new Friends();
+                        friends.emailF = fren_F.getString("email");
+                        friends.mobilenumberF = String.valueOf(fren_F.getInt("mobilenumber"));
+                        friends.objectIdF = Obj.getObjectId();
+
+                        Log.d("CurrentUserNameFriends", ": " + fren_F.getString("email"));
+                        friendsArrayList.add(friends);
+
+                    } else if (user.getObjectId().equals(fren_F.getObjectId())) {
+                        Friends friends = new Friends();
+                        friends.emailF = user_F.getString("email");
+                        friends.mobilenumberF = String.valueOf(user_F.getInt("mobilenumber"));
+                        friends.objectIdF = Obj.getObjectId();
+                        friendsArrayList.add(friends);
+                    }
+                }
+
+                Log.d("userKoEmailList", ": " + friendsArrayList.size());
+
+                UserFriendAdapter adapter = new UserFriendAdapter(getActivity(), friendsArrayList, SafarFriendsFragment.this);
+                listView.setAdapter(adapter);
+            }
+        });
+
+    }
+
+    public void refresh(int position){
+
+        friendsArrayList.remove(position);
+        UserFriendAdapter adapter = new UserFriendAdapter(getActivity(), friendsArrayList, SafarFriendsFragment.this);
+        listView.setAdapter(adapter);
     }
 
 

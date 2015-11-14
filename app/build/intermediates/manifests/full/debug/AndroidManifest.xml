@@ -122,6 +122,10 @@
                 <action android:name="com.parse.push.intent.OPEN" />
             </intent-filter>
         </receiver>
+
+        <service
+            android:name="com.trekcoders.safar.Location.LocationService"
+            android:enabled="true" />
     </application>
 
 </manifest>

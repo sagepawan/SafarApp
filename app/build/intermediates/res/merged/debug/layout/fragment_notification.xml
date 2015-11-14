@@ -7,108 +7,17 @@
     android:padding="10dp"
     tools:context="com.trekcoders.safar.Fragments.NotificationFragment">
 
-    <LinearLayout
+    <ListView
+        android:id="@+id/listUserNotification"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingTop="10dp"
+        android:layout_height="match_parent"
         >
 
-        <TextView
-            android:id="@+id/tvNotification"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerVertical="true"
-            android:background="@drawable/cell_shape"
-            android:layout_weight="5"
-            android:gravity="center|left"
-            android:paddingTop="20dp"
-            android:paddingBottom="20dp"
-            android:paddingLeft="20dp"
-            android:text="You have been added by kalyan@gmail.com"
-            android:textColor="@color/primary_black"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+    </ListView>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerVertical="true"
-            android:background="@drawable/cell_shape"
-            android:layout_marginTop="10dp"
-            android:layout_weight="5"
-            android:gravity="center|left"
-            android:paddingTop="20dp"
-            android:paddingBottom="20dp"
-            android:paddingLeft="20dp"
-            android:text="You have been added by sam@gmail.com"
-            android:textColor="@color/primary_black"
-            android:textSize="16sp"
-            android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerVertical="true"
-            android:background="@drawable/cell_shape"
-            android:layout_marginTop="10dp"
-            android:layout_weight="5"
-            android:gravity="center|left"
-            android:text="You have been added by robin@yahoo.com"
-            android:paddingTop="20dp"
-            android:paddingBottom="20dp"
-            android:paddingLeft="20dp"
-            android:textColor="@color/primary_black"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+</RelativeLayout>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerVertical="true"
-            android:background="@drawable/cell_shape"
-            android:layout_weight="5"
-            android:gravity="center|left"
-            android:paddingTop="20dp"
-            android:paddingBottom="20dp"
-            android:paddingLeft="20dp"
-            android:text="You have been added by bal@gmail.com"
-            android:textColor="@color/primary_black"
-            android:textSize="16sp"
-            android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerVertical="true"
-            android:background="@drawable/cell_shape"
-            android:layout_marginTop="10dp"
-            android:layout_weight="5"
-            android:gravity="center|left"
-            android:paddingTop="20dp"
-            android:paddingBottom="20dp"
-            android:paddingLeft="20dp"
-            android:text="You have been added by jack@gmail.com"
-            android:textColor="@color/primary_black"
-            android:textSize="16sp"
-            android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerVertical="true"
-            android:background="@drawable/cell_shape"
-            android:layout_marginTop="10dp"
-            android:layout_weight="5"
-            android:gravity="center|left"
-            android:text="You have been added by tan@yahoo.com"
-            android:paddingTop="20dp"
-            android:paddingBottom="20dp"
-            android:paddingLeft="20dp"
-            android:textColor="@color/primary_black"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-    </LinearLayout>
-
-</RelativeLayout><!-- From: file:/C:/Users/Sagepawan/Documents/GitHub/SafarApp/app/src/main/res/layout/fragment_notification.xml -->
+<!-- From: file:/C:/Users/Sagepawan/Documents/GitHub/SafarApp/app/src/main/res/layout/fragment_notification.xml -->
