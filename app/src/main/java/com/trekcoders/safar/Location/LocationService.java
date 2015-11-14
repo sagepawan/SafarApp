@@ -9,10 +9,20 @@ import android.os.IBinder;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.model.LatLng;
+import com.parse.FindCallback;
 import com.parse.ParseException;
+import com.parse.ParseInstallation;
 import com.parse.ParseObject;
+import com.parse.ParsePush;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
-import com.parse.SaveCallback;
+import com.trekcoders.safar.SafarApplication;
+import com.trekcoders.safar.model.Friends;
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  * Created by akrmhrjn on 7/31/15.
@@ -28,9 +38,13 @@ public class LocationService extends Service implements IGpsHelper {
     double lastLat = 0.0;
     double lastLng = 0.0;
 
+    double sentLat = 0.0;
+    double sentLng = 0.0;
+
     //public Prefs prefs;
     GPS gps;
 
+    ArrayList<Friends> friendsArrayList;
 
     public final static double AVERAGE_RADIUS_OF_EARTH = 6371;
 
@@ -42,9 +56,10 @@ public class LocationService extends Service implements IGpsHelper {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-
         System.out.println("Service Started");
+        friendsArrayList = new ArrayList<>();
         parseUser = ParseUser.getCurrentUser();
+        callFriendList();
         startLocationService();
 
         return START_STICKY;
@@ -88,6 +103,40 @@ public class LocationService extends Service implements IGpsHelper {
         double distance = calculateDistance(lastLat, lastLng, lat, lng);
         System.out.println("Service Distance: " + distance);
 
+        for(LatLng ll: SafarApplication.app.trailPath){
+            double cpDistance = calculateDistance(ll.latitude, ll.longitude, lat, lng);
+            if(cpDistance < 10){
+                if(sentLat != ll.latitude || sentLng != ll.longitude){
+                    System.out.println("Near Checkpoint New New");
+                    if(friendsArrayList != null) {
+                        for(Friends friends : friendsArrayList) {
+                            ParseQuery pushQuery = ParseInstallation.getQuery();
+                            pushQuery.whereEqualTo("user_objectId", friends.objectIdF);
+                            ParseUser parseUser = ParseUser.getCurrentUser();
+
+                            String msg = "You friend " + parseUser.getUsername() + " reached to the checkpoint.";
+
+                            ParsePush push = new ParsePush();
+                            push.setQuery(pushQuery); // Set our Installation query
+                            push.setMessage(msg);
+                            push.sendInBackground();
+
+                            ParseObject parseObject = new ParseObject("Notifications");
+                            parseObject.put("userObjId", friends.objectIdF);
+                            parseObject.put("friendObjId", parseUser.getObjectId());
+                            parseObject.put("trailObjId", "FkdyO1nXFz");
+                            parseObject.put("message", msg);
+                            parseObject.saveInBackground();
+                        }
+                    }
+
+                }
+                System.out.println("Near Checkpoint");
+                sentLat = ll.latitude;
+                sentLng = ll.longitude;
+            }
+        }
+
         //sends location if distance between previous and current location is greater than 10m
         if (distance > 10) {
             System.out.println("Service Location traced. Distance: " + distance);
@@ -127,7 +176,7 @@ public class LocationService extends Service implements IGpsHelper {
         traceThread = new Thread() {
             public void run() {
                 // do here...
-                ParseObject parseObject = new ParseObject("Traces");
+               /* ParseObject parseObject = new ParseObject("Traces");
                 parseObject.put("usrObjId", ParseObject.createWithoutData("_User", parseUser.getObjectId()));
                 parseObject.put("trailObjId", ParseObject.createWithoutData("Trails", "FkdyO1nXFz"));
                 parseObject.put("Latitude", String.valueOf(lat));
@@ -138,7 +187,7 @@ public class LocationService extends Service implements IGpsHelper {
                         //e.printStackTrace();
                         Log.d("Service upload trace", "Success!!");
                     }
-                });
+                });*/
                 traceThread = null;
             }
         };
@@ -162,5 +211,46 @@ public class LocationService extends Service implements IGpsHelper {
         double d = AVERAGE_RADIUS_OF_EARTH * c * 1000; //returns in meter
 
         return d;
+    }
+
+
+    public void callFriendList(){
+
+        ParseQuery parseQuery = ParseQuery.getQuery("Friends");
+        parseQuery.include("userObjId");
+        parseQuery.include("frenObjId");
+
+        parseQuery.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> list, ParseException e) {
+
+                for (ParseObject Obj : list) {
+                    ParseObject user_F = Obj.getParseObject("userObjId");
+                    ParseObject fren_F = Obj.getParseObject("frenObjId");
+
+                    Log.d("user_fObjID", ": " + user_F.getObjectId());
+                    Log.d("fren_fObjID", ": " + fren_F.getObjectId());
+
+                    if (parseUser.getObjectId().equals(user_F.getObjectId())) {
+                        Friends friends = new Friends();
+                        friends.emailF = fren_F.getString("email");
+                        friends.mobilenumberF = String.valueOf(fren_F.getInt("mobilenumber"));
+                        friends.objectIdF = fren_F.getObjectId();
+
+                        Log.d("CurrentUserNameFriends", ": " + fren_F.getString("email"));
+                        friendsArrayList.add(friends);
+
+                    } else if (parseUser.getObjectId().equals(fren_F.getObjectId())) {
+                        Friends friends = new Friends();
+                        friends.emailF = user_F.getString("email");
+                        friends.mobilenumberF = String.valueOf(user_F.getInt("mobilenumber"));
+                        friends.objectIdF = user_F.getObjectId();
+                        friendsArrayList.add(friends);
+                    }
+                }
+                Log.d("FrensSize", ": " + friendsArrayList.size());
+            }
+        });
+
     }
 }

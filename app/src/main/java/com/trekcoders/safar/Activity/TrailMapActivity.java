@@ -2,6 +2,8 @@ package com.trekcoders.safar.Activity;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.location.Address;
 import android.location.Criteria;
@@ -31,6 +33,7 @@ import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.trekcoders.safar.Location.LocationService;
 import com.trekcoders.safar.R;
 import com.trekcoders.safar.utils.GMapV2GetRouteDirection;
 
@@ -62,7 +65,7 @@ public class TrailMapActivity extends AppCompatActivity implements OnMapReadyCal
 
     public final static double AVERAGE_RADIUS_OF_EARTH = 6371;
 
-    String frenObjId, trailObjId;
+    String frenObjId, trailObjId, from;
 
 
     @Override
@@ -72,17 +75,24 @@ public class TrailMapActivity extends AppCompatActivity implements OnMapReadyCal
 
         initToolbar();
 
-        frenObjId = "TEklhW9wpH";
-        trailObjId = "FkdyO1nXFz";
+        if(getIntent()!=null){
+            frenObjId = getIntent().getStringExtra("frenObjId");
+            trailObjId = getIntent().getStringExtra("trailObjId");
+            from = getIntent().getStringExtra("from");
+        }
+
+        /*frenObjId = "TEklhW9wpH";
+        trailObjId = "FkdyO1nXFz";*/
 
         if (!isGooglePlayServicesAvailable()) {
             finish();
         }
 
-        fromLat = 27.7003548;
-        fromLong = 85.3106189;
-        toLat = 27.7075505;
-        toLong = 85.3351872;
+
+        fromLat = 27.68973779;
+        fromLong = 85.30766174;
+        toLat = 27.6906498;
+        toLong = 85.30543014;
 
         fromPosition = new LatLng(fromLat, fromLong);
         toPosition = new LatLng(toLat, toLong);
@@ -95,7 +105,7 @@ public class TrailMapActivity extends AppCompatActivity implements OnMapReadyCal
 
         map = mapFragment.getMap();
 
-        getCurrentLocation();
+
         map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         map.setMyLocationEnabled(true);
         map.getUiSettings().setZoomControlsEnabled(true);
@@ -106,6 +116,17 @@ public class TrailMapActivity extends AppCompatActivity implements OnMapReadyCal
 
         //new GetRoute().execute();
 
+
+        LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        if (from.equalsIgnoreCase("trace")) {
+            if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+                Toast.makeText(this, "GPS is Enabled in your devide", Toast.LENGTH_SHORT).show();
+                getCurrentLocation();
+            } else {
+                showGPSDisabledAlertToUser();
+            }
+        }
+        
         ParseQuery parseQuery = ParseQuery.getQuery("Traces");
         parseQuery.include("usrObjId");
         parseQuery.include("trailObjId");
@@ -148,7 +169,7 @@ public class TrailMapActivity extends AppCompatActivity implements OnMapReadyCal
                 ArrayList<LatLng> path = new ArrayList<LatLng>();
                 LatLng from = new LatLng(Double.valueOf(fromLat), Double.valueOf(fromLong));
                 path.add(from);
-                for(LatLng ll: points){
+                for (LatLng ll : points) {
                     path.add(ll);
                 }
                 LatLng to = new LatLng(Double.valueOf(toLat), Double.valueOf(toLong));
@@ -161,6 +182,28 @@ public class TrailMapActivity extends AppCompatActivity implements OnMapReadyCal
                 map.addPolyline(polyLineOptions);
             }
         });
+    }
+
+    private void showGPSDisabledAlertToUser(){
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setMessage("GPS is disabled in your device. Would you like to enable it?")
+                .setCancelable(false)
+                .setPositiveButton("Enable GPS",
+                        new DialogInterface.OnClickListener(){
+                            public void onClick(DialogInterface dialog, int id){
+                                Intent callGPSSettingIntent = new Intent(
+                                        android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                                startActivity(callGPSSettingIntent);
+                            }
+                        });
+        alertDialogBuilder.setNegativeButton("Cancel",
+                new DialogInterface.OnClickListener(){
+                    public void onClick(DialogInterface dialog, int id){
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert = alertDialogBuilder.create();
+        alert.show();
     }
 
 
@@ -269,7 +312,7 @@ public class TrailMapActivity extends AppCompatActivity implements OnMapReadyCal
         }
         String address = result.toString();
 
-        double distanceTo = calculateDistance(toLat, toLong, lat, lng);
+        //double distanceTo = calculateDistance(toLat, toLong, lat, lng);
         double distanceFrom = calculateDistance(fromLat, fromLong, lat, lng);
 
 
@@ -280,10 +323,31 @@ public class TrailMapActivity extends AppCompatActivity implements OnMapReadyCal
         map.addMarker(marker);
         map.moveCamera(CameraUpdateFactory.newLatLng(latLng));
 
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
-        alertDialog.setTitle("Distance from current position");
-        alertDialog.setMessage("From: " + new DecimalFormat("##.##").format(distanceFrom) + "m, To: " + new DecimalFormat("##.##").format(distanceTo) + "m");
-        alertDialog.show();
+
+        System.out.println("distance from:" + distanceFrom);
+        if(from.equalsIgnoreCase("trace")) {
+            if (distanceFrom > 50) {
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+                alertDialog.setTitle("Message");
+                alertDialog.setMessage("You are very far from tracking distance.");
+                alertDialog.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                });
+                //alertDialog.setMessage("From: " + new DecimalFormat("##.##").format(distanceFrom) + "m, To: " + new DecimalFormat("##.##").format(distanceTo) + "m");
+                alertDialog.show();
+            } else {
+                Intent serviceIntent = new Intent(TrailMapActivity.this, LocationService.class);
+                TrailMapActivity.this.startService(serviceIntent);
+            }
+        }else if(from.equalsIgnoreCase("notification")){
+
+        }
+
+
+
     }
 
 

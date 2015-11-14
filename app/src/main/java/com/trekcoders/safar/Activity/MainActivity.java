@@ -76,8 +76,8 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         // display the first navigation drawer view on app launch
         displayView(0);
 
-        Intent serviceIntent = new Intent(MainActivity.this, LocationService.class);
-        MainActivity.this.startService(serviceIntent);
+        /*Intent serviceIntent = new Intent(MainActivity.this, LocationService.class);
+        MainActivity.this.startService(serviceIntent);*/
 
 
 
