@@ -17,6 +17,7 @@ import com.parse.ParseObject;
 import com.parse.ParsePush;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 import com.trekcoders.safar.SafarApplication;
 import com.trekcoders.safar.model.Friends;
 
@@ -176,7 +177,7 @@ public class LocationService extends Service implements IGpsHelper {
         traceThread = new Thread() {
             public void run() {
                 // do here...
-               /* ParseObject parseObject = new ParseObject("Traces");
+                ParseObject parseObject = new ParseObject("Traces");
                 parseObject.put("usrObjId", ParseObject.createWithoutData("_User", parseUser.getObjectId()));
                 parseObject.put("trailObjId", ParseObject.createWithoutData("Trails", "FkdyO1nXFz"));
                 parseObject.put("Latitude", String.valueOf(lat));
@@ -187,7 +188,7 @@ public class LocationService extends Service implements IGpsHelper {
                         //e.printStackTrace();
                         Log.d("Service upload trace", "Success!!");
                     }
-                });*/
+                });
                 traceThread = null;
             }
         };
