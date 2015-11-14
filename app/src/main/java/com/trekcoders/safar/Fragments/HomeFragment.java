@@ -119,6 +119,9 @@ public class HomeFragment extends Fragment {
                                             if (usr.getObjectId().equalsIgnoreCase(parseUser.getObjectId())) {
                                                 isFrenEmpty = false;
                                                 Intent next = new Intent(getActivity(), TrailMapActivity.class);
+                                                next.putExtra("from", "trace");
+                                                next.putExtra("trailObjId", "FkdyO1nXFz");
+                                                next.putExtra("frenObjId", parseUser.getObjectId());
                                                 startActivity(next);
                                             }
                                         }
