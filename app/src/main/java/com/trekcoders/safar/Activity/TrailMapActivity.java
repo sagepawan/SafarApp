@@ -126,7 +126,7 @@ public class TrailMapActivity extends AppCompatActivity implements OnMapReadyCal
                 showGPSDisabledAlertToUser();
             }
         }
-        
+
         ParseQuery parseQuery = ParseQuery.getQuery("Traces");
         parseQuery.include("usrObjId");
         parseQuery.include("trailObjId");
