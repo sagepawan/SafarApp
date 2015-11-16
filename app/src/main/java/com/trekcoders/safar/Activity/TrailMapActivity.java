@@ -89,11 +89,15 @@ public class TrailMapActivity extends AppCompatActivity implements OnMapReadyCal
             finish();
         }
 
-
-        fromLat = 27.68973779;
-        fromLong = 85.30766174;
-        toLat = 27.6906498;
-        toLong = 85.30543014;
+        //27.676448, 85.342686
+        fromLat = 27.677178;
+        fromLong = 85.342872;
+        toLat = 27.676448;
+        toLong = 85.342686;
+        /*fromLat = 27.68973779;
+        fromLong = 85.30766174;*/
+        /*toLat = 27.6906498;
+        toLong = 85.30543014;*/
 
         fromPosition = new LatLng(fromLat, fromLong);
         toPosition = new LatLng(toLat, toLong);
@@ -351,7 +355,6 @@ public class TrailMapActivity extends AppCompatActivity implements OnMapReadyCal
 
         }
     }
-
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
