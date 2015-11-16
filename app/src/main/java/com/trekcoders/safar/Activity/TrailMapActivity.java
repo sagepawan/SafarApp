@@ -11,12 +11,14 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -40,7 +42,6 @@ import com.trekcoders.safar.utils.GMapV2GetRouteDirection;
 import org.w3c.dom.Document;
 
 import java.io.IOException;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -67,6 +68,10 @@ public class TrailMapActivity extends AppCompatActivity implements OnMapReadyCal
 
     String frenObjId, trailObjId, from;
 
+    Button startTrace, stopTrace;
+    LinearLayout bottomLinear;
+    Intent serviceIntent;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,14 +79,20 @@ public class TrailMapActivity extends AppCompatActivity implements OnMapReadyCal
         setContentView(R.layout.activity_trail_map);
 
         initToolbar();
+        startTrace = (Button) findViewById(R.id.btnTracingStart);
+        stopTrace = (Button) findViewById(R.id.btnTracingEnd);
+        bottomLinear = (LinearLayout) findViewById(R.id.bottomLinear);
+        serviceIntent = new Intent(TrailMapActivity.this, LocationService.class);
 
-        if(getIntent()!=null){
+
+        if (getIntent() != null) {
             frenObjId = getIntent().getStringExtra("frenObjId");
             trailObjId = getIntent().getStringExtra("trailObjId");
             from = getIntent().getStringExtra("from");
         }
 
-        System.out.println("aaloo"+from);
+        System.out.println("aaloo" + from);
+
         /*frenObjId = "TEklhW9wpH";
         trailObjId = "FkdyO1nXFz";*/
 
@@ -120,11 +131,8 @@ public class TrailMapActivity extends AppCompatActivity implements OnMapReadyCal
         map.getUiSettings().setCompassEnabled(true);
         map.getUiSettings().setRotateGesturesEnabled(true);
 
-        //new GetRoute().execute();
-
-
-
         if (from.equalsIgnoreCase("trace")) {
+            bottomLinear.setVisibility(View.VISIBLE);
             LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
             if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
                 Toast.makeText(this, "GPS is Enabled in your device", Toast.LENGTH_SHORT).show();
@@ -132,7 +140,25 @@ public class TrailMapActivity extends AppCompatActivity implements OnMapReadyCal
             } else {
                 showGPSDisabledAlertToUser();
             }
+        } else{
+            bottomLinear.setVisibility(View.GONE);
         }
+
+        //new GetRoute().execute();
+
+        startTrace.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TrailMapActivity.this.startService(serviceIntent);
+            }
+        });
+
+        stopTrace.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TrailMapActivity.this.stopService(serviceIntent);
+            }
+        });
 
         ParseQuery parseQuery = ParseQuery.getQuery("Traces");
         parseQuery.include("usrObjId");
@@ -191,21 +217,21 @@ public class TrailMapActivity extends AppCompatActivity implements OnMapReadyCal
         });
     }
 
-    private void showGPSDisabledAlertToUser(){
+    private void showGPSDisabledAlertToUser() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setMessage("GPS is disabled in your device. Would you like to enable it?")
                 .setCancelable(false)
                 .setPositiveButton("Enable GPS",
-                        new DialogInterface.OnClickListener(){
-                            public void onClick(DialogInterface dialog, int id){
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
                                 Intent callGPSSettingIntent = new Intent(
                                         android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
                                 startActivity(callGPSSettingIntent);
                             }
                         });
         alertDialogBuilder.setNegativeButton("Cancel",
-                new DialogInterface.OnClickListener(){
-                    public void onClick(DialogInterface dialog, int id){
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
                         dialog.cancel();
                         finish();
                     }
@@ -333,7 +359,7 @@ public class TrailMapActivity extends AppCompatActivity implements OnMapReadyCal
 
 
         System.out.println("distance from:" + distanceFrom);
-        if(from.equalsIgnoreCase("trace")) {
+        if (from.equalsIgnoreCase("trace")) {
             if (distanceFrom > 100) {
                 AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
                 alertDialog.setCancelable(false);
@@ -348,10 +374,8 @@ public class TrailMapActivity extends AppCompatActivity implements OnMapReadyCal
                 //alertDialog.setMessage("From: " + new DecimalFormat("##.##").format(distanceFrom) + "m, To: " + new DecimalFormat("##.##").format(distanceTo) + "m");
                 alertDialog.show();
             } else {
-                Intent serviceIntent = new Intent(TrailMapActivity.this, LocationService.class);
-                TrailMapActivity.this.startService(serviceIntent);
             }
-        }else if(from.equalsIgnoreCase("notification")){
+        } else if (from.equalsIgnoreCase("notification")) {
 
         }
     }

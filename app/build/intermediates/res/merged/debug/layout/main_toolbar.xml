@@ -16,4 +16,4 @@
         android:gravity="bottom"
         android:id="@+id/toolbar_title" />
 
-</android.support.v7.widget.Toolbar><!-- From: file:/C:/Users/Sagepawan/Documents/GitHub/SafarApp/app/src/main/res/layout/main_toolbar.xml -->
+</android.support.v7.widget.Toolbar><!-- From: file:/home/akrmhrjn/AndroidStudioProjects/WorkinOnProjects/pawa/SafarApp/app/src/main/res/layout/main_toolbar.xml -->
