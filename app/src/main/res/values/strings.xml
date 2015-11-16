@@ -45,4 +45,9 @@
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <string name="validation_email">Email format is incorrect</string>
+    <string name="validation_pass">You need to set a password</string>
+    <string name="validation_mobile">Mobile number cannot be empty</string>
+    <string name="validation_confirm_pass">You need to confirm password</string>
+
 </resources>

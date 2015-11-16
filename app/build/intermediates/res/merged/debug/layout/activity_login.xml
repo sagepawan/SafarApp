@@ -86,7 +86,7 @@
                 android:background="@color/primary_white"
                 android:gravity="center_vertical"
                 android:hint="Enter Password"
-                android:inputType="text|none"
+                android:inputType="text|textPassword"
                 android:paddingLeft="20dp"
                 android:textColor="@color/primary_black"
                 android:textColorHint="@color/hintcolor_primary"
@@ -139,4 +139,4 @@
     </LinearLayout>
 
 </LinearLayout>
-<!-- From: file:/home/akrmhrjn/AndroidStudioProjects/WorkinOnProjects/pawa/SafarApp/app/src/main/res/layout/activity_login.xml -->
+<!-- From: file:/C:/Users/Sagepawan/Documents/GitHub/SafarApp/app/src/main/res/layout/activity_login.xml -->

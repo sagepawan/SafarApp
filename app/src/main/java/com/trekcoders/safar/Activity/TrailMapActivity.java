@@ -89,11 +89,15 @@ public class TrailMapActivity extends AppCompatActivity implements OnMapReadyCal
             finish();
         }
 
-
-        fromLat = 27.68973779;
-        fromLong = 85.30766174;
-        toLat = 27.6906498;
-        toLong = 85.30543014;
+        //27.676448, 85.342686
+        fromLat = 27.677178;
+        fromLong = 85.342872;
+        toLat = 27.676448;
+        toLong = 85.342686;
+        /*fromLat = 27.68973779;
+        fromLong = 85.30766174;*/
+        /*toLat = 27.6906498;
+        toLong = 85.30543014;*/
 
         fromPosition = new LatLng(fromLat, fromLong);
         toPosition = new LatLng(toLat, toLong);
@@ -129,7 +133,7 @@ public class TrailMapActivity extends AppCompatActivity implements OnMapReadyCal
                 showGPSDisabledAlertToUser();
             }
         }
-        
+
         ParseQuery parseQuery = ParseQuery.getQuery("Traces");
         parseQuery.include("usrObjId");
         parseQuery.include("trailObjId");
@@ -350,11 +354,7 @@ public class TrailMapActivity extends AppCompatActivity implements OnMapReadyCal
         }else if(from.equalsIgnoreCase("notification")){
 
         }
-
-
-
     }
-
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -438,16 +438,11 @@ public class TrailMapActivity extends AppCompatActivity implements OnMapReadyCal
                         toMarker.draggable(false);
                         toMarker.title(toAddress);
                         map.addMarker(toMarker);
-
                     }
                 }
             });
             return null;
         }
-<<<<<<< HEAD
-    }
-=======
     }*/
 
-//>>>>>>> 2e39e6e834bf904ff102759e1e6f1fd2bd3241d4
 }

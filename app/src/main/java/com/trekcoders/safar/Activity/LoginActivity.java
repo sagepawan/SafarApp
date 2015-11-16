@@ -25,12 +25,32 @@ import com.trekcoders.safar.R;
 
 import java.util.List;
 
+import eu.inmite.android.lib.validations.form.FormValidator;
+import eu.inmite.android.lib.validations.form.annotations.NotEmpty;
+import eu.inmite.android.lib.validations.form.annotations.RegExp;
+import eu.inmite.android.lib.validations.form.callback.SimpleErrorPopupCallback;
+
 public class LoginActivity extends AppCompatActivity {
 
-    EditText user, password;
+    final String EMAIL = "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
+            "\\@" +
+            "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}" +
+            "(" +
+            "\\." +
+            "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" +
+            ")+";
+
+    @RegExp(value = EMAIL, messageId = R.string.validation_email, order = 1)
+    EditText user;
+
+    @NotEmpty(messageId = R.string.validation_pass, order = 2)
+    EditText password;
+
     Button login, register;
 
     TextView passForget;
+
+    Boolean isValid;
 
     ParseQuery<ParseUser> loginQuery;
     ProgressDialog progressDialog;
@@ -42,11 +62,11 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        user = (EditText)findViewById(R.id.username_edittext);
-        password = (EditText)findViewById(R.id.password_edittext);
-        login = (Button)findViewById(R.id.btn_login);
-        register = (Button)findViewById(R.id.btn_register);
-        passForget = (TextView)findViewById(R.id.tvPassForget);
+        user = (EditText) findViewById(R.id.username_edittext);
+        password = (EditText) findViewById(R.id.password_edittext);
+        login = (Button) findViewById(R.id.btn_login);
+        register = (Button) findViewById(R.id.btn_register);
+        passForget = (TextView) findViewById(R.id.tvPassForget);
 
         loginQuery = ParseUser.getQuery();
 
@@ -55,40 +75,38 @@ public class LoginActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                progressDialog.setCancelable(false);
-                progressDialog.setMessage("Signing up..");
-                progressDialog.show();
+                isValid = FormValidator.validate(LoginActivity.this, new SimpleErrorPopupCallback(getApplicationContext(), true));
+                if (isValid) {
+                    progressDialog.setCancelable(false);
+                    progressDialog.setMessage("Signing up..");
+                    progressDialog.show();
 
-                if(user.getText().toString().isEmpty() || password.getText().toString().isEmpty()){
+                    if (user.getText().toString().isEmpty() || password.getText().toString().isEmpty()) {
 
-                    Toast.makeText(LoginActivity.this,"You must fill your login credentials",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "You must fill your login credentials", Toast.LENGTH_SHORT).show();
 
-                }
-                else{
+                    } else {
 
-                    final String uName = user.getText().toString();
-                    final String uPass = password.getText().toString();
+                        final String uName = user.getText().toString();
+                        final String uPass = password.getText().toString();
 
-                    ParseUser.logInInBackground(uName, uPass, new LogInCallback() {
-                        public void done(ParseUser user, ParseException e) {
-                            if (user != null) {
-                                progressDialog.dismiss();
-                                System.out.println("login");
-                                startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                                finish();
-                            } else {
-                                progressDialog.dismiss();
-                                System.out.println("login eee:" + e);
-                                Toast.makeText(LoginActivity.this,"Incorrect Username or Password",Toast.LENGTH_SHORT).show();
+                        ParseUser.logInInBackground(uName, uPass, new LogInCallback() {
+                            public void done(ParseUser user, ParseException e) {
+                                if (user != null) {
+                                    progressDialog.dismiss();
+                                    System.out.println("login");
+                                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                    finish();
+                                } else {
+                                    progressDialog.dismiss();
+                                    System.out.println("login eee:" + e);
+                                    Toast.makeText(LoginActivity.this, "Incorrect Username or Password", Toast.LENGTH_SHORT).show();
+                                }
                             }
-                        }
-                    });
+                        });
 
-
-
-
+                    }
                 }
-
 
 
             }
@@ -112,9 +130,9 @@ public class LoginActivity extends AppCompatActivity {
                 final View dialogLayout = inflater.inflate(R.layout.layout_dialogue_forgetpass, null);
                 alertDialog.setView(dialogLayout);
 
-                final EditText email = (EditText)dialogLayout.findViewById(R.id.edEmailForgetPass);
+                final EditText email = (EditText) dialogLayout.findViewById(R.id.edEmailForgetPass);
                 //successText.setText(finalResult);
-                final EditText pass = (EditText)dialogLayout.findViewById(R.id.edNewPass);
+                final EditText pass = (EditText) dialogLayout.findViewById(R.id.edNewPass);
                 //alertDialog.setMessage("Registration information sent for approval");
 
                 alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Set New Password",
@@ -128,9 +146,9 @@ public class LoginActivity extends AppCompatActivity {
                                     @Override
                                     public void done(List<ParseUser> list, ParseException e) {
 
-                                        if(e==null){
+                                        if (e == null) {
                                             updateUser.setPassword(userPass);
-                                        }else{
+                                        } else {
 
                                         }
                                     }
@@ -144,7 +162,6 @@ public class LoginActivity extends AppCompatActivity {
 
                             }
                         });
-
 
 
                 alertDialog.show();
