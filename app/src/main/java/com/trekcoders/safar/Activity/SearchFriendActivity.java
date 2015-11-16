@@ -107,6 +107,7 @@ public class SearchFriendActivity extends AppCompatActivity {
                                             user.email = ob.get(i).getEmail();
                                             user.mobilenumber = String.valueOf(ob.get(i).getInt("mobilenumber"));
                                             usersArrayList.add(user);
+                                            break;
                                         } else{
                                             break;
                                         }
