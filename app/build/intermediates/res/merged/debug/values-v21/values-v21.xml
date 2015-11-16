@@ -10,8 +10,6 @@
         <item name="windowNoTitle">true</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:statusBarColor">@color/ColorPrimaryDark</item>
-
-
     </style>
     <!-- From: file:/C:/Users/Sagepawan/Documents/GitHub/SafarApp/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/res/values-v21/values-v21.xml -->
     <eat-comment/>

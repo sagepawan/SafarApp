@@ -971,6 +971,10 @@ int string title_home 0x7f070047
 int string title_logout 0x7f070048
 int string title_notification 0x7f070049
 int string title_settings 0x7f07004a
+int string validation_confirm_pass 0x7f07004b
+int string validation_email 0x7f07004c
+int string validation_mobile 0x7f07004d
+int string validation_pass 0x7f07004e
 int string wallet_buy_button_place_holder 0x7f070029
 int style AlertDialog_AppCompat 0x7f090075
 int style AlertDialog_AppCompat_Light 0x7f090076

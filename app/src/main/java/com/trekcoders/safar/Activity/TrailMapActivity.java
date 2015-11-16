@@ -81,6 +81,7 @@ public class TrailMapActivity extends AppCompatActivity implements OnMapReadyCal
             from = getIntent().getStringExtra("from");
         }
 
+        System.out.println("aaloo"+from);
         /*frenObjId = "TEklhW9wpH";
         trailObjId = "FkdyO1nXFz";*/
 
@@ -105,8 +106,9 @@ public class TrailMapActivity extends AppCompatActivity implements OnMapReadyCal
 
         map = mapFragment.getMap();
 
-
+        LatLng start = new LatLng(fromLat, fromLong);
         map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(start, 15));
         map.setMyLocationEnabled(true);
         map.getUiSettings().setZoomControlsEnabled(true);
         map.getUiSettings().setMapToolbarEnabled(true);
@@ -117,10 +119,11 @@ public class TrailMapActivity extends AppCompatActivity implements OnMapReadyCal
         //new GetRoute().execute();
 
 
-        LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+
         if (from.equalsIgnoreCase("trace")) {
+            LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
             if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-                Toast.makeText(this, "GPS is Enabled in your devide", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "GPS is Enabled in your device", Toast.LENGTH_SHORT).show();
                 getCurrentLocation();
             } else {
                 showGPSDisabledAlertToUser();
@@ -174,7 +177,7 @@ public class TrailMapActivity extends AppCompatActivity implements OnMapReadyCal
                 }
                 LatLng to = new LatLng(Double.valueOf(toLat), Double.valueOf(toLong));
                 path.add(to);
-                //map.moveCamera(CameraUpdateFactory.newLatLngZoom(coordinate, 15));
+
                 PolylineOptions polyLineOptions = new PolylineOptions();
                 polyLineOptions.addAll(path);
                 polyLineOptions.width(2);
@@ -200,6 +203,7 @@ public class TrailMapActivity extends AppCompatActivity implements OnMapReadyCal
                 new DialogInterface.OnClickListener(){
                     public void onClick(DialogInterface dialog, int id){
                         dialog.cancel();
+                        finish();
                     }
                 });
         AlertDialog alert = alertDialogBuilder.create();
@@ -326,8 +330,9 @@ public class TrailMapActivity extends AppCompatActivity implements OnMapReadyCal
 
         System.out.println("distance from:" + distanceFrom);
         if(from.equalsIgnoreCase("trace")) {
-            if (distanceFrom > 50) {
+            if (distanceFrom > 100) {
                 AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+                alertDialog.setCancelable(false);
                 alertDialog.setTitle("Message");
                 alertDialog.setMessage("You are very far from tracking distance.");
                 alertDialog.setNeutralButton("OK", new DialogInterface.OnClickListener() {
@@ -345,9 +350,6 @@ public class TrailMapActivity extends AppCompatActivity implements OnMapReadyCal
         }else if(from.equalsIgnoreCase("notification")){
 
         }
-
-
-
     }
 
 
@@ -433,16 +435,11 @@ public class TrailMapActivity extends AppCompatActivity implements OnMapReadyCal
                         toMarker.draggable(false);
                         toMarker.title(toAddress);
                         map.addMarker(toMarker);
-
                     }
                 }
             });
             return null;
         }
-<<<<<<< HEAD
-    }
-=======
     }*/
 
-//>>>>>>> 2e39e6e834bf904ff102759e1e6f1fd2bd3241d4
 }

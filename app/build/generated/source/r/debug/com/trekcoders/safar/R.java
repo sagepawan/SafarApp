@@ -2800,6 +2800,10 @@ containing a value of this type.
         public static final int title_logout=0x7f070048;
         public static final int title_notification=0x7f070049;
         public static final int title_settings=0x7f07004a;
+        public static final int validation_confirm_pass=0x7f07004b;
+        public static final int validation_email=0x7f07004c;
+        public static final int validation_mobile=0x7f07004d;
+        public static final int validation_pass=0x7f07004e;
         public static final int wallet_buy_button_place_holder=0x7f070029;
     }
     public static final class style {
