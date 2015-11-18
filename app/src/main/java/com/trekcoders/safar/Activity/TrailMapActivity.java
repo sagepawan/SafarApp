@@ -103,6 +103,7 @@ public class TrailMapActivity extends AppCompatActivity implements OnMapReadyCal
             finish();
         }
 
+
         //Define start and end coordinates here
         fromLat = 27.677121;
         fromLong = 85.342741;
@@ -112,6 +113,17 @@ public class TrailMapActivity extends AppCompatActivity implements OnMapReadyCal
         fromLong = 85.30766174;*/
         /*toLat = 27.6906498;
         toLong = 85.30543014;*/
+
+        //27.676448, 85.342686
+        /*fromLat = 27.677178;
+        fromLong = 85.342872;
+        toLat = 27.676448;
+        toLong = 85.342686;*/
+        fromLat = 27.68973779;
+        fromLong = 85.30766174;
+        toLat = 27.6906498;
+        toLong = 85.30543014;
+
 
 
         fromPosition = new LatLng(fromLat, fromLong);   //start checkpoint position
