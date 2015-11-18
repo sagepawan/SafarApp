@@ -1,6 +1,5 @@
 package com.trekcoders.safar.Fragments;
 
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,8 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
-import com.parse.FindCallback;
-import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.trekcoders.safar.R;
 
@@ -39,27 +36,25 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                AlertDialog alertDialog = new AlertDialog.Builder(getActivity()).create();
+                final AlertDialog alertDialog = new AlertDialog.Builder(getActivity()).create();
                 alertDialog.setTitle("");
 
                 LayoutInflater inflater = getActivity().getLayoutInflater();
                 final View dialogLayout = inflater.inflate(R.layout.layout_dialogue_forgetpass, null);
                 alertDialog.setView(dialogLayout);
 
-                final EditText email = (EditText)dialogLayout.findViewById(R.id.edEmailForgetPass);
-                //successText.setText(finalResult);
                 final EditText pass = (EditText)dialogLayout.findViewById(R.id.edNewPass);
-                //alertDialog.setMessage("Registration information sent for approval");
 
+
+                //METHOD TO CHANGE CURRENT USER PASSWORD - - DONE BY UDAY
                 alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Set New Password",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
 
-
-                                final String userPass = pass.getText().toString();
-                                ParseUser user = ParseUser.getCurrentUser();
-                                user.setPassword(userPass);
-                                user.saveInBackground();
+                                final String userPass = pass.getText().toString();  //gets new password user enters
+                                ParseUser user = ParseUser.getCurrentUser();        //gets current user from parse
+                                user.setPassword(userPass);                         //sets the new password into users account in parse
+                                user.saveInBackground();                            //saves the change in parse
 
                             }
                         });
@@ -68,6 +63,7 @@ public class SettingsFragment extends Fragment {
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
 
+                                alertDialog.dismiss();
                             }
                         });
 

@@ -93,43 +93,50 @@ public class SafarFriendsFragment extends Fragment {
         return rootView;
     }
 
+    //CALLING CURRENT USER"S FRIEND LIST INTO UI FROM PARSE - - DONE BY KALYAN
+
     public void callFriendList(){
 
+        //Start a query on parse "Friends" table where all friend relation between users are stored
         ParseQuery parseQuery = ParseQuery.getQuery("Friends");
-        parseQuery.include("userObjId");
-        parseQuery.include("frenObjId");
+        parseQuery.include("userObjId");    //access userObjId column from parse table "friends"
+        parseQuery.include("frenObjId");    //access frenObjId column from parse table "friends"
 
         parseQuery.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> list, ParseException e) {
 
                 for (ParseObject Obj : list) {
-                    ParseObject user_F = Obj.getParseObject("userObjId");
-                    ParseObject fren_F = Obj.getParseObject("frenObjId");
+                    ParseObject user_F = Obj.getParseObject("userObjId");  //get all userObjId values from userObjId Column
+                    ParseObject fren_F = Obj.getParseObject("frenObjId");  //get all frenObjId values from frenObjId Column
 
                     Log.d("user_fObjID", ": " + user_F.getObjectId());
                     Log.d("fren_fObjID", ": " + fren_F.getObjectId());
 
-                    if (user.getObjectId().equals(user_F.getObjectId())) {
+                    if (user.getObjectId().equals(user_F.getObjectId())) {  //check if current user's id matches any userObjIds from friends table
                         Friends friends = new Friends();
                         friends.emailF = fren_F.getString("email");
                         friends.mobilenumberF = String.valueOf(fren_F.getInt("mobilenumber"));
                         friends.objectIdF = Obj.getObjectId();
 
                         Log.d("CurrentUserNameFriends", ": " + fren_F.getString("email"));
-                        friendsArrayList.add(friends);
+                        friendsArrayList.add(friends);  //add all the friend's credentials into friendsArrayList
 
-                    } else if (user.getObjectId().equals(fren_F.getObjectId())) {
+                    }
+
+                    //To check for users who has current user in their friend list
+                    else if (user.getObjectId().equals(fren_F.getObjectId())) {
                         Friends friends = new Friends();
                         friends.emailF = user_F.getString("email");
                         friends.mobilenumberF = String.valueOf(user_F.getInt("mobilenumber"));
                         friends.objectIdF = Obj.getObjectId();
-                        friendsArrayList.add(friends);
+                        friendsArrayList.add(friends);  //add all such users also to friendArrayList
                     }
                 }
 
                 Log.d("userKoEmailList", ": " + friendsArrayList.size());
 
+                //send the entire friendArrayList to Adapter
                 UserFriendAdapter adapter = new UserFriendAdapter(getActivity(), friendsArrayList, SafarFriendsFragment.this);
                 listView.setAdapter(adapter);
             }
@@ -137,6 +144,7 @@ public class SafarFriendsFragment extends Fragment {
 
     }
 
+    //to refresh friend array list after deleting a friend
     public void refresh(int position){
 
         friendsArrayList.remove(position);

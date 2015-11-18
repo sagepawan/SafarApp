@@ -25,9 +25,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-/**
- * Created by akrmhrjn on 7/31/15.
- */
 public class LocationService extends Service implements IGpsHelper {
 
     ParseUser parseUser;
@@ -56,12 +53,13 @@ public class LocationService extends Service implements IGpsHelper {
     }
 
     @Override
+    //Method to start Location service - - DONE BY PANKAJ
     public int onStartCommand(Intent intent, int flags, int startId) {
         System.out.println("Service Started");
-        friendsArrayList = new ArrayList<>();
-        parseUser = ParseUser.getCurrentUser();
-        callFriendList();
-        startLocationService();
+        friendsArrayList = new ArrayList<>();   //creates new friendListArray
+        parseUser = ParseUser.getCurrentUser();  //gets cuurent logged in user
+        callFriendList();   // Method to call the current user's friend list
+        startLocationService();   // making the application work in background
 
         return START_STICKY;
     }
@@ -69,17 +67,15 @@ public class LocationService extends Service implements IGpsHelper {
     @Override
     public void onCreate() {
         super.onCreate();
-        gps = new GPS(LocationService.this);
+        gps = new GPS(LocationService.this);   //start GPS Services to continously access user location coordinates
         //prefs = new Prefs(getBaseContext());
-
     }
-
 
     @Override
     public void onDestroy() {
         super.onDestroy();
         System.out.println("Service Stopped");
-        gps.stopGPS();
+        gps.stopGPS();      // Stop GPS
 
     }
 
@@ -93,6 +89,7 @@ public class LocationService extends Service implements IGpsHelper {
     }
 
     @Override
+    //Method to compare the distance between new GPS coordinate and nearest checkpoint with each new change in GPS coordinate
     public void locationChanged(double longitude, double latitude) {
         Log.d("Service location", "lat: " + latitude);
 
@@ -104,24 +101,25 @@ public class LocationService extends Service implements IGpsHelper {
         double distance = calculateDistance(lastLat, lastLng, lat, lng);
         System.out.println("Service Distance: " + distance);
 
-        for(LatLng ll: SafarApplication.app.trailPath){
-            double cpDistance = calculateDistance(ll.latitude, ll.longitude, lat, lng);
-            if(cpDistance < 10){
+        for(LatLng ll: SafarApplication.app.trailPath){   //get user gps coordinate updates from parse traces table
+            double cpDistance = calculateDistance(ll.latitude, ll.longitude, lat, lng);   //measure distance between GPS Coordinates and checkpoints
+            if(cpDistance < 10){    //if distance is less then 3 meters
                 if(sentLat != ll.latitude || sentLng != ll.longitude){
                     System.out.println("Near Checkpoint New New");
                     if(friendsArrayList != null) {
-                        for(Friends friends : friendsArrayList) {
-                            ParseQuery pushQuery = ParseInstallation.getQuery();
-                            pushQuery.whereEqualTo("user_objectId", friends.objectIdF);
+                        for(Friends friends : friendsArrayList) {   //get user's friend list
+                            ParseQuery pushQuery = ParseInstallation.getQuery();  //start Push Query
+                            pushQuery.whereEqualTo("user_objectId", friends.objectIdF);  //target query to user's friends
                             ParseUser parseUser = ParseUser.getCurrentUser();
 
-                            String msg = "You friend " + parseUser.getUsername() + " reached to the checkpoint.";
+                            String msg = "You friend " + parseUser.getUsername() + " reached to the checkpoint.";  //set push message
 
                             ParsePush push = new ParsePush();
                             push.setQuery(pushQuery); // Set our Installation query
                             push.setMessage(msg);
-                            push.sendInBackground();
+                            push.sendInBackground();    //send push notification of location to user's friends
 
+                            //to update notification info into parse table "Notifications"
                             ParseObject parseObject = new ParseObject("Notifications");
                             parseObject.put("userObjId", friends.objectIdF);
                             parseObject.put("friendObjId", parseUser.getObjectId());
@@ -144,20 +142,17 @@ public class LocationService extends Service implements IGpsHelper {
             Location location = new Location("location");
             location.setLatitude(latitude);
             location.setLongitude(longitude);
-            uploadTrace(lat, lng);
+            uploadTrace(lat, lng);     //uploads traced location coordinates to "traces" table in parse
 
             lastLat = lat;
             lastLng = lng;
-
         }
-
     }
 
     @Override
     public void displayGPSSettingsDialog() {
 
     }
-
 
     private void uploadTrace(final double lat, final double lng) {
         Log.d("Service Trace", "uploadTrace start...");
@@ -168,20 +163,20 @@ public class LocationService extends Service implements IGpsHelper {
         }
         // 10s, for each update.
         long des = System.currentTimeMillis() - lastTraceTime;
-        if (des < 2000) {
-            Log.d("Trace", "Time < 2000");
+        if (des < 3000) {                   //sets timer of 3000 millisecond of each trace update
+            Log.d("Trace", "Time < 3000");
             return;
         }
         lastTraceTime = System.currentTimeMillis();
 
         traceThread = new Thread() {
             public void run() {
-                // do here...
+                // Thread to upload user's latest gps coordinates into parse table "Traces" in every three seconds
                 ParseObject parseObject = new ParseObject("Traces");
                 parseObject.put("usrObjId", ParseObject.createWithoutData("_User", parseUser.getObjectId()));
                 parseObject.put("trailObjId", ParseObject.createWithoutData("Trails", "FkdyO1nXFz"));
-                parseObject.put("Latitude", String.valueOf(lat));
-                parseObject.put("Longitude", String.valueOf(lng));
+                parseObject.put("Latitude", String.valueOf(lat));       //user's latest location latitude
+                parseObject.put("Longitude", String.valueOf(lng));      //user's latest location longitude
                 parseObject.saveInBackground(new SaveCallback() {
                     @Override
                     public void done(ParseException e) {
@@ -192,11 +187,11 @@ public class LocationService extends Service implements IGpsHelper {
                 traceThread = null;
             }
         };
-        traceThread.start();
+        traceThread.start();    //start the tracing thread
     }
 
 
-    // Haversine formula
+    // Haversine formula to calulate distance - - DONE BY KALYAN
     public double calculateDistance(double Lat1, double Lng1,
                                     double Lat2, double Lng2) {
 

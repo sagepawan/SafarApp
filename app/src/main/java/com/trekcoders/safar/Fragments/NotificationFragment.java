@@ -47,6 +47,8 @@ public class NotificationFragment extends Fragment {
         user = ParseUser.getCurrentUser();
         listView = (ListView)rootView.findViewById(R.id.listUserNotification);
 
+
+        //Start Query on Notification table in parse to access notifications - - KALYAN
         ParseQuery<ParseObject> notificationQuery = ParseQuery
                 .getQuery("Notifications");
 
@@ -57,23 +59,24 @@ public class NotificationFragment extends Fragment {
                 for (ParseObject Obj : list) {
 
 
-                    if(user.getObjectId().equals(Obj.get("userObjId"))){
+                    if(user.getObjectId().equals(Obj.get("userObjId"))){   //if current user ID matches any userObjId in notification table
 
+                        //grab entire notification object
                         Notification notification = new Notification();
                         notification.nObjectId = Obj.getObjectId();
                         notification.nUserObjId = Obj.getString("userObjId");
                         notification.nFriendObjId = Obj.getString("friendObjId");
-                        notification.nMessage = Obj.getString("message");
+                        notification.nMessage = Obj.getString("message");        //notification message that will go into view
                         notification.nTrailobjId = Obj.getString("trailObjId");
 
-                        notificationList.add(notification);
+                        notificationList.add(notification);   //add entire info into notificationList Arraylist
                     }
 
                 }
 
                 Log.d("notificationArraySize",": "+notificationList.size());
 
-                // UserFriendAdapter adapter = new UserFriendAdapter(getActivity(), friendsArrayList, SafarFriendsFragment.this);
+                //send notificationList into nAdapter
                 NotificationAdapter nAdapter = new NotificationAdapter(getActivity(), notificationList);
                 listView.setAdapter(nAdapter);
             }

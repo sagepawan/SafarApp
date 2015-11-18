@@ -71,19 +71,22 @@ public class NotificationAdapter extends BaseAdapter {
 
         final Notification notification = notificationArrayList.get(i);
         Log.d("noficationMessage",": "+notificationArrayList.size());
-        holder.userNotification.setText(notification.nMessage);
+        holder.userNotification.setText(notification.nMessage);   //set Notification message into Notification UI
 
+        //ON CLICKING EACH INDIVIDUAL NOTIFICATION
         holder.userNotification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+                //CALLS TRAILMAP ACTIVITY
                 Intent intent = new Intent(context, TrailMapActivity.class);
                 intent.putExtra("from","notification");
                 intent.putExtra("trailObjId",notification.nTrailobjId);
                 intent.putExtra("frenObjId",notification.nFriendObjId);
-                
+
+                //BUT THIS SENDS A DIFFERENT INTENT, SO THAT TRACING FEATURES ARE NOT SHOWN AND USER ONLY VIEW FRIENDS LOCATION + CHECKPOINTS IN MAP
                 context.startActivity(intent);
-                //context.startActivity(new Intent(context, TrailMapActivity.class));
+
             }
         });
 

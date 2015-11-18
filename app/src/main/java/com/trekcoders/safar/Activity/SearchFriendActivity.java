@@ -72,6 +72,8 @@ public class SearchFriendActivity extends AppCompatActivity {
                             Log.d("user_fObjID", ": " + user_F.getObjectId());
                             Log.d("fren_fObjID", ": " + fren_F.getObjectId());
 
+                            boolean isFrenEmpty = true;
+                            //
                             if (pUser.getObjectId().equals(user_F.getObjectId())) {
                                 Friends friends = new Friends();
                                 friends.emailF = fren_F.getString("email");
@@ -112,7 +114,6 @@ public class SearchFriendActivity extends AppCompatActivity {
                                             break;
                                         }
                                     }
-
 
                                     //Log.d("usernames", ": " + i + " - " + ob.get(i).getUsername());
                                 }

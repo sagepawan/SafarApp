@@ -17,6 +17,7 @@ public class GPS {
 
     private boolean isRunning;
 
+    //uses Interface IGpsHelper to connect method 'onLocationChanged' between GPS class and LocationService Class
     public GPS(IGpsHelper main) {
         this.main = main;
 

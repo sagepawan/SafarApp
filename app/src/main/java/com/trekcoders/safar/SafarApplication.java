@@ -21,11 +21,20 @@ public class SafarApplication extends Application {
         super.onCreate();
 
         app = this;
+
+        //27.677223, 85.342937
+
+        //TO ADD CHECKPOINT COORDINATES IN BETWEEN STARTING AND END CHECKPOINTS - - DONE BY KALYAN
         trailPath = new ArrayList<>();
-        trailPath.add(new LatLng(27.68973779, 85.30766174));
-        trailPath.add(new LatLng(27.690103, 85.307084));
-        trailPath.add(new LatLng(27.690412, 85.305979));
-        trailPath.add(new LatLng(27.6906498, 85.30543014));
+        trailPath.add(new LatLng(27.677121, 85.342741));
+        trailPath.add(new LatLng(27.676615, 85.342661));
+        trailPath.add(new LatLng(27.675855, 85.342484));
+        trailPath.add(new LatLng(27.675292, 85.342374));
+        /*trailPath.add(new LatLng(30.086528, -95.991661));
+        trailPath.add(new LatLng(30.086788, -95.991596));
+        trailPath.add(new LatLng(30.087048, -95.991510));
+        trailPath.add(new LatLng(30.087299, -95.991446));
+        trailPath.add(new LatLng(30.087327, -95.991221));*/
 
         // Initialize Crash Reporting.
         //ParseCrashReporting.enable(this);

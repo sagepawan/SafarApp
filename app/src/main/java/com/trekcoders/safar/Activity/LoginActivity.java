@@ -32,6 +32,9 @@ import eu.inmite.android.lib.validations.form.callback.SimpleErrorPopupCallback;
 
 public class LoginActivity extends AppCompatActivity {
 
+    //CODE PART FOR VALIDATION HANDLED BY UDAY (USE OF KOMENSKY VALIDATION LIBRARY)
+
+    //Defining Regular expression for email validation
     final String EMAIL = "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
             "\\@" +
             "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}" +
@@ -40,9 +43,11 @@ public class LoginActivity extends AppCompatActivity {
             "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" +
             ")+";
 
+    //Calling Regular expression validation, order 1 means this will be checked first
     @RegExp(value = EMAIL, messageId = R.string.validation_email, order = 1)
     EditText user;
 
+    //To check if set password is empty or not
     @NotEmpty(messageId = R.string.validation_pass, order = 2)
     EditText password;
 
@@ -75,7 +80,10 @@ public class LoginActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //sets a boolean value true to isValid if all validation conditions are satisfied
                 isValid = FormValidator.validate(LoginActivity.this, new SimpleErrorPopupCallback(getApplicationContext(), true));
+
+                //sets a boolean value true to isValid if all validation conditions are satisfied
                 if (isValid) {
                     progressDialog.setCancelable(false);
                     progressDialog.setMessage("Signing up..");

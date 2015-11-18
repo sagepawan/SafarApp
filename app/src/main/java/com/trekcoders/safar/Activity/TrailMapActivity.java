@@ -12,6 +12,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -85,42 +86,47 @@ public class TrailMapActivity extends AppCompatActivity implements OnMapReadyCal
         serviceIntent = new Intent(TrailMapActivity.this, LocationService.class);
 
 
+        //To check whether the user is accessing map view from Notifications or from Homepage - - DONE BY KALYAN
         if (getIntent() != null) {
             frenObjId = getIntent().getStringExtra("frenObjId");
             trailObjId = getIntent().getStringExtra("trailObjId");
             from = getIntent().getStringExtra("from");
         }
 
-        System.out.println("aaloo" + from);
+        System.out.println("fromValue" + from);
 
         /*frenObjId = "TEklhW9wpH";
         trailObjId = "FkdyO1nXFz";*/
 
+        //To check whether Play Services are available or not
         if (!isGooglePlayServicesAvailable()) {
             finish();
         }
 
-        //27.676448, 85.342686
-        fromLat = 27.677178;
-        fromLong = 85.342872;
-        toLat = 27.676448;
-        toLong = 85.342686;
+        //Define start and end coordinates here
+        fromLat = 27.677121;
+        fromLong = 85.342741;
+        toLat = 27.675292;
+        toLong = 85.342374;
         /*fromLat = 27.68973779;
         fromLong = 85.30766174;*/
         /*toLat = 27.6906498;
         toLong = 85.30543014;*/
 
-        fromPosition = new LatLng(fromLat, fromLong);
-        toPosition = new LatLng(toLat, toLong);
 
+        fromPosition = new LatLng(fromLat, fromLong);   //start checkpoint position
+        toPosition = new LatLng(toLat, toLong);         //end checkpoint position
+
+        //Create marker to show up on map (for starting and ending checkpoint)
         toMarker = new MarkerOptions();
         fromMarker = new MarkerOptions();
         marker = new MarkerOptions();
-        mapFragment = (MapFragment) this.getFragmentManager().findFragmentById(R.id.map);
-        gMapV2GetRouteDirection = new GMapV2GetRouteDirection();
+        mapFragment = (MapFragment) this.getFragmentManager().findFragmentById(R.id.map);   //where map is shown in xml
+        gMapV2GetRouteDirection = new GMapV2GetRouteDirection();                            //to get directions
 
         map = mapFragment.getMap();
 
+        //Set entire map view for starting checkpoint
         LatLng start = new LatLng(fromLat, fromLong);
         map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(start, 15));
@@ -134,32 +140,42 @@ public class TrailMapActivity extends AppCompatActivity implements OnMapReadyCal
         if (from.equalsIgnoreCase("trace")) {
             bottomLinear.setVisibility(View.VISIBLE);
             LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+
+            //Checks whether User GPS is on or not, asks them to turn it on if not
             if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
                 Toast.makeText(this, "GPS is Enabled in your device", Toast.LENGTH_SHORT).show();
                 getCurrentLocation();
             } else {
+                //Alert msg shown when gps is not enabled
                 showGPSDisabledAlertToUser();
             }
         } else{
             bottomLinear.setVisibility(View.GONE);
         }
 
-        //new GetRoute().execute();
 
+
+        //When start tracing button is pressed in Map View - - DONE BY PANKAJ
         startTrace.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TrailMapActivity.this.startService(serviceIntent);
+                startTrace.setBackgroundColor(getResources().getColor(R.color.login_btn_bg));  //sets background color of tracing button to green
+                TrailMapActivity.this.startService(serviceIntent);                             //calls the service intent so app can run in background
             }
         });
 
+        //When end tracing button is pressed in Map View
         stopTrace.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                startTrace.setBackgroundColor(getResources().getColor(R.color.ColorPrimary));  //changes truace start button color back to blue
+                stopTrace.setBackgroundColor(getResources().getColor(R.color.login_btn_bg));   //changes trace end button color to green
                 TrailMapActivity.this.stopService(serviceIntent);
             }
         });
 
+
+        //Calling Parse Table "Traces" from parse to load user coordinates into parse
         ParseQuery parseQuery = ParseQuery.getQuery("Traces");
         parseQuery.include("usrObjId");
         parseQuery.include("trailObjId");
@@ -175,13 +191,15 @@ public class TrailMapActivity extends AppCompatActivity implements OnMapReadyCal
 
                     if (user.getObjectId().equals(frenObjId) && trail.getObjectId().equals("FkdyO1nXFz")) {
                         LatLng latLng = new LatLng(Double.valueOf(Obj.getString("Latitude")), Double.valueOf(Obj.getString("Longitude")));
-                        points.add(latLng);
+                        points.add(latLng);  //loads user friend's updates GPS coordinates from traces table into points ArrayList
                     }
                 }
 
+
+                //Set entire map view for ending checkpoint - - Kalyan
                 String toAddress = getAddress(toLat, toLong);
                 String fromAddress = getAddress(fromLat, fromLong);
-                fromMarker.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
+                fromMarker.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));  //gives blue color to marker
                 fromMarker.position(fromPosition);
                 fromMarker.draggable(false);    //cannot drag marker
                 fromMarker.title(fromAddress);
@@ -193,12 +211,15 @@ public class TrailMapActivity extends AppCompatActivity implements OnMapReadyCal
                 map.addMarker(toMarker);
 
                 LatLng coordinate = null;
+
+                //gets user friends updates GPS coordinates from parse table "traces" into map markers
                 for (int i = 0; i < points.size(); ++i) {
                     coordinate = points.get(i);
                     MarkerOptions marker = new MarkerOptions();
                     marker.position(coordinate);
                     map.addMarker(marker);
                 }
+
                 ArrayList<LatLng> path = new ArrayList<LatLng>();
                 LatLng from = new LatLng(Double.valueOf(fromLat), Double.valueOf(fromLong));
                 path.add(from);
@@ -208,15 +229,17 @@ public class TrailMapActivity extends AppCompatActivity implements OnMapReadyCal
                 LatLng to = new LatLng(Double.valueOf(toLat), Double.valueOf(toLong));
                 path.add(to);
 
+                //PolyLineOptions envelopes the given set of coordinates and gives a uniform path that connects them all together
                 PolylineOptions polyLineOptions = new PolylineOptions();
                 polyLineOptions.addAll(path);
                 polyLineOptions.width(2);
-                polyLineOptions.color(Color.GREEN);
-                map.addPolyline(polyLineOptions);
+                polyLineOptions.color(Color.GREEN); //connecting path gets green color
+                map.addPolyline(polyLineOptions);   //path is added to the map view
             }
         });
     }
 
+    //Dialog box that appears when GPS is disabled
     private void showGPSDisabledAlertToUser() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setMessage("GPS is disabled in your device. Would you like to enable it?")
@@ -224,6 +247,8 @@ public class TrailMapActivity extends AppCompatActivity implements OnMapReadyCal
                 .setPositiveButton("Enable GPS",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
+
+                                //Intent that shows interface to start GPS in user's device
                                 Intent callGPSSettingIntent = new Intent(
                                         android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
                                 startActivity(callGPSSettingIntent);
@@ -251,18 +276,22 @@ public class TrailMapActivity extends AppCompatActivity implements OnMapReadyCal
         }
     }
 
-    //get Address from longitude and latitude
+    //get Address from longitude and latitude - - get the name of coordinate using geoCoder
     private String getAddress(double latitude, double longitude) {
         StringBuilder result = new StringBuilder();
         try {
             Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+
+            // get the marker coordinates for addressList
             List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
-            if (addresses.size() > 0) {
+            if (addresses.size() > 0) {  //check if addressList size is greater than zero
                 Address address = addresses.get(0);
                 if (address.getSubLocality() != null)
-                    result.append(address.getSubLocality()).append(", ");//sanepa
-                result.append(address.getLocality()).append(", ");//lalitpur
-                result.append(address.getCountryName());//nepal
+                    result.append(address.getSubLocality()).append(", "); //Gets Sublocality
+                result.append(address.getLocality()).append(", "); //gets Locality
+                result.append(address.getCountryName()); //Gets country name
+
+                //since , is appended - the address is accessed as Sublocality, Locality, CountryName on touching the marker
             }
         } catch (IOException e) {
             Log.e("tag", e.getMessage());
@@ -297,6 +326,7 @@ public class TrailMapActivity extends AppCompatActivity implements OnMapReadyCal
         getSupportActionBar().setLogo(R.mipmap.ic_logo);
     }
 
+    //Method to get current Location of user
     public void getCurrentLocation() {
         map.clear();
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -309,12 +339,12 @@ public class TrailMapActivity extends AppCompatActivity implements OnMapReadyCal
                 setAddress(location.getLatitude(), location.getLongitude());
             } else {
                 Toast.makeText(this, "Waiting for location..", Toast.LENGTH_LONG).show();
-                locationManager.requestLocationUpdates(bestProvider, 2000, 0, this);
+                locationManager.requestLocationUpdates(bestProvider, 3000, 0, this);   //new location is updated after every 3000 milliseconds
             }
         }
-
     }
 
+    //MEthod used to set address once coordinates accessed
     private void setAddress(double lat, double lng) {
         try {
             Geocoder geocoder = new Geocoder(this, Locale.getDefault());
@@ -323,6 +353,7 @@ public class TrailMapActivity extends AppCompatActivity implements OnMapReadyCal
             //gives null value when app is run for the first time
         }
     }
+
 
     private void utilizeLocation(double lat, double lng, Geocoder geocoder) {
         StringBuilder result = new StringBuilder();
@@ -339,10 +370,10 @@ public class TrailMapActivity extends AppCompatActivity implements OnMapReadyCal
         if (addresses != null && addresses.size() > 0) {
             Address address = addresses.get(0);
             if (address.getSubLocality() != null) {
-                result.append(address.getSubLocality()).append(", ");//sanepa
+                result.append(address.getSubLocality()).append(", ");
             }
-            result.append(address.getLocality()).append(", ");//lalitpur
-            result.append(address.getCountryName());//nepal
+            result.append(address.getLocality()).append(", ");
+            result.append(address.getCountryName());
         }
         String address = result.toString();
 
@@ -359,8 +390,10 @@ public class TrailMapActivity extends AppCompatActivity implements OnMapReadyCal
 
 
         System.out.println("distance from:" + distanceFrom);
+
+        //Method to check if user is within a certain proximity of starting checkpoint to start tracing
         if (from.equalsIgnoreCase("trace")) {
-            if (distanceFrom > 100) {
+            if (distanceFrom > 1000) {   //minimum tracing distance set at 1000 metres
                 AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
                 alertDialog.setCancelable(false);
                 alertDialog.setTitle("Message");
@@ -371,7 +404,6 @@ public class TrailMapActivity extends AppCompatActivity implements OnMapReadyCal
                         finish();
                     }
                 });
-                //alertDialog.setMessage("From: " + new DecimalFormat("##.##").format(distanceFrom) + "m, To: " + new DecimalFormat("##.##").format(distanceTo) + "m");
                 alertDialog.show();
             } else {
             }
@@ -412,7 +444,7 @@ public class TrailMapActivity extends AppCompatActivity implements OnMapReadyCal
     }
 
 
-    // Haversine formula
+    // Haversine formula used to calculate distance between two google coordinates
     public double calculateDistance(double Lat1, double Lng1,
                                     double Lat2, double Lng2) {
 

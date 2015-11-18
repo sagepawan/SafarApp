@@ -13,7 +13,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.parse.ParseException;
-import com.parse.ParseObject;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 import com.trekcoders.safar.R;
@@ -25,6 +24,9 @@ import eu.inmite.android.lib.validations.form.callback.SimpleErrorPopupCallback;
 
 public class RegisterActivity extends AppCompatActivity {
 
+    //CODE PART FOR VALIDATION HANDLED BY UDAY (USE OF KOMENSKY VALIDATION LIBRARY)
+
+    //Defining Regular expression for email validation
     final String EMAIL = "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
             "\\@" +
             "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}" +
@@ -33,17 +35,19 @@ public class RegisterActivity extends AppCompatActivity {
             "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" +
             ")+";
 
-
+    //Calling Regular expression validation, order 1 means this will be checked first
     @RegExp(value = EMAIL, messageId = R.string.validation_email, order = 1)
     EditText email;
 
+    //To check if set password is empty or not
     @NotEmpty(messageId = R.string.validation_pass, order = 2)
     EditText pass;
 
+    //To check if confirm password if empty or not
     @NotEmpty(messageId = R.string.validation_confirm_pass, order = 3)
     EditText confirmPass;
-    //register_confirm_pass
 
+    //to check if mobile number is empty or not
     @NotEmpty(messageId = R.string.validation_mobile, order = 4)
     EditText mobile;
 
@@ -53,8 +57,6 @@ public class RegisterActivity extends AppCompatActivity {
     ParseUser user;
 
     Boolean isValid;
-
-    //git commit change
 
     ProgressDialog progressDialog;
 
@@ -79,7 +81,10 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                //sets a boolean value true to isValid if all validation conditions are satisfied
                 isValid = FormValidator.validate(RegisterActivity.this, new SimpleErrorPopupCallback(getApplicationContext(),true));
+
+                //if validation true, registration works, else it shows error msg in each textbox
                 if (isValid) {
                     if(pass.getText().toString().equals(confirmPass.getText().toString())) {
                         progressDialog.setCancelable(false);

@@ -72,17 +72,18 @@ public class UserFriendAdapter extends BaseAdapter {
 
         final Friends friends = userFriends.get(i);
 
-        holder.friendEmail.setText(friends.emailF);
-        holder.friendMobile.setText(friends.mobilenumberF);
+        holder.friendEmail.setText(friends.emailF);  //set name of user's friend
+        holder.friendMobile.setText(friends.mobilenumberF);   //set mobile number of user's friend
 
+        //CODE TO DELETE FRIEND FROM APP INTERFACE AND PARSE TABLE - -DONE BY UDAY
         holder.friendDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                //Toast.makeText(context,"Delete Selected",Toast.LENGTH_SHORT).show();
+
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
 
-                // set title
+                // set title to alert box
                 alertDialogBuilder.setTitle("DELETE FRIEND");
 
                 // set dialog message
@@ -92,10 +93,12 @@ public class UserFriendAdapter extends BaseAdapter {
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
 
-                                fragment.refresh(i);
+                                //On pressing Yes
+                                fragment.refresh(i);   //To refresh the FriendArraylist on deleting friend
 
+                                //gets access to friends table
                                 ParseQuery parseQuery = ParseQuery.getQuery("Friends");
-                                parseQuery.whereEqualTo("objectId", friends.objectIdF);
+                                parseQuery.whereEqualTo("objectId", friends.objectIdF);  //gets current user's friends
                                 //parseQuery.include("userObjId");
                                 //parseQuery.include("frenObjId");
 
@@ -105,7 +108,7 @@ public class UserFriendAdapter extends BaseAdapter {
 
                                         for (ParseObject Obj : list) {
 
-                                            Obj.deleteInBackground();
+                                            Obj.deleteInBackground();   //deletes the selected friend
                                         }
                                     }
                                 });
