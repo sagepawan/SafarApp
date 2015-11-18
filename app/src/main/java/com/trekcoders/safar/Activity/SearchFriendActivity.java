@@ -15,9 +15,8 @@ import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
-import com.trekcoders.safar.Adapter.UserFriendAdapter;
-import com.trekcoders.safar.R;
 import com.trekcoders.safar.Adapter.FrenListAdapter;
+import com.trekcoders.safar.R;
 import com.trekcoders.safar.model.Friends;
 import com.trekcoders.safar.model.Users;
 
@@ -99,18 +98,29 @@ public class SearchFriendActivity extends AppCompatActivity {
                             for (int i = 0; i < ob.size(); i++) {
 
                                 if (!ob.get(i).getObjectId().equals(pUser.getObjectId())) {
-                                    for(Friends fren : friendsArrayList){
-                                        if(!fren.emailF.equalsIgnoreCase(ob.get(i).getUsername())){
+                                    if (friendsArrayList != null) {
+                                        boolean frenFlag = false;
+                                        for (Friends fren : friendsArrayList) {
+                                            if (fren.emailF.equalsIgnoreCase(ob.get(i).getUsername())) {
+                                                frenFlag = true;
+                                                break;
+                                            }
+                                        }
+                                        if (!frenFlag) {
                                             Users user = new Users();
                                             user.objectId = ob.get(i).getObjectId();
                                             user.username = ob.get(i).getUsername();
                                             user.email = ob.get(i).getEmail();
                                             user.mobilenumber = String.valueOf(ob.get(i).getInt("mobilenumber"));
                                             usersArrayList.add(user);
-                                            break;
-                                        } else{
-                                            break;
                                         }
+                                    } else {
+                                        Users user = new Users();
+                                        user.objectId = ob.get(i).getObjectId();
+                                        user.username = ob.get(i).getUsername();
+                                        user.email = ob.get(i).getEmail();
+                                        user.mobilenumber = String.valueOf(ob.get(i).getInt("mobilenumber"));
+                                        usersArrayList.add(user);
                                     }
 
 
@@ -146,7 +156,7 @@ public class SearchFriendActivity extends AppCompatActivity {
         }
     }
 
-    void initToolbar(){
+    void initToolbar() {
         mToolbar = (Toolbar) findViewById(R.id.toolbar_main);
 
         setSupportActionBar(mToolbar);
