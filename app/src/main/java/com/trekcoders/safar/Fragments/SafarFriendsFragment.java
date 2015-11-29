@@ -128,7 +128,7 @@ public class SafarFriendsFragment extends Fragment {
                     else if (user.getObjectId().equals(fren_F.getObjectId())) {
                         Friends friends = new Friends();
                         friends.emailF = user_F.getString("email");
-                        friends.mobilenumberF = String.valueOf(user_F.getInt("mobilenumber"));
+                        friends.mobilenumberF = user_F.getString("mobilenumber");
                         friends.objectIdF = Obj.getObjectId();
                         friendsArrayList.add(friends);  //add all such users also to friendArrayList
                     }

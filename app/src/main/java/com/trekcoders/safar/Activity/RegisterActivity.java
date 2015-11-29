@@ -96,7 +96,7 @@ public class RegisterActivity extends AppCompatActivity {
                         user.setUsername(eMailUser);
                         user.setPassword(passUser);
                         user.setEmail(eMailUser);
-                        user.put("mobilenumber", Integer.parseInt(mobileUser));
+                        user.put("mobilenumber", mobileUser);
 
                         user.signUpInBackground(new SignUpCallback() {
                             public void done(ParseException e) {

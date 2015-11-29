@@ -38,6 +38,7 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.trekcoders.safar.Location.LocationService;
 import com.trekcoders.safar.R;
+import com.trekcoders.safar.SafarApplication;
 import com.trekcoders.safar.utils.GMapV2GetRouteDirection;
 
 import org.w3c.dom.Document;
@@ -62,6 +63,8 @@ public class TrailMapActivity extends AppCompatActivity implements OnMapReadyCal
     Document document;
     double toLat, toLong, fromLat, fromLong;
     LatLng fromPosition, toPosition;
+
+    int value;
 
     GMapV2GetRouteDirection gMapV2GetRouteDirection;
 
@@ -103,12 +106,16 @@ public class TrailMapActivity extends AppCompatActivity implements OnMapReadyCal
             finish();
         }
 
-
+        value = SafarApplication.app.trailPath.size();
         //Define start and end coordinates here
-        fromLat = 27.677121;
-        fromLong = 85.342741;
-        toLat = 27.675292;
-        toLong = 85.342374;
+        //27.677121, 85.342741
+        for(int i=0; i<value;i++) {
+            fromLat = SafarApplication.app.trailPath.get(0).latitude;
+            fromLong = SafarApplication.app.trailPath.get(0).longitude;
+            toLat = SafarApplication.app.trailPath.get(value-1).latitude;
+            toLong = SafarApplication.app.trailPath.get(value-1).longitude;
+            Log.d("fromAalo",": "+fromLat+" ToAalo: "+toLong);
+        }
         /*fromLat = 27.68973779;
         fromLong = 85.30766174;*/
         /*toLat = 27.6906498;
@@ -119,10 +126,10 @@ public class TrailMapActivity extends AppCompatActivity implements OnMapReadyCal
         fromLong = 85.342872;
         toLat = 27.676448;
         toLong = 85.342686;*/
-        fromLat = 27.68973779;
+        /*fromLat = 27.68973779;
         fromLong = 85.30766174;
         toLat = 27.6906498;
-        toLong = 85.30543014;
+        toLong = 85.30543014;*/
 
 
 

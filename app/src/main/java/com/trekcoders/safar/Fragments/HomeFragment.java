@@ -114,8 +114,9 @@ public class HomeFragment extends Fragment {
                                         boolean isFrenEmpty = true;
                                         for (ParseObject obj : list) {
                                             ParseObject usr = obj.getParseObject("userObjId");
-
-                                            if (usr.getObjectId().equalsIgnoreCase(parseUser.getObjectId())) {
+                                            ParseObject frn = obj.getParseObject("frenObjId");
+                                            Log.d("CurrentObjId",": "+usr.getObjectId());
+                                            if (usr.getObjectId().equalsIgnoreCase(parseUser.getObjectId())||frn.getObjectId().equalsIgnoreCase(parseUser.getObjectId())) {
                                                 isFrenEmpty = false;
                                                 Intent next = new Intent(getActivity(), TrailMapActivity.class);
                                                 next.putExtra("from", "trace");
