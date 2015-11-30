@@ -10,7 +10,10 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.parse.CountCallback;
+import com.parse.ParseException;
 import com.parse.ParseInstallation;
 import com.parse.ParseObject;
 import com.parse.ParsePush;
@@ -18,9 +21,11 @@ import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.trekcoders.safar.Activity.MainActivity;
 import com.trekcoders.safar.R;
+import com.trekcoders.safar.SafarApplication;
 import com.trekcoders.safar.model.Users;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class FrenListAdapter extends BaseAdapter {
@@ -67,52 +72,92 @@ public class FrenListAdapter extends BaseAdapter {
 
         holder.email.setText(user.username);
 
+
+
         holder.addFren.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                ParseQuery pushQuery = ParseInstallation.getQuery();
-                pushQuery.whereEqualTo("user_objectId", user.objectId);
-                ParseUser parseUser = ParseUser.getCurrentUser();
+                int limit = 0;
+                System.out.println("value"+
+                        SafarApplication.app.pref.getFriendsNumberFive()+SafarApplication.app.pref.getFriendsNumberThree());
+                if(SafarApplication.app.pref.getFriendsNumberFive() )
+                    limit = 5;
+                else if(SafarApplication.app.pref.getFriendsNumberThree())
+                    limit = 3;
+                else
+                    limit = 0;
+                ParseQuery userQuery = ParseQuery.getQuery("Friends");
+                userQuery.whereEqualTo("userObjId", ParseObject.createWithoutData("_User", ParseUser.getCurrentUser().getObjectId()));
 
-                ParsePush push = new ParsePush();
-                push.setQuery(pushQuery); // Set our Installation query
-                push.setMessage("You have been added as a friend by "+ parseUser.getUsername());
-                push.sendInBackground();
+                ParseQuery frenQuery = ParseQuery.getQuery("Friends");
+                frenQuery.whereEqualTo("frenObjId", ParseObject.createWithoutData("_User", ParseUser.getCurrentUser().getObjectId()));
 
-                //insert
-                ParseObject parseObject = new ParseObject("Friends");
-                parseObject.put("userObjId", ParseObject.createWithoutData("_User", parseUser.getObjectId()));
-                parseObject.put("frenObjId", ParseObject.createWithoutData("_User", user.objectId));
-                parseObject.saveInBackground();
+                List<ParseQuery<ParseObject>> queries = new ArrayList<ParseQuery<ParseObject>>();
+                queries.add(userQuery);
+                queries.add(frenQuery);
 
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+                ParseQuery query = ParseQuery.or(queries);
+                final int finalLimit = limit;
+                query.countInBackground(new CountCallback() {
+                    public void done(int count, ParseException e) {
+                        if (e == null) {
+                            if(finalLimit == 0){
+                                Toast.makeText(context, "Set friend number first", Toast.LENGTH_LONG).show();
+                            } else {
+                                if (count < finalLimit) {
+                                    ParseQuery pushQuery = ParseInstallation.getQuery();
+                                    pushQuery.whereEqualTo("user_objectId", user.objectId);
+                                    ParseUser parseUser = ParseUser.getCurrentUser();
 
-                // set title
-                alertDialogBuilder.setTitle("Friend Added");
+                                    ParsePush push = new ParsePush();
+                                    push.setQuery(pushQuery); // Set our Installation query
+                                    push.setMessage("You have been added as a friend by " + parseUser.getUsername());
+                                    push.sendInBackground();
 
-                // set dialog message
-                alertDialogBuilder
-                        .setMessage("You successfully added a new friend!")
-                        .setCancelable(false)
-                        .setPositiveButton("Add More", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                dialog.cancel();
+                                    //insert
+                                    ParseObject parseObject = new ParseObject("Friends");
+                                    parseObject.put("userObjId", ParseObject.createWithoutData("_User", parseUser.getObjectId()));
+                                    parseObject.put("frenObjId", ParseObject.createWithoutData("_User", user.objectId));
+                                    parseObject.saveInBackground();
+
+                                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+
+                                    // set title
+                                    alertDialogBuilder.setTitle("Friend Added");
+
+                                    // set dialog message
+                                    alertDialogBuilder
+                                            .setMessage("You successfully added a new friend!")
+                                            .setCancelable(false)
+                                            .setPositiveButton("Add More", new DialogInterface.OnClickListener() {
+                                                public void onClick(DialogInterface dialog, int id) {
+                                                    dialog.cancel();
+                                                }
+                                            })
+                                            .setNegativeButton("Home", new DialogInterface.OnClickListener() {
+                                                public void onClick(DialogInterface dialog, int id) {
+                                                    // if this button is clicked, just close
+                                                    // the dialog box and do nothing
+                                                    context.startActivity(new Intent(context, MainActivity.class));
+                                                }
+                                            });
+
+                                    // create alert dialog
+                                    AlertDialog alertDialog = alertDialogBuilder.create();
+
+                                    // show it
+                                    alertDialog.show();
+                                } else {
+                                    Toast.makeText(context, "Maximum number reached", Toast.LENGTH_LONG).show();
+                                }
                             }
-                        })
-                        .setNegativeButton("Home", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                // if this button is clicked, just close
-                                // the dialog box and do nothing
-                                context.startActivity(new Intent(context, MainActivity.class));
-                            }
-                        });
+                        } else {
+                            // The request failed
+                        }
+                    }
+                });
 
-                // create alert dialog
-                AlertDialog alertDialog = alertDialogBuilder.create();
-
-                // show it
-                alertDialog.show();
             }
         });
 

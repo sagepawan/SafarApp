@@ -39,7 +39,6 @@ public class LocationService extends Service implements IGpsHelper {
     double sentLat = 0.0;
     double sentLng = 0.0;
 
-    //public Prefs prefs;
     GPS gps;
 
     ArrayList<Friends> friendsArrayList;
