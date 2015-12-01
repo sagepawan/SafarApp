@@ -9,6 +9,7 @@ import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.trekcoders.safar.utils.Pref;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,11 +26,15 @@ public class SafarApplication extends Application {
     ArrayList<String> latArray;
     ArrayList<String> longArray;
 
+    public Pref pref;
+
     @Override
     public void onCreate() {
         super.onCreate();
 
         app = this;
+
+        pref = new Pref(this);
 
         Parse.enableLocalDatastore(this);
 
@@ -45,7 +50,7 @@ public class SafarApplication extends Application {
             @Override
             public void done(List<ParseObject> list, ParseException e) {
 
-                Log.d("ListSizeCheckpoints", ": " + list.size());
+                //Log.d("ListSizeCheckpoints", ": " + list.size());
                 Double lat = null;
                 Double lng = null;
                 for (ParseObject Obj : list) {

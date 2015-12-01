@@ -129,6 +129,8 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
                         .setCancelable(false)
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
+                                ParseInstallation parseInstallation = ParseInstallation.getCurrentInstallation();
+                                parseInstallation.deleteInBackground();
                                 parseUser.logOut();
                                 startActivity(new Intent(MainActivity.this,LoginActivity.class));
                             }

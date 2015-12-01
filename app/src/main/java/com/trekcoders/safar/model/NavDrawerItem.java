@@ -2,8 +2,7 @@ package com.trekcoders.safar.model;
 
 public class NavDrawerItem {
     private boolean showNotify;
-    private String title;
-
+    private String title, title_image;
 
     public NavDrawerItem() {
 
@@ -21,6 +20,15 @@ public class NavDrawerItem {
     public void setShowNotify(boolean showNotify) {
         this.showNotify = showNotify;
     }
+
+    public String getImage(){
+        return title_image;
+    }
+
+    public void setImage(String title_image){
+        this.title_image = title_image;
+    }
+
 
     public String getTitle() {
         return title;

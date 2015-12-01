@@ -7,12 +7,13 @@ import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 
 import com.parse.ParseUser;
 import com.trekcoders.safar.R;
-
-import java.util.List;
+import com.trekcoders.safar.SafarApplication;
 
 
 public class SettingsFragment extends Fragment {
@@ -31,7 +32,38 @@ public class SettingsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_settings, container, false);
+        CheckBox fiveFriend = (CheckBox) rootView.findViewById(R.id.cbFive);
+        CheckBox threeFriend = (CheckBox) rootView.findViewById(R.id.cbThree);
 
+        if (SafarApplication.app.pref.getFriendsNumberFive()) {
+            fiveFriend.setChecked(true);
+        }
+        if (SafarApplication.app.pref.getFriendsNumberThree())
+            threeFriend.setChecked(true);
+        fiveFriend.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                System.out.println("change");
+                if (isChecked) {
+                    SafarApplication.app.pref.setFriendsNumberFive(false);
+                }
+                else {
+                    SafarApplication.app.pref.setFriendsNumberFive(true);
+                }
+
+            }
+        });
+        threeFriend.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                System.out.println("change");
+                if (isChecked) {
+                    SafarApplication.app.pref.setFriendsNumberThree(false);
+                }
+                else {
+                    SafarApplication.app.pref.setFriendsNumberThree(true);
+                }
+
+            }
+        });
         rootView.findViewById(R.id.btnChngPass).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -43,7 +75,8 @@ public class SettingsFragment extends Fragment {
                 final View dialogLayout = inflater.inflate(R.layout.layout_dialogue_forgetpass, null);
                 alertDialog.setView(dialogLayout);
 
-                final EditText pass = (EditText)dialogLayout.findViewById(R.id.edNewPass);
+                final EditText pass = (EditText) dialogLayout.findViewById(R.id.edNewPass);
+
 
 
                 //METHOD TO CHANGE CURRENT USER PASSWORD - - DONE BY UDAY

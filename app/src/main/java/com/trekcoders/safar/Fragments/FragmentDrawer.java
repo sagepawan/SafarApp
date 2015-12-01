@@ -8,6 +8,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -32,6 +33,7 @@ public class FragmentDrawer extends Fragment {
     private NavigationDrawerAdapter adapter;
     private View containerView;
     private static String[] titles = null;
+    private static int[] images = null;
     private FragmentDrawerListener drawerListener;
 
     public FragmentDrawer() {
@@ -41,6 +43,22 @@ public class FragmentDrawer extends Fragment {
     public void setDrawerListener(FragmentDrawerListener listener) {
         this.drawerListener = listener;
     }
+
+    public static List<NavDrawerItem> getImage() {
+        List<NavDrawerItem> data1 = new ArrayList<>();
+
+
+        // preparing navigation drawer iamges
+        for (int i = 0; i < images.length; i++) {
+            NavDrawerItem navItem = new NavDrawerItem();
+            navItem.setImage(String.valueOf(images[i]));
+            data1.add(navItem);
+
+            Log.d("ImagesNames", ": " + images[i]);
+        }
+        return data1;
+    }
+
 
     public static List<NavDrawerItem> getData() {
         List<NavDrawerItem> data = new ArrayList<>();
@@ -61,6 +79,8 @@ public class FragmentDrawer extends Fragment {
 
         // drawer labels
         titles = getActivity().getResources().getStringArray(R.array.nav_drawer_labels);
+        images = new int[]{R.mipmap.ic_action_home, R.mipmap.ic_action_notification, R.mipmap.ic_action_friends
+                , R.mipmap.ic_action_settings, R.mipmap.ic_action_signout};
     }
 
     @Override
@@ -70,7 +90,7 @@ public class FragmentDrawer extends Fragment {
         View layout = inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
         recyclerView = (RecyclerView) layout.findViewById(R.id.drawerList);
 
-        adapter = new NavigationDrawerAdapter(getActivity(), getData());
+        adapter = new NavigationDrawerAdapter(getActivity(), getData(), getImage());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getActivity(), recyclerView, new ClickListener() {
