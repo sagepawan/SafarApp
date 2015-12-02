@@ -41,7 +41,7 @@
             />
 
         <CheckBox
-            android:id="@+id/cbFive"
+            android:id="@+id/cbThree"
             android:layout_width="0dip"
             android:layout_height="match_parent"
             android:layout_weight="1"/>
@@ -70,7 +70,7 @@
             />
 
         <CheckBox
-            android:id="@+id/cbThree"
+            android:id="@+id/cbFive"
             android:layout_width="0dip"
             android:layout_height="match_parent"
             android:layout_weight="1"/>

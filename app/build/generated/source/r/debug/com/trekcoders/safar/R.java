@@ -2484,8 +2484,8 @@ containing a value of this type.
         public static final int buy_now=0x7f0e0049;
         public static final int buy_with_google=0x7f0e004a;
         public static final int cancel_action=0x7f0e00af;
-        public static final int cbFive=0x7f0e00a4;
-        public static final int cbThree=0x7f0e00a5;
+        public static final int cbFive=0x7f0e00a5;
+        public static final int cbThree=0x7f0e00a4;
         public static final int center=0x7f0e001c;
         public static final int center_horizontal=0x7f0e001d;
         public static final int center_vertical=0x7f0e001e;

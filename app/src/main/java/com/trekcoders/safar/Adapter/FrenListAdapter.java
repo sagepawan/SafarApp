@@ -81,9 +81,9 @@ public class FrenListAdapter extends BaseAdapter {
                 int limit = 0;
                 System.out.println("value"+
                         SafarApplication.app.pref.getFriendsNumberFive()+SafarApplication.app.pref.getFriendsNumberThree());
-                if(SafarApplication.app.pref.getFriendsNumberFive() )
+                if(SafarApplication.app.pref.getFriendsNumberThree() )
                     limit = 5;
-                else if(SafarApplication.app.pref.getFriendsNumberThree())
+                else if(SafarApplication.app.pref.getFriendsNumberFive())
                     limit = 3;
                 else
                     limit = 0;

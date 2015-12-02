@@ -42,24 +42,24 @@ public class SettingsFragment extends Fragment {
             threeFriend.setChecked(true);
         fiveFriend.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                System.out.println("change");
+                System.out.println("change5"+isChecked);
                 if (isChecked) {
-                    SafarApplication.app.pref.setFriendsNumberFive(false);
+                    SafarApplication.app.pref.setFriendsNumberFive(true);
                 }
                 else {
-                    SafarApplication.app.pref.setFriendsNumberFive(true);
+                    SafarApplication.app.pref.setFriendsNumberFive(false);
                 }
 
             }
         });
         threeFriend.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                System.out.println("change");
+                System.out.println("change3"+isChecked);
                 if (isChecked) {
-                    SafarApplication.app.pref.setFriendsNumberThree(false);
+                    SafarApplication.app.pref.setFriendsNumberThree(true);
                 }
                 else {
-                    SafarApplication.app.pref.setFriendsNumberThree(true);
+                    SafarApplication.app.pref.setFriendsNumberThree(false);
                 }
 
             }

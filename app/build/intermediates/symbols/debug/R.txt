@@ -667,8 +667,8 @@ int id buyButton 0x7f0e0045
 int id buy_now 0x7f0e0049
 int id buy_with_google 0x7f0e004a
 int id cancel_action 0x7f0e00af
-int id cbFive 0x7f0e00a4
-int id cbThree 0x7f0e00a5
+int id cbFive 0x7f0e00a5
+int id cbThree 0x7f0e00a4
 int id center 0x7f0e001c
 int id center_horizontal 0x7f0e001d
 int id center_vertical 0x7f0e001e
