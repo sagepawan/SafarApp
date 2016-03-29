@@ -22,6 +22,7 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.trekcoders.safar.R;
+import com.trekcoders.safar.SafarApplication;
 
 import java.util.List;
 
@@ -80,40 +81,46 @@ public class LoginActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 //sets a boolean value true to isValid if all validation conditions are satisfied
                 isValid = FormValidator.validate(LoginActivity.this, new SimpleErrorPopupCallback(getApplicationContext(), true));
 
                 //sets a boolean value true to isValid if all validation conditions are satisfied
                 if (isValid) {
-                    progressDialog.setCancelable(false);
-                    progressDialog.setMessage("Signing up..");
-                    progressDialog.show();
 
-                    if (user.getText().toString().isEmpty() || password.getText().toString().isEmpty()) {
+                    if (SafarApplication.app.checkNetwork.isNetworkAvailable(LoginActivity.this)) {
+                        progressDialog.setCancelable(false);
+                        progressDialog.setMessage("Signing up..");
+                        progressDialog.show();
 
-                        Toast.makeText(LoginActivity.this, "You must fill your login credentials", Toast.LENGTH_SHORT).show();
+                        if (user.getText().toString().isEmpty() || password.getText().toString().isEmpty()) {
 
-                    } else {
+                            Toast.makeText(LoginActivity.this, "You must fill your login credentials", Toast.LENGTH_SHORT).show();
 
-                        final String uName = user.getText().toString();
-                        final String uPass = password.getText().toString();
+                        } else {
 
-                        ParseUser.logInInBackground(uName, uPass, new LogInCallback() {
-                            public void done(ParseUser user, ParseException e) {
-                                if (user != null) {
-                                    progressDialog.dismiss();
-                                    System.out.println("login");
-                                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                                    finish();
-                                } else {
-                                    progressDialog.dismiss();
-                                    System.out.println("login eee:" + e);
-                                    Toast.makeText(LoginActivity.this, "Incorrect Username or Password", Toast.LENGTH_SHORT).show();
+                            final String uName = user.getText().toString();
+                            final String uPass = password.getText().toString();
+
+                            ParseUser.logInInBackground(uName, uPass, new LogInCallback() {
+                                public void done(ParseUser user, ParseException e) {
+                                    if (user != null) {
+                                        progressDialog.dismiss();
+                                        System.out.println("login");
+                                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                        finish();
+                                    } else {
+                                        progressDialog.dismiss();
+                                        System.out.println("login eee:" + e);
+                                        Toast.makeText(LoginActivity.this, "Incorrect Username or Password", Toast.LENGTH_SHORT).show();
+                                    }
                                 }
-                            }
-                        });
+                            });
 
-                    }
+                        }
+
+                    } else
+                        Toast.makeText(LoginActivity.this, "No internet connection", Toast.LENGTH_SHORT).show();
                 }
 
 

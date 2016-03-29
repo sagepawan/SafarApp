@@ -9,6 +9,7 @@ import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.trekcoders.safar.utils.CheckNetwork;
 import com.trekcoders.safar.utils.Pref;
 
 import java.util.ArrayList;
@@ -27,6 +28,8 @@ public class SafarApplication extends Application {
     ArrayList<String> longArray;
 
     public Pref pref;
+
+    public CheckNetwork checkNetwork;
 
     @Override
     public void onCreate() {
