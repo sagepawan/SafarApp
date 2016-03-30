@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,15 +16,25 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.AccessToken;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.facebook.HttpMethod;
+import com.google.android.gms.fitness.data.Session;
 import com.parse.FindCallback;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
+import com.parse.ParseFacebookUtils;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.trekcoders.safar.R;
 import com.trekcoders.safar.SafarApplication;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.Arrays;
 import java.util.List;
 
 import eu.inmite.android.lib.validations.form.FormValidator;
@@ -52,7 +63,7 @@ public class LoginActivity extends AppCompatActivity {
     @NotEmpty(messageId = R.string.validation_pass, order = 2)
     EditText password;
 
-    Button login, register;
+    Button login, register, btnFbLogin;
 
     TextView passForget;
 
@@ -61,6 +72,8 @@ public class LoginActivity extends AppCompatActivity {
     ParseQuery<ParseUser> loginQuery;
     ProgressDialog progressDialog;
     ParseUser updateUser = new ParseUser();
+
+    List<String> permissions = Arrays.asList("public_profile", "email", "user_birthday");
 
 
     @Override
@@ -72,6 +85,7 @@ public class LoginActivity extends AppCompatActivity {
         password = (EditText) findViewById(R.id.password_edittext);
         login = (Button) findViewById(R.id.btn_login);
         register = (Button) findViewById(R.id.btn_register);
+        btnFbLogin = (Button) findViewById(R.id.btn_fb_login);
         passForget = (TextView) findViewById(R.id.tvPassForget);
 
         loginQuery = ParseUser.getQuery();
@@ -182,6 +196,69 @@ public class LoginActivity extends AppCompatActivity {
                 alertDialog.show();
             }
         });
+
+        btnFbLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                ParseFacebookUtils.logInWithReadPermissionsInBackground(LoginActivity.this, permissions, new LogInCallback() {
+                    @Override
+                    public void done(ParseUser parseUser, ParseException e) {
+
+                        if (parseUser == null)
+                            Log.d("FbLogin: ", "User cancelled FB Login " + parseUser.getUsername() + "--" + parseUser.getEmail());
+
+                        else if (parseUser.isNew()) {
+                            Log.d("FbLogin: ", "User signed up and logged in thru FB " + parseUser.getString("email") + "--" + parseUser.getEmail() + "--" + parseUser);
+                            getUserDetailsFromFb();
+                        } else {
+                            Log.d("FbLogin: ", "User logged in thru FB ");
+                            getUserDetailsFromFb();
+                        }
+
+                    }
+                });
+            }
+        });
+    }
+
+
+    public void getUserDetailsFromFb() {
+
+        Bundle parameters = new Bundle();
+        parameters.putString("fields", "email,name");
+
+        new GraphRequest(AccessToken.getCurrentAccessToken(), "/me", parameters, HttpMethod.GET, new GraphRequest.Callback() {
+
+            @Override
+            public void onCompleted(GraphResponse response) {
+
+
+                try {
+                    String email = response.getJSONObject().getString("email");
+                    Log.d("FbUserMail",": "+email);
+                    //mEmailID.setText(email);
+                    String name = response.getJSONObject().getString("name");
+                    Log.d("FbUserName",": "+name);
+                    //mUsername.setText(name);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        }).executeAsync();
+
+
+
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        ParseFacebookUtils.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
@@ -195,7 +272,7 @@ public class LoginActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+        // as you specify a parent activity in AndroidManifest.xml
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement

@@ -16,6 +16,7 @@ import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 import com.trekcoders.safar.R;
+import com.trekcoders.safar.SafarApplication;
 
 import eu.inmite.android.lib.validations.form.FormValidator;
 import eu.inmite.android.lib.validations.form.annotations.NotEmpty;
@@ -86,41 +87,45 @@ public class RegisterActivity extends AppCompatActivity {
 
                 //if validation true, registration works, else it shows error msg in each textbox
                 if (isValid) {
-                    if(pass.getText().toString().equals(confirmPass.getText().toString())) {
-                        progressDialog.setCancelable(false);
-                        progressDialog.setMessage("Signing up..");
-                        progressDialog.show();
-                        String eMailUser = email.getText().toString();
-                        String passUser = pass.getText().toString();
-                        String mobileUser = mobile.getText().toString();
-                        user.setUsername(eMailUser);
-                        user.setPassword(passUser);
-                        user.setEmail(eMailUser);
-                        user.put("mobilenumber", mobileUser);
 
-                        user.signUpInBackground(new SignUpCallback() {
-                            public void done(ParseException e) {
-                                if (e == null) {
-                                    progressDialog.dismiss(); //dismiss
-                                    System.out.println("Sign up successful:");
-                                    startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
-                                } else {
-                                    progressDialog.dismiss();
-                                    System.out.println("Sign up error:" + e);
-                                    // Sign up didn't succeed. Look at the ParseException
-                                    // to figure out what went wrong
+                    if(SafarApplication.app.checkNetwork.isNetworkAvailable(RegisterActivity.this)) {
+                        if (pass.getText().toString().equals(confirmPass.getText().toString())) {
+                            progressDialog.setCancelable(false);
+                            progressDialog.setMessage("Signing up..");
+                            progressDialog.show();
+                            String eMailUser = email.getText().toString();
+                            String passUser = pass.getText().toString();
+                            String mobileUser = mobile.getText().toString();
+                            user.setUsername(eMailUser);
+                            user.setPassword(passUser);
+                            user.setEmail(eMailUser);
+                            user.put("mobilenumber", mobileUser);
+
+                            user.signUpInBackground(new SignUpCallback() {
+                                public void done(ParseException e) {
+                                    if (e == null) {
+                                        progressDialog.dismiss(); //dismiss
+                                        System.out.println("Sign up successful:");
+                                        startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                                    } else {
+                                        progressDialog.dismiss();
+                                        System.out.println("Sign up error:" + e);
+                                        // Sign up didn't succeed. Look at the ParseException
+                                        // to figure out what went wrong
+                                    }
                                 }
-                            }
-                        });
+                            });
 
 
-                        Log.d("Register_values", ": " + eMailUser + ", " + passUser + ", " + mobileUser);
+                            Log.d("Register_values", ": " + eMailUser + ", " + passUser + ", " + mobileUser);
 
-                        //user.saveInBackground();
-                    }
-                    else{
-                        Toast.makeText(RegisterActivity.this,"Password and confirm password do not match",Toast.LENGTH_SHORT).show();
-                    }
+                            //user.saveInBackground();
+                        } else {
+                            Toast.makeText(RegisterActivity.this, "Password and confirm password do not match", Toast.LENGTH_SHORT).show();
+                        }
+
+                    }else
+                        Toast.makeText(RegisterActivity.this,"No Internet Connection",Toast.LENGTH_SHORT).show();
                 }
             }
         });

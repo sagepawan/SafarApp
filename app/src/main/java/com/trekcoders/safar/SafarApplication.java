@@ -7,6 +7,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.parse.FindCallback;
 import com.parse.Parse;
 import com.parse.ParseException;
+import com.parse.ParseFacebookUtils;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.trekcoders.safar.utils.CheckNetwork;
@@ -39,10 +40,15 @@ public class SafarApplication extends Application {
 
         pref = new Pref(this);
 
+        checkNetwork = new CheckNetwork();
+
         Parse.enableLocalDatastore(this);
 
         // Add your initialization code here
         Parse.initialize(this, "lm6f7z8HJdtKEWCEmp1Zfy4azSXIeDi2NoTt9A7S", "3bfZ0eWRVknPmBpqmSjtczydosj7z13dcFP6CpqA");
+
+        //For Facebook Login
+        ParseFacebookUtils.initialize(this);
 
         latArray = new ArrayList<>();
         longArray = new ArrayList<>();

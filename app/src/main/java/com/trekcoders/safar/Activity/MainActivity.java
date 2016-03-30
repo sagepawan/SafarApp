@@ -79,8 +79,6 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         /*Intent serviceIntent = new Intent(MainActivity.this, LocationService.class);
         MainActivity.this.startService(serviceIntent);*/
 
-
-
     }
 
     private void getUserDetailsFromParse() {

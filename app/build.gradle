@@ -7,7 +7,7 @@ android {
 
     defaultConfig {
         applicationId "com.trekcoders.safar"
-        minSdkVersion 14
+        minSdkVersion 15
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
@@ -36,4 +36,8 @@ dependencies {
         exclude module: 'support-v4'
     }
     compile 'eu.inmite.android.lib:android-validation-komensky:0.9.4'
+
+    compile 'com.facebook.android:facebook-android-sdk:[4,5)'  //Requires minimum SDK 15
+
+    compile 'com.parse:parsefacebookutils-v4-android:1.10.3@aar'
 }
