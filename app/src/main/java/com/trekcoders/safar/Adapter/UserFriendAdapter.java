@@ -31,7 +31,7 @@ public class UserFriendAdapter extends BaseAdapter {
     private LayoutInflater layoutInflater;
     SafarFriendsFragment fragment;
 
-    public UserFriendAdapter(Context context,ArrayList<Friends> userFriends, SafarFriendsFragment fragment) {
+    public UserFriendAdapter(Context context, ArrayList<Friends> userFriends, SafarFriendsFragment fragment) {
 
         this.context = context;
         layoutInflater = LayoutInflater.from(context);
@@ -64,6 +64,7 @@ public class UserFriendAdapter extends BaseAdapter {
             holder.friendEmail = (TextView) convertView.findViewById(R.id.tvEmailF);
             holder.friendMobile = (TextView) convertView.findViewById(R.id.tvmobileF);
             holder.friendDelete = (TextView) convertView.findViewById(R.id.tvRemove);
+            holder.friendTrails = (TextView) convertView.findViewById(R.id.tvTrails);
 
             convertView.setTag(holder);
         } else {
@@ -72,8 +73,11 @@ public class UserFriendAdapter extends BaseAdapter {
 
         final Friends friends = userFriends.get(i);
 
+        Log.d("FriendTrails",": "+ friends.trials+" -- "+friends.emailF);
+
         holder.friendEmail.setText(friends.emailF);  //set name of user's friend
         holder.friendMobile.setText(friends.mobilenumberF);   //set mobile number of user's friend
+        holder.friendTrails.setText(friends.trials);
 
         //CODE TO DELETE FRIEND FROM APP INTERFACE AND PARSE TABLE - -DONE BY UDAY
         holder.friendDelete.setOnClickListener(new View.OnClickListener() {
@@ -140,5 +144,6 @@ public class UserFriendAdapter extends BaseAdapter {
         TextView friendEmail;
         TextView friendMobile;
         TextView friendDelete;
+        TextView friendTrails;
     }
 }

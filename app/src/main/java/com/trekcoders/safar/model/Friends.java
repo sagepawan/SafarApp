@@ -10,4 +10,5 @@ public class Friends implements Serializable {
     public String objectIdF;
     public String emailF;
     public String mobilenumberF;
+    public String trials;
 }
