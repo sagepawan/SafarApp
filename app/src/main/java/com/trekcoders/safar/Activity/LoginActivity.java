@@ -28,6 +28,7 @@ import com.parse.ParseFacebookUtils;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.parse.SignUpCallback;
 import com.trekcoders.safar.R;
 import com.trekcoders.safar.SafarApplication;
 
@@ -57,11 +58,11 @@ public class LoginActivity extends AppCompatActivity {
 
     //Calling Regular expression validation, order 1 means this will be checked first
     @RegExp(value = EMAIL, messageId = R.string.validation_email, order = 1)
-    EditText user;
+    EditText edUser;
 
     //To check if set password is empty or not
     @NotEmpty(messageId = R.string.validation_pass, order = 2)
-    EditText password;
+    EditText edPassword;
 
     Button login, register, btnFbLogin;
 
@@ -75,14 +76,16 @@ public class LoginActivity extends AppCompatActivity {
 
     List<String> permissions = Arrays.asList("public_profile", "email", "user_birthday");
 
+    ParseUser user;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        user = (EditText) findViewById(R.id.username_edittext);
-        password = (EditText) findViewById(R.id.password_edittext);
+        edUser = (EditText) findViewById(R.id.username_edittext);
+        edPassword = (EditText) findViewById(R.id.password_edittext);
         login = (Button) findViewById(R.id.btn_login);
         register = (Button) findViewById(R.id.btn_register);
         btnFbLogin = (Button) findViewById(R.id.btn_fb_login);
@@ -107,14 +110,14 @@ public class LoginActivity extends AppCompatActivity {
                         progressDialog.setMessage("Signing up..");
                         progressDialog.show();
 
-                        if (user.getText().toString().isEmpty() || password.getText().toString().isEmpty()) {
+                        if (edUser.getText().toString().isEmpty() || edPassword.getText().toString().isEmpty()) {
 
                             Toast.makeText(LoginActivity.this, "You must fill your login credentials", Toast.LENGTH_SHORT).show();
 
                         } else {
 
-                            final String uName = user.getText().toString();
-                            final String uPass = password.getText().toString();
+                            final String uName = edUser.getText().toString();
+                            final String uPass = edPassword.getText().toString();
 
                             ParseUser.logInInBackground(uName, uPass, new LogInCallback() {
                                 public void done(ParseUser user, ParseException e) {
@@ -226,7 +229,7 @@ public class LoginActivity extends AppCompatActivity {
     public void getUserDetailsFromFb() {
 
         Bundle parameters = new Bundle();
-        parameters.putString("fields", "email,name");
+        parameters.putString("fields", "email,name, birth_day");
 
         new GraphRequest(AccessToken.getCurrentAccessToken(), "/me", parameters, HttpMethod.GET, new GraphRequest.Callback() {
 
@@ -235,12 +238,35 @@ public class LoginActivity extends AppCompatActivity {
 
 
                 try {
+
+                    user = new ParseUser();
                     String email = response.getJSONObject().getString("email");
                     Log.d("FbUserMail",": "+email);
+
                     //mEmailID.setText(email);
                     String name = response.getJSONObject().getString("name");
                     Log.d("FbUserName",": "+name);
                     //mUsername.setText(name);
+
+                    user.setUsername(name);
+                    user.setEmail(email);
+                    user.put("mobilenumber","");
+
+                    user.signUpInBackground(new SignUpCallback() {
+                        public void done(ParseException e) {
+                            if (e == null) {
+                                //progressDialog.dismiss(); //dismiss
+                                System.out.println("Sign up successful:");
+                                //startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                            } else {
+                                //progressDialog.dismiss();
+                                System.out.println("Sign up error:" + e);
+                                // Sign up didn't succeed. Look at the ParseException
+                                // to figure out what went wrong
+                            }
+                        }
+                    });
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -248,8 +274,6 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         }).executeAsync();
-
-
 
     }
 
