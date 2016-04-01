@@ -1,287 +1,289 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:2:1-133:12
+ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:2:1-131:12
 	xmlns:android
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:2:11-69
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:2:11-69
 	package
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:3:5-35
-		INJECTED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml
-		INJECTED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:3:5-35
+		INJECTED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml
+		INJECTED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml
 	android:versionName
-		INJECTED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml
-		INJECTED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml
+		INJECTED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml
+		INJECTED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml
 	android:versionCode
-		INJECTED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml
-		INJECTED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml
+		INJECTED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml
+		INJECTED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml
 uses-permission#android.permission.INTERNET
-ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:5:5-67
+ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:5:5-67
 	android:name
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:5:22-64
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:5:22-64
 uses-permission#android.permission.ACCESS_NETWORK_STATE
-ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:6:5-79
+ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:6:5-79
 	android:name
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:6:22-76
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:6:22-76
 uses-permission#android.permission.ACCESS_FINE_LOCATION
-ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:7:5-79
+ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:7:5-79
 	android:name
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:7:22-76
-uses-permission#android.permission.ACCESS_COARSE_LOCATION
-ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:8:5-81
-	android:name
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:8:22-78
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:7:22-76
 uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
-ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:9:5-81
+ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:8:5-81
 	android:name
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:9:22-78
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:8:22-78
 uses-permission#android.permission.WAKE_LOCK
-ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:10:5-68
+ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:9:5-68
 	android:name
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:10:22-65
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:9:22-65
 uses-permission#android.permission.RECEIVE_BOOT_COMPLETED
-ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:11:5-81
+ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:10:5-81
 	android:name
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:11:22-78
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:10:22-78
 uses-permission#android.permission.VIBRATE
-ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:12:5-66
+ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:11:5-66
 	android:name
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:12:22-63
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:11:22-63
 uses-permission#android.permission.GET_ACCOUNTS
-ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:13:5-71
+ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:12:5-71
 	android:name
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:13:22-68
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:12:22-68
 uses-permission#com.google.android.c2dm.permission.RECEIVE
-ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:14:5-82
+ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:13:5-82
 	android:name
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:14:22-79
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:13:22-79
 uses-permission#com.google.android.providers.gsf.permission.READ_GSERVICES
-ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:15:5-98
+ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:14:5-98
 	android:name
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:15:22-95
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:14:22-95
+uses-permission#android.permission.ACCESS_COARSE_LOCATION
+ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:15:5-81
+	android:name
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:15:22-78
 permission#com.trekcoders.safar.permission.MAPS_RECEIVE
-ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:20:5-22:47
+ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:18:5-20:47
 	android:protectionLevel
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:22:9-44
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:20:9-44
 	android:name
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:21:9-68
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:19:9-68
 uses-feature#0x00020000
-ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:24:5-26:35
+ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:22:5-24:35
 	android:required
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:26:9-32
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:24:9-32
 	android:glEsVersion
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:25:9-41
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:23:9-41
 permission#com.trekcoders.safar.permission.C2D_MESSAGE
-ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:31:5-33:47
+ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:29:5-31:47
 	android:protectionLevel
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:33:9-44
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:31:9-44
 	android:name
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:32:9-67
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:30:9-67
 uses-permission#com.trekcoders.safar.permission.C2D_MESSAGE
-ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:35:5-83
+ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:33:5-83
 	android:name
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:35:22-80
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:33:22-80
 application
-ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:37:5-131:19
-MERGED from [com.android.support:appcompat-v7:22.2.1] /Users/swift/Documents/SafarApp/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:support-v4:23.2.0] /Users/swift/Documents/SafarApp/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.2.0/AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:design:22.2.1] /Users/swift/Documents/SafarApp/app/build/intermediates/exploded-aar/com.android.support/design/22.2.1/AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:appcompat-v7:22.2.1] /Users/swift/Documents/SafarApp/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:support-v4:23.2.0] /Users/swift/Documents/SafarApp/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.2.0/AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:support-v4:23.2.0] /Users/swift/Documents/SafarApp/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.2.0/AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:support-v4:23.2.0] /Users/swift/Documents/SafarApp/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.2.0/AndroidManifest.xml:22:5-20
-MERGED from [com.google.android.gms:play-services:6.5.87] /Users/swift/Documents/SafarApp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services/6.5.87/AndroidManifest.xml:20:5-24:19
-MERGED from [eu.inmite.android.lib:android-validation-komensky:0.9.4] /Users/swift/Documents/SafarApp/app/build/intermediates/exploded-aar/eu.inmite.android.lib/android-validation-komensky/0.9.4/AndroidManifest.xml:11:5-20
-MERGED from [com.android.support:support-v4:23.2.0] /Users/swift/Documents/SafarApp/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.2.0/AndroidManifest.xml:22:5-20
-MERGED from [com.facebook.android:facebook-android-sdk:4.10.1] /Users/swift/Documents/SafarApp/app/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.10.1/AndroidManifest.xml:28:5-20
-MERGED from [com.android.support:support-v4:23.2.0] /Users/swift/Documents/SafarApp/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.2.0/AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:cardview-v7:23.2.0] /Users/swift/Documents/SafarApp/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/23.2.0/AndroidManifest.xml:22:5-20
-MERGED from [com.parse:parsefacebookutils-v4-android:1.10.3] /Users/swift/Documents/SafarApp/app/build/intermediates/exploded-aar/com.parse/parsefacebookutils-v4-android/1.10.3/AndroidManifest.xml:20:5-20
+ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:35:5-129:19
+MERGED from [com.android.support:appcompat-v7:22.2.1] /home/dac-android/AndroidStudioProjects/SafarApp/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.2.0] /home/dac-android/AndroidStudioProjects/SafarApp/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.2.0/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:design:22.2.1] /home/dac-android/AndroidStudioProjects/SafarApp/app/build/intermediates/exploded-aar/com.android.support/design/22.2.1/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:appcompat-v7:22.2.1] /home/dac-android/AndroidStudioProjects/SafarApp/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.2.0] /home/dac-android/AndroidStudioProjects/SafarApp/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.2.0/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.2.0] /home/dac-android/AndroidStudioProjects/SafarApp/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.2.0/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.2.0] /home/dac-android/AndroidStudioProjects/SafarApp/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.2.0/AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services:6.5.87] /home/dac-android/AndroidStudioProjects/SafarApp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services/6.5.87/AndroidManifest.xml:20:5-24:19
+MERGED from [eu.inmite.android.lib:android-validation-komensky:0.9.4] /home/dac-android/AndroidStudioProjects/SafarApp/app/build/intermediates/exploded-aar/eu.inmite.android.lib/android-validation-komensky/0.9.4/AndroidManifest.xml:11:5-20
+MERGED from [com.android.support:support-v4:23.2.0] /home/dac-android/AndroidStudioProjects/SafarApp/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.2.0/AndroidManifest.xml:22:5-20
+MERGED from [com.facebook.android:facebook-android-sdk:4.10.1] /home/dac-android/AndroidStudioProjects/SafarApp/app/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.10.1/AndroidManifest.xml:28:5-20
+MERGED from [com.android.support:support-v4:23.2.0] /home/dac-android/AndroidStudioProjects/SafarApp/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.2.0/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:cardview-v7:23.2.0] /home/dac-android/AndroidStudioProjects/SafarApp/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/23.2.0/AndroidManifest.xml:22:5-20
+MERGED from [com.parse:parsefacebookutils-v4-android:1.10.3] /home/dac-android/AndroidStudioProjects/SafarApp/app/build/intermediates/exploded-aar/com.parse/parsefacebookutils-v4-android/1.10.3/AndroidManifest.xml:20:5-20
+MERGED from [com.github.traex.expandablelayout:library:1.3] /home/dac-android/AndroidStudioProjects/SafarApp/app/build/intermediates/exploded-aar/com.github.traex.expandablelayout/library/1.3/AndroidManifest.xml:11:5-20
 	android:label
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:41:9-41
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:39:9-41
 	android:allowBackup
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:39:9-35
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:37:9-35
 	android:icon
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:40:9-43
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:38:9-43
 	android:theme
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:43:9-40
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:41:9-40
 	android:largeHeap
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:42:9-33
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:40:9-33
 	android:name
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:38:9-41
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:36:9-41
 meta-data#com.facebook.sdk.ApplicationId
-ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:45:9-47:55
+ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:43:9-45:55
 	android:name
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:46:13-58
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:44:13-58
 	android:value
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:47:13-52
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:45:13-52
 meta-data#com.google.android.gms.version
-ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:49:9-51:69
-MERGED from [com.google.android.gms:play-services:6.5.87] /Users/swift/Documents/SafarApp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services/6.5.87/AndroidManifest.xml:21:9-23:69
+ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:47:9-49:69
+MERGED from [com.google.android.gms:play-services:6.5.87] /home/dac-android/AndroidStudioProjects/SafarApp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services/6.5.87/AndroidManifest.xml:21:9-23:69
 	android:name
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:50:13-58
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:48:13-58
 	android:value
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:51:13-66
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:49:13-66
 meta-data#com.google.android.maps.v2.API_KEY
-ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:52:9-54:58
+ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:50:9-52:58
 	android:name
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:53:13-62
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:51:13-62
 	android:value
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:54:13-55
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:52:13-55
 activity#com.trekcoders.safar.Activity.SplashActivity
-ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:56:9-65:20
+ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:54:9-63:20
 	android:screenOrientation
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:59:13-49
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:57:13-49
 	android:label
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:58:13-45
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:56:13-45
 	android:name
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:57:13-52
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:55:13-52
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:60:13-64:29
+ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:58:13-62:29
 action#android.intent.action.MAIN
-ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:61:17-69
+ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:59:17-69
 	android:name
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:61:25-66
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:59:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:63:17-77
+ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:61:17-77
 	android:name
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:63:27-74
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:61:27-74
 activity#com.facebook.FacebookActivity
-ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:67:9-71:48
+ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:65:9-69:48
 	android:label
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:71:13-45
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:69:13-45
 	android:configChanges
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:68:13-113
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:66:13-113
 	android:theme
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:70:13-72
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:68:13-72
 	android:name
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:67:19-63
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:65:19-63
 activity#com.trekcoders.safar.Activity.MainActivity
-ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:73:9-77:68
+ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:71:9-75:68
 	android:screenOrientation
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:76:13-49
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:74:13-49
 	android:label
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:75:13-56
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:73:13-56
 	android:theme
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:77:13-56
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:75:13-56
 	android:name
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:74:13-50
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:72:13-50
 activity#com.trekcoders.safar.Activity.LoginActivity
-ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:78:9-81:61
+ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:76:9-79:61
 	android:screenOrientation
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:81:13-49
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:79:13-49
 	android:label
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:80:13-57
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:78:13-57
 	android:name
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:79:13-51
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:77:13-51
 activity#com.trekcoders.safar.Activity.RegisterActivity
-ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:82:9-85:61
+ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:80:9-83:61
 	android:screenOrientation
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:85:13-49
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:83:13-49
 	android:label
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:84:13-60
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:82:13-60
 	android:name
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:83:13-54
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:81:13-54
 activity#com.trekcoders.safar.Activity.AddFriendActivity
-ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:86:9-88:61
+ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:84:9-86:61
 	android:screenOrientation
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:88:13-49
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:86:13-49
 	android:name
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:87:13-55
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:85:13-55
 activity#com.trekcoders.safar.Activity.SearchFriendActivity
-ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:89:9-91:61
+ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:87:9-89:61
 	android:screenOrientation
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:91:13-49
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:89:13-49
 	android:name
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:90:13-58
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:88:13-58
 activity#com.trekcoders.safar.Activity.TrailMapActivity
-ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:92:9-94:61
+ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:90:9-92:61
 	android:screenOrientation
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:94:13-49
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:92:13-49
 	android:name
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:93:13-54
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:91:13-54
 service#com.parse.PushService
-ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:98:9-57
+ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:96:9-57
 	android:name
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:98:18-54
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:96:18-54
 receiver#com.parse.ParseBroadcastReceiver
-ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:100:9-105:20
+ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:98:9-103:20
 	android:name
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:100:19-66
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:98:19-66
 intent-filter#android.intent.action.BOOT_COMPLETED+android.intent.action.USER_PRESENT
-ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:101:13-104:29
+ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:99:13-102:29
 action#android.intent.action.BOOT_COMPLETED
-ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:102:17-79
+ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:100:17-79
 	android:name
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:102:25-76
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:100:25-76
 action#android.intent.action.USER_PRESENT
-ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:103:17-77
+ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:101:17-77
 	android:name
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:103:25-74
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:101:25-74
 receiver#com.parse.GcmBroadcastReceiver
-ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:106:9-116:20
+ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:104:9-114:20
 	android:permission
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:108:13-73
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:106:13-73
 	android:name
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:107:13-58
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:105:13-58
 intent-filter#com.google.android.c2dm.intent.RECEIVE+com.google.android.c2dm.intent.REGISTRATION+com.trekcoders.safar
-ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:109:13-115:29
+ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:107:13-113:29
 action#com.google.android.c2dm.intent.RECEIVE
-ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:110:17-81
+ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:108:17-81
 	android:name
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:110:25-78
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:108:25-78
 action#com.google.android.c2dm.intent.REGISTRATION
-ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:111:17-86
+ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:109:17-86
 	android:name
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:111:25-83
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:109:25-83
 category#com.trekcoders.safar
-ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:114:17-65
+ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:112:17-65
 	android:name
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:114:27-62
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:112:27-62
 receiver#com.trekcoders.safar.utils.Receiver
-ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:117:9-125:20
+ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:115:9-123:20
 	android:exported
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:119:13-37
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:117:13-37
 	android:name
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:118:13-43
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:116:13-43
 intent-filter#com.parse.push.intent.DELETE+com.parse.push.intent.OPEN+com.parse.push.intent.RECEIVE
-ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:120:13-124:29
+ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:118:13-122:29
 action#com.parse.push.intent.RECEIVE
-ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:121:17-72
+ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:119:17-72
 	android:name
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:121:25-69
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:119:25-69
 action#com.parse.push.intent.DELETE
-ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:122:17-71
+ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:120:17-71
 	android:name
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:122:25-68
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:120:25-68
 action#com.parse.push.intent.OPEN
-ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:123:17-69
+ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:121:17-69
 	android:name
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:123:25-66
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:121:25-66
 service#com.trekcoders.safar.Location.LocationService
-ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:127:9-129:38
+ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:125:9-127:38
 	android:enabled
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:129:13-35
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:127:13-35
 	android:name
-		ADDED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml:128:13-53
+		ADDED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml:126:13-53
 uses-sdk
-INJECTED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
-MERGED from [com.android.support:appcompat-v7:22.2.1] /Users/swift/Documents/SafarApp/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:support-v4:23.2.0] /Users/swift/Documents/SafarApp/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.2.0/AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:design:22.2.1] /Users/swift/Documents/SafarApp/app/build/intermediates/exploded-aar/com.android.support/design/22.2.1/AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:appcompat-v7:22.2.1] /Users/swift/Documents/SafarApp/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:support-v4:23.2.0] /Users/swift/Documents/SafarApp/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.2.0/AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:support-v4:23.2.0] /Users/swift/Documents/SafarApp/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.2.0/AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:recyclerview-v7:22.2.1] /Users/swift/Documents/SafarApp/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/22.2.1/AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:support-v4:23.2.0] /Users/swift/Documents/SafarApp/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.2.0/AndroidManifest.xml:20:5-43
-MERGED from [com.google.android.gms:play-services:6.5.87] /Users/swift/Documents/SafarApp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services/6.5.87/AndroidManifest.xml:18:5-42
-MERGED from [eu.inmite.android.lib:android-validation-komensky:0.9.4] /Users/swift/Documents/SafarApp/app/build/intermediates/exploded-aar/eu.inmite.android.lib/android-validation-komensky/0.9.4/AndroidManifest.xml:7:5-9:41
-MERGED from [com.android.support:support-v4:23.2.0] /Users/swift/Documents/SafarApp/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.2.0/AndroidManifest.xml:20:5-43
-MERGED from [com.facebook.android:facebook-android-sdk:4.10.1] /Users/swift/Documents/SafarApp/app/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.10.1/AndroidManifest.xml:24:5-26:41
-MERGED from [com.android.support:support-v4:23.2.0] /Users/swift/Documents/SafarApp/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.2.0/AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:cardview-v7:23.2.0] /Users/swift/Documents/SafarApp/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/23.2.0/AndroidManifest.xml:20:5-43
-MERGED from [com.parse:parsefacebookutils-v4-android:1.10.3] /Users/swift/Documents/SafarApp/app/build/intermediates/exploded-aar/com.parse/parsefacebookutils-v4-android/1.10.3/AndroidManifest.xml:16:5-18:41
+INJECTED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+MERGED from [com.android.support:appcompat-v7:22.2.1] /home/dac-android/AndroidStudioProjects/SafarApp/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.2.0] /home/dac-android/AndroidStudioProjects/SafarApp/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.2.0/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:design:22.2.1] /home/dac-android/AndroidStudioProjects/SafarApp/app/build/intermediates/exploded-aar/com.android.support/design/22.2.1/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:appcompat-v7:22.2.1] /home/dac-android/AndroidStudioProjects/SafarApp/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.2.0] /home/dac-android/AndroidStudioProjects/SafarApp/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.2.0/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.2.0] /home/dac-android/AndroidStudioProjects/SafarApp/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.2.0/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:recyclerview-v7:22.2.1] /home/dac-android/AndroidStudioProjects/SafarApp/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/22.2.1/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.2.0] /home/dac-android/AndroidStudioProjects/SafarApp/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.2.0/AndroidManifest.xml:20:5-43
+MERGED from [com.google.android.gms:play-services:6.5.87] /home/dac-android/AndroidStudioProjects/SafarApp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services/6.5.87/AndroidManifest.xml:18:5-42
+MERGED from [eu.inmite.android.lib:android-validation-komensky:0.9.4] /home/dac-android/AndroidStudioProjects/SafarApp/app/build/intermediates/exploded-aar/eu.inmite.android.lib/android-validation-komensky/0.9.4/AndroidManifest.xml:7:5-9:41
+MERGED from [com.android.support:support-v4:23.2.0] /home/dac-android/AndroidStudioProjects/SafarApp/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.2.0/AndroidManifest.xml:20:5-43
+MERGED from [com.facebook.android:facebook-android-sdk:4.10.1] /home/dac-android/AndroidStudioProjects/SafarApp/app/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.10.1/AndroidManifest.xml:24:5-26:41
+MERGED from [com.android.support:support-v4:23.2.0] /home/dac-android/AndroidStudioProjects/SafarApp/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.2.0/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:cardview-v7:23.2.0] /home/dac-android/AndroidStudioProjects/SafarApp/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/23.2.0/AndroidManifest.xml:20:5-43
+MERGED from [com.parse:parsefacebookutils-v4-android:1.10.3] /home/dac-android/AndroidStudioProjects/SafarApp/app/build/intermediates/exploded-aar/com.parse/parsefacebookutils-v4-android/1.10.3/AndroidManifest.xml:16:5-18:41
+MERGED from [com.github.traex.expandablelayout:library:1.3] /home/dac-android/AndroidStudioProjects/SafarApp/app/build/intermediates/exploded-aar/com.github.traex.expandablelayout/library/1.3/AndroidManifest.xml:7:5-9:41
 	android:targetSdkVersion
-		INJECTED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml
-		INJECTED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml
+		INJECTED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml
+		INJECTED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml
-		INJECTED from /Users/swift/Documents/SafarApp/app/src/main/AndroidManifest.xml
+		INJECTED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml
+		INJECTED from /home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/AndroidManifest.xml
