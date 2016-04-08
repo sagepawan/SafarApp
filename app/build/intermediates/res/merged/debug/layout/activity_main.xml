@@ -41,4 +41,4 @@
         app:layout="@layout/fragment_navigation_drawer"
         tools:layout="@layout/fragment_navigation_drawer" />
 
-</android.support.v4.widget.DrawerLayout><!-- From: file:/home/dac-android/AndroidStudioProjects/SafarApp/app/src/main/res/layout/activity_main.xml -->
+</android.support.v4.widget.DrawerLayout><!-- From: file:/Users/swift/Documents/SafarApp/app/src/main/res/layout/activity_main.xml -->

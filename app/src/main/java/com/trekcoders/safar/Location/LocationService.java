@@ -24,6 +24,7 @@ import com.trekcoders.safar.model.Friends;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 public class LocationService extends Service implements IGpsHelper {
@@ -47,6 +48,9 @@ public class LocationService extends Service implements IGpsHelper {
     public final static double AVERAGE_RADIUS_OF_EARTH = 6371;
 
     Boolean trigger = true;
+
+    Boolean does_row_exist = false;
+
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -159,10 +163,66 @@ public class LocationService extends Service implements IGpsHelper {
     private void uploadTrailInfoToUserMeta() {
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery("UserMeta");
-        query.whereEqualTo("usrObjId", parseUser.getObjectId());
+        //query.include("usrObjId");
+
+        Log.d("MetaCurrentUser", ": " + parseUser.getObjectId() + " - - " + parseUser.getEmail());
+
+        query.whereEqualTo("usrObjId", parseUser);
         query.findInBackground(new FindCallback<ParseObject>() {
+
             @Override
-            public void done(List<ParseObject> objects, com.parse.ParseException e) {
+            public void done(List<ParseObject> list, ParseException e) {
+
+                if (e == null) {
+                    if (list.size() > 0) {
+
+                        for (ParseObject parseObject : list) {
+
+                            String trailId = parseObject.get("trailObjId").toString();
+
+                            if (trailId.equals("FkdyO1nXFz")) {
+                                does_row_exist = true;
+                                Log.d("Row already exists", "True!!");
+                            }
+                        }
+                    } else {
+
+                        if (!does_row_exist) {
+                            Log.d("UserMetaTable", ": IsEmpty " + does_row_exist);
+                            ParseObject parseObject = new ParseObject("UserMeta");
+                            parseObject.put("usrObjId", ParseObject.createWithoutData("_User", parseUser.getObjectId()));
+                            parseObject.put("trailObjId", ParseObject.createWithoutData("Trails", "FkdyO1nXFz"));
+
+                            parseObject.saveInBackground(new SaveCallback() {
+                                @Override
+                                public void done(ParseException e) {
+
+                                    if (e == null) {
+                                        Log.d("Upload to user meta", "Success!!");
+                                        does_row_exist = true;
+                                    }
+
+                                    else
+                                        Log.d("MetaUser error",": "+e);
+                                }
+                            });
+
+                        }
+
+                        else
+                            Log.d("UserMetaUsrId",": AlreadyThere");
+                    }
+
+                } else
+                    Log.d("UserMetaError", ": " + e.getMessage());
+
+            }
+        });
+    }
+
+    /*
+    @Override
+            public void done(List<ParseObject> objects, ParseException e) {
                 Boolean does_row_exist = false;
                 if (e == null) {
                     for (ParseObject parseObject : objects) {
@@ -170,6 +230,7 @@ public class LocationService extends Service implements IGpsHelper {
                         trail = parseObject.get("trailObjId").toString();
                         if (trail.equals("FkdyO1nXFz")) {
                             does_row_exist = true;
+                            Log.d("Row already exists", "True!!");
                         }
                     }
 
@@ -180,16 +241,19 @@ public class LocationService extends Service implements IGpsHelper {
                         parseObject.saveInBackground(new SaveCallback() {
                             @Override
                             public void done(ParseException e) {
-                                Log.d("Upload to user meta", "Success!!");
+
+                                if (e == null)
+                                    Log.d("Upload to user meta", "Success!!");
+
+                                else
+                                    Log.d("MetaUser error",": "+e);
                             }
                         });
                     }
                 } else {
-                    Log.d("Upload to user meta", "Failed!!");
+                    Log.d("Upload to user meta", "Failed!! "+e);
                 }
-            }
-        });
-    }
+            }*/
 
     @Override
     public void displayGPSSettingsDialog() {
