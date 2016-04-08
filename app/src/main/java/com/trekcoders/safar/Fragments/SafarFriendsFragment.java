@@ -19,6 +19,7 @@ import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 import com.trekcoders.safar.Activity.SearchFriendActivity;
 import com.trekcoders.safar.R;
 import com.trekcoders.safar.Adapter.UserFriendAdapter;
@@ -51,6 +52,7 @@ public class SafarFriendsFragment extends Fragment {
         // Required empty public constructor
     }
 
+    String trails = "";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -95,35 +97,73 @@ public class SafarFriendsFragment extends Fragment {
         return rootView;
     }
 
-    private void callTrailsList() {
+    private String callTrailsList(String friendObjId) {
 
-        final ParseQuery parseQueryTraces = ParseQuery.getQuery("Traces");
-
-        for (int i = 0; i < friendsArrayList.size(); i++) {
-            final String user_id = friendsArrayList.get(i).objectIdF;
-            parseQueryTraces.include("trailObjId");
-
-//            ParseObject obj = ParseObject.createWithoutData("User", user_id);
+//        final ParseQuery parseQueryUserMeta = ParseQuery.getQuery("UserMeta");
 //
-//            parseQueryTraces.whereEqualTo("usrObjId", obj);
-            parseQueryTraces.whereContains("usrObjId", user_id);
+//        for (int i = 0; i < friendsArrayList.size(); i++) {
+//            final String user_id = friendsArrayList.get(i).objectIdF;
+//            parseQueryUserMeta.include("trailObjId");
+//
+////            ParseObject obj = ParseObject.createWithoutData("User", user_id);
+////
+////            parseQueryUserMeta.whereEqualTo("usrObjId", obj);
+//            parseQueryUserMeta.whereContains("usrObjId", user_id);
+//
+//            parseQueryUserMeta.findInBackground(new FindCallback<ParseObject>() {
+//                @Override
+//                public void done(List<ParseObject> list_, ParseException e) {
+//                    String trials = null;
+//                    if (e != null) {
+//                        e.printStackTrace();
+//                    } else {
+//                        for (ParseObject Obj : list_) {
+//                            ParseObject trail_F = Obj.getParseObject("trailObjId");
+//                            trials += trail_F.getString("trailName") + ", ";
+//                            Log.d("trails", ": " + trials);
+//                        }
+//                    }
+//                }
+//            });
+//        }
 
-            parseQueryTraces.findInBackground(new FindCallback<ParseObject>() {
-                @Override
-                public void done(List<ParseObject> list_, ParseException e) {
-                    String trials = null;
-                    if (e != null) {
-                        e.printStackTrace();
-                    } else {
-                        for (ParseObject Obj : list_) {
-                            ParseObject trail_F = Obj.getParseObject("trailObjId");
-                            trials += trail_F.getString("trailName") + ", ";
-                            Log.d("trails", ": " + trials);
-                        }
-                    }
-                }
-            });
-        }
+//        ParseQuery<ParseObject> query = ParseQuery.getQuery("UserMeta");
+//        query.include("usrObjId");
+//        query.include("trailObjId");
+//
+//        final String[] value = {null};
+//
+//        query.findInBackground(new FindCallback<ParseObject>() {
+//            public void done(List<ParseObject> list_, ParseException e) {
+//                if (e == null) {
+//                    String trails = "";
+//
+//                    for (ParseObject Obj : list_) {
+//                        ParseObject trail_F = Obj.getParseObject("trailObjId");
+//                        ParseObject user__F = Obj.getParseObject("usrObjId");    //pKOERJheaB -- Sujit
+//
+//                        if (friendObjId.equals(user__F.getObjectId())) {
+//                            trails += trail_F.getString("trailName") + ", ";
+//                            value[0] = trails;
+//                            Log.d("traversed", ": " + friendObjId + " -- " + user__F.getObjectId() + value[0]);
+//                        }
+//
+//                        Log.d("NoTtraversed", ": " + friendObjId + " -- " + user__F.getObjectId() + value[0]);
+//
+//
+//                    }
+//
+//                    Log.d("trailsOut", ": " + value[0]);
+//
+//
+//                } else {
+//                    Log.d("score", "Error: " + e.getMessage());
+//                }
+//
+//                Log.d("trailsOut_", ": " + value[0]);
+//            }
+//        });
+        return "";
     }
 
     //CALLING CURRENT USER'S FRIEND LIST INTO UI FROM PARSE - - DONE BY KALYAN
@@ -131,7 +171,7 @@ public class SafarFriendsFragment extends Fragment {
     public void callFriendList() {
 
         //Start a query on parse "Friends" table where all friend relation between users are stored
-        ParseQuery parseQuery = ParseQuery.getQuery("Friends");
+        final ParseQuery parseQuery = ParseQuery.getQuery("Friends");
         parseQuery.include("userObjId");    //access userObjId column from parse table "friends"
         parseQuery.include("frenObjId");    //access frenObjId column from parse table "friends"
 
@@ -151,50 +191,27 @@ public class SafarFriendsFragment extends Fragment {
                         friends.emailF = fren_F.getString("email");
                         friends.mobilenumberF = String.valueOf(fren_F.getInt("mobilenumber"));
                         friends.objectIdF = Obj.getObjectId();
-                        friends.trials = "asd";
 
-                        ParseQuery<ParseObject> query = ParseQuery.getQuery("Traces");
-                        query.include("usrObjId");
-                        query.include("trailObjId");
-
+                        ParseQuery<ParseObject> query = ParseQuery.getQuery("UserMeta");
+                        query.whereEqualTo("usrObjId", fren_F.getObjectId());
                         query.findInBackground(new FindCallback<ParseObject>() {
-                            public void done(List<ParseObject> list_, ParseException e) {
+                            @Override
+                            public void done(List<ParseObject> objects, com.parse.ParseException e) {
                                 if (e == null) {
-                                    String trails = "";
-
-                                    Log.d("listLength", ": " + list_.size() + fren_F.getString("email"));
-
-                                    for (ParseObject Obj : list_) {
-                                        ParseObject trail_F = Obj.getParseObject("trailObjId");
-                                        ParseObject user__F = Obj.getParseObject("usrObjId");    //pKOERJheaB -- Sujit
-
-                                        Log.d("OutsideCondn", ": " + fren_F.getObjectId() + " -- " + user__F.getObjectId());
-
-                                        if (fren_F.getObjectId().equals(user__F.getObjectId())) {
-                                            trails += trail_F.getString("trailName") + ", ";
-                                            friends.trials = trails;
-                                            Log.d("traversed", ": " + fren_F.getString("email") + " -- " + user__F.getObjectId() + friends.trials);
-                                            break;
-                                        }
-
-                                        Log.d("NoTtraversed", ": " + fren_F.getString("email") + " -- " + user__F.getObjectId() + friends.trials);
-
-
+                                    for (ParseObject parseObject : objects) {
+                                        String trail;
+                                        trail = parseObject.get("trailObjId").toString();
+                                        trails += trail + ", ";
+                                        Log.d("Upload to user meta", trails);
                                     }
-
-                                    Log.d("trailsOut", ": " + friends.trials);
-
-
                                 } else {
-                                    Log.d("score", "Error: " + e.getMessage());
+                                    e.printStackTrace();
+                                    Log.d("Upload to user meta", "Failed!!");
                                 }
-
-                                Log.d("trailsOut_", ": " + friends.trials);
                             }
                         });
 
-                        Log.d("CurrentUserNameFriends", ": " + fren_F.getString("email"));
-                        Log.d("trails", ": 1"+ " -- "+friends.trials);
+                        friends.trials = trails;
                         friendsArrayList.add(friends);  //add all the friend's credentials into friendsArrayList
                     }
 
@@ -215,7 +232,7 @@ public class SafarFriendsFragment extends Fragment {
                                 if (e == null) {
                                     String trails = "";
 
-                                    Log.d("listLength_",": "+list_.size());
+                                    Log.d("listLength_", ": " + list_.size());
 
                                     for (ParseObject Obj : list_) {
                                         ParseObject trail_F = Obj.getParseObject("trailObjId");
@@ -224,8 +241,7 @@ public class SafarFriendsFragment extends Fragment {
                                         if (user__F.getObjectId().equals(user_F.getObjectId())) {
                                             trails += trail_F.getString("trailName") + ", ";
                                             break;
-                                        }
-                                        else
+                                        } else
                                             break;
                                     }
 

@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
 import com.parse.FindCallback;
+import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseInstallation;
 import com.parse.ParseObject;
@@ -45,6 +46,7 @@ public class LocationService extends Service implements IGpsHelper {
 
     public final static double AVERAGE_RADIUS_OF_EARTH = 6371;
 
+    Boolean trigger = true;
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -59,6 +61,12 @@ public class LocationService extends Service implements IGpsHelper {
         parseUser = ParseUser.getCurrentUser();  //gets cuurent logged in user
         callFriendList();   // Method to call the current user's friend list
         startLocationService();   // making the application work in background
+
+        if (trigger) {
+            //trigger used so that this condition only runs once
+            uploadTrailInfoToUserMeta();
+            trigger = false;
+        }
 
         return START_STICKY;
     }
@@ -100,13 +108,13 @@ public class LocationService extends Service implements IGpsHelper {
         double distance = calculateDistance(lastLat, lastLng, lat, lng);
         System.out.println("Service Distance: " + distance);
 
-        for(LatLng ll: SafarApplication.app.trailPath){   //get user gps coordinate updates from parse traces table
+        for (LatLng ll : SafarApplication.app.trailPath) {   //get user gps coordinate updates from parse traces table
             double cpDistance = calculateDistance(ll.latitude, ll.longitude, lat, lng);   //measure distance between GPS Coordinates and checkpoints
-            if(cpDistance < 10){    //if distance is less then 3 meters
-                if(sentLat != ll.latitude || sentLng != ll.longitude){
+            if (cpDistance < 10) {    //if distance is less then 3 meters
+                if (sentLat != ll.latitude || sentLng != ll.longitude) {
                     System.out.println("Near Checkpoint New New");
-                    if(friendsArrayList != null) {
-                        for(Friends friends : friendsArrayList) {   //get user's friend list
+                    if (friendsArrayList != null) {
+                        for (Friends friends : friendsArrayList) {   //get user's friend list
                             ParseQuery pushQuery = ParseInstallation.getQuery();  //start Push Query
                             pushQuery.whereEqualTo("user_objectId", friends.objectIdF);  //target query to user's friends
                             ParseUser parseUser = ParseUser.getCurrentUser();
@@ -146,6 +154,41 @@ public class LocationService extends Service implements IGpsHelper {
             lastLat = lat;
             lastLng = lng;
         }
+    }
+
+    private void uploadTrailInfoToUserMeta() {
+
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("UserMeta");
+        query.whereEqualTo("usrObjId", parseUser.getObjectId());
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> objects, com.parse.ParseException e) {
+                Boolean does_row_exist = false;
+                if (e == null) {
+                    for (ParseObject parseObject : objects) {
+                        String trail;
+                        trail = parseObject.get("trailObjId").toString();
+                        if (trail.equals("FkdyO1nXFz")) {
+                            does_row_exist = true;
+                        }
+                    }
+
+                    if (!does_row_exist) {
+                        ParseObject parseObject = new ParseObject("UserMeta");
+                        parseObject.put("usrObjId", ParseObject.createWithoutData("_User", parseUser.getObjectId()));
+                        parseObject.put("trailObjId", ParseObject.createWithoutData("Trails", "FkdyO1nXFz"));
+                        parseObject.saveInBackground(new SaveCallback() {
+                            @Override
+                            public void done(ParseException e) {
+                                Log.d("Upload to user meta", "Success!!");
+                            }
+                        });
+                    }
+                } else {
+                    Log.d("Upload to user meta", "Failed!!");
+                }
+            }
+        });
     }
 
     @Override
@@ -209,7 +252,7 @@ public class LocationService extends Service implements IGpsHelper {
     }
 
 
-    public void callFriendList(){
+    public void callFriendList() {
 
         ParseQuery parseQuery = ParseQuery.getQuery("Friends");
         parseQuery.include("userObjId");

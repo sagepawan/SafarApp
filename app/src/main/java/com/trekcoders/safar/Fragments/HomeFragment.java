@@ -65,7 +65,7 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
 
-        trails = new ArrayList<Trails>();
+        trails = new ArrayList<>();
         parseUser = ParseUser.getCurrentUser();
         if (parseUser != null && parseUser.getSessionToken() != null)
             getTrailsDetailsFromParse();
