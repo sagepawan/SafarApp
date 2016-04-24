@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:background="@color/com_facebook_button_background_color_focused"
+        android:background="@color/accent_material_dark"
         android:orientation="vertical">
 
         <TextView

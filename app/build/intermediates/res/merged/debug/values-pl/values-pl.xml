@@ -15,9 +15,8 @@
     <string msgid="893419373245838918" name="abc_searchview_description_voice">"Wyszukiwanie głosowe"</string>
     <string msgid="3421042268587513524" name="abc_shareactionprovider_share_with">"Udostępnij dla"</string>
     <string msgid="7165123711973476752" name="abc_shareactionprovider_share_with_application">"Udostępnij dla %s"</string>
-    <!-- From: file:/home/dac-android/AndroidStudioProjects/SafarApp/app/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.10.1/res/values-pl/values-pl.xml -->
+    <!-- From: file:/home/dac-android/AndroidStudioProjects/SafarApp/app/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.7.0/res/values-pl/values-pl.xml -->
     <eat-comment/>
-    <string name="com_facebook_device_auth_instructions">Przejdź do %@ na smartfonie lub komputerze i wprowadź ten kod:</string>
     <string name="com_facebook_image_download_unknown_error">Nieoczekiwany błąd podczas pobierania obrazu.</string>
     <string name="com_facebook_internet_permission_error_message">Logowanie się do sieci wymaga zezwolenia na dostęp do INTERNETU</string>
     <string name="com_facebook_internet_permission_error_title">AndroidManifest Error</string>
@@ -64,7 +63,7 @@
     <string msgid="411506735369601515" name="common_open_on_phone">"Otwórz na telefonie"</string>
     <string msgid="9071884888741449141" name="common_signin_button_text">"Zaloguj się"</string>
     <string msgid="2429381841831957106" name="common_signin_button_text_long">"Zaloguj się przez Google"</string>
-    <!-- From: file:/home/dac-android/AndroidStudioProjects/SafarApp/app/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.10.1/res/values-pl/values-pl.xml -->
+    <!-- From: file:/home/dac-android/AndroidStudioProjects/SafarApp/app/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.7.0/res/values-pl/values-pl.xml -->
     <eat-comment/>
     <string name="messenger_send_button_text">Wyślij</string>
 </resources>

@@ -25,9 +25,11 @@ import com.parse.FindCallback;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseFacebookUtils;
+import com.parse.ParseInstallation;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 import com.parse.SignUpCallback;
 import com.trekcoders.safar.R;
 import com.trekcoders.safar.SafarApplication;
@@ -35,6 +37,7 @@ import com.trekcoders.safar.SafarApplication;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
 import java.util.Arrays;
 import java.util.List;
 
@@ -74,7 +77,7 @@ public class LoginActivity extends AppCompatActivity {
     ProgressDialog progressDialog;
     ParseUser updateUser = new ParseUser();
 
-    List<String> permissions = Arrays.asList("public_profile", "email", "user_birthday");
+    List<String> permissions = Arrays.asList("public_profile", "email");
 
     ParseUser user;
 
@@ -229,7 +232,7 @@ public class LoginActivity extends AppCompatActivity {
     public void getUserDetailsFromFb() {
 
         Bundle parameters = new Bundle();
-        parameters.putString("fields", "email,name, birth_day");
+        parameters.putString("fields", "email, name");
 
         new GraphRequest(AccessToken.getCurrentAccessToken(), "/me", parameters, HttpMethod.GET, new GraphRequest.Callback() {
 
@@ -238,36 +241,19 @@ public class LoginActivity extends AppCompatActivity {
 
 
                 try {
+//                    Log.d("FbUserMail", ": " + response.toString());
 
                     user = new ParseUser();
-                    String email = response.getJSONObject().getString("email");
-                    Log.d("FbUserMail",": "+email);
 
-                    //mEmailID.setText(email);
-                    String name = response.getJSONObject().getString("name");
-                    Log.d("FbUserName",": "+name);
-                    //mUsername.setText(name);
+                    Log.d("FbUserMail", ": " + response.getJSONObject().getString("email"));
+                    Log.d("FbUserName", ": " + response.getJSONObject().getString("name"));
 
-                    user.setUsername(name);
-                    user.setEmail(email);
-                    user.put("mobilenumber","");
+                    //email is username
+                    saveNewUser(response.getJSONObject().getString("name"),
+                            response.getJSONObject().getString("email"),
+                            response.getJSONObject().getString("email"));
 
-                    user.signUpInBackground(new SignUpCallback() {
-                        public void done(ParseException e) {
-                            if (e == null) {
-                                //progressDialog.dismiss(); //dismiss
-                                System.out.println("Sign up successful:");
-                                //startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
-                            } else {
-                                //progressDialog.dismiss();
-                                System.out.println("Sign up error:" + e);
-                                // Sign up didn't succeed. Look at the ParseException
-                                // to figure out what went wrong
-                            }
-                        }
-                    });
-
-                } catch (JSONException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
 
@@ -277,6 +263,40 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    private void saveNewUser(final String name, String email, String username) {
+        ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setCancelable(false);
+        progressDialog.setMessage("Logging in...");
+        progressDialog.show();
+
+        if (name != null || !name.isEmpty()) {
+            user = ParseUser.getCurrentUser();
+            installDevice();
+            user.put("name", name.toString());
+            if (email != null)
+                user.setEmail(email);
+            if (username != null)
+                user.setUsername(username);
+
+            user.saveInBackground(new SaveCallback() {
+                @Override
+                public void done(ParseException e) {
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    Toast.makeText(LoginActivity.this, "New user:" + name + " Signed up", Toast.LENGTH_SHORT).show();
+                }
+            });
+        } else {
+            Toast.makeText(LoginActivity.this, "Sorry, sign up failed!! Please, try again.", Toast.LENGTH_SHORT).show();
+        }
+        progressDialog.dismiss();
+    }
+
+    void installDevice() {
+        ParseInstallation installation = ParseInstallation.getCurrentInstallation();
+        installation.put("usrObjId", user.getObjectId());
+        installation.saveInBackground();
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

@@ -15,9 +15,8 @@
     <string msgid="893419373245838918" name="abc_searchview_description_voice">"Sesli arama"</string>
     <string msgid="3421042268587513524" name="abc_shareactionprovider_share_with">"Şununla paylaş"</string>
     <string msgid="7165123711973476752" name="abc_shareactionprovider_share_with_application">"%s ile paylaş"</string>
-    <!-- From: file:/home/dac-android/AndroidStudioProjects/SafarApp/app/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.10.1/res/values-tr/values-tr.xml -->
+    <!-- From: file:/home/dac-android/AndroidStudioProjects/SafarApp/app/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.7.0/res/values-tr/values-tr.xml -->
     <eat-comment/>
-    <string name="com_facebook_device_auth_instructions">Akıllı telefonunda veya bilgisayarında %@ adresine git ve bu kodu gir:</string>
     <string name="com_facebook_image_download_unknown_error">Görsel indirilirken beklenmeyen hata.</string>
     <string name="com_facebook_internet_permission_error_message">WebView girişi için İNTERNET izni gerekir</string>
     <string name="com_facebook_internet_permission_error_title">AndroidManifest Hatası</string>
@@ -64,7 +63,7 @@
     <string msgid="411506735369601515" name="common_open_on_phone">"Telefonda aç"</string>
     <string msgid="9071884888741449141" name="common_signin_button_text">"Oturum aç"</string>
     <string msgid="2429381841831957106" name="common_signin_button_text_long">"Google\'da oturum aç"</string>
-    <!-- From: file:/home/dac-android/AndroidStudioProjects/SafarApp/app/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.10.1/res/values-tr/values-tr.xml -->
+    <!-- From: file:/home/dac-android/AndroidStudioProjects/SafarApp/app/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.7.0/res/values-tr/values-tr.xml -->
     <eat-comment/>
     <string name="messenger_send_button_text">Gönder</string>
 </resources>

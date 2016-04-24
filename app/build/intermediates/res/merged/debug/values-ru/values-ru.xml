@@ -15,9 +15,8 @@
     <string msgid="893419373245838918" name="abc_searchview_description_voice">"Голосовой поиск"</string>
     <string msgid="3421042268587513524" name="abc_shareactionprovider_share_with">"Открыть доступ"</string>
     <string msgid="7165123711973476752" name="abc_shareactionprovider_share_with_application">"Открыть доступ пользователю %s"</string>
-    <!-- From: file:/home/dac-android/AndroidStudioProjects/SafarApp/app/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.10.1/res/values-ru/values-ru.xml -->
+    <!-- From: file:/home/dac-android/AndroidStudioProjects/SafarApp/app/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.7.0/res/values-ru/values-ru.xml -->
     <eat-comment/>
-    <string name="com_facebook_device_auth_instructions">Откройте «%@» на своем смартфофне или компьютере и введите этот код:</string>
     <string name="com_facebook_image_download_unknown_error">При загрузке изображения возникла неожиданная ошибка.</string>
     <string name="com_facebook_internet_permission_error_message">Для входа в WebView необходимо разрешение INTERNET</string>
     <string name="com_facebook_internet_permission_error_title">Ошибка AndroidManifest</string>
@@ -64,7 +63,7 @@
     <string msgid="411506735369601515" name="common_open_on_phone">"Открыть на телефоне"</string>
     <string msgid="9071884888741449141" name="common_signin_button_text">"Войти"</string>
     <string msgid="2429381841831957106" name="common_signin_button_text_long">"Войти в аккаунт Google"</string>
-    <!-- From: file:/home/dac-android/AndroidStudioProjects/SafarApp/app/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.10.1/res/values-ru/values-ru.xml -->
+    <!-- From: file:/home/dac-android/AndroidStudioProjects/SafarApp/app/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.7.0/res/values-ru/values-ru.xml -->
     <eat-comment/>
     <string name="messenger_send_button_text">Отпр</string>
 </resources>

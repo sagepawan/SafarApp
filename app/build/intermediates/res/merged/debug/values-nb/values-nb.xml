@@ -15,9 +15,8 @@
     <string msgid="893419373245838918" name="abc_searchview_description_voice">"Talesøk"</string>
     <string msgid="3421042268587513524" name="abc_shareactionprovider_share_with">"Del med"</string>
     <string msgid="7165123711973476752" name="abc_shareactionprovider_share_with_application">"Del med %s"</string>
-    <!-- From: file:/home/dac-android/AndroidStudioProjects/SafarApp/app/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.10.1/res/values-nb/values-nb.xml -->
+    <!-- From: file:/home/dac-android/AndroidStudioProjects/SafarApp/app/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.7.0/res/values-nb/values-nb.xml -->
     <eat-comment/>
-    <string name="com_facebook_device_auth_instructions">Gå til %@ på smarttelefonen eller datamaskinen din, og oppgi denne koden:</string>
     <string name="com_facebook_image_download_unknown_error">Det oppstod en uventet feil ved nedlasting av et bilde.</string>
     <string name="com_facebook_internet_permission_error_message">Webvisning-innlogging krever INTERNETT-tillatelse</string>
     <string name="com_facebook_internet_permission_error_title">AndroidManifest-feil</string>
@@ -64,7 +63,7 @@
     <string msgid="411506735369601515" name="common_open_on_phone">"Åpne på telefonen"</string>
     <string msgid="9071884888741449141" name="common_signin_button_text">"Logg på"</string>
     <string msgid="2429381841831957106" name="common_signin_button_text_long">"Logg inn med Google"</string>
-    <!-- From: file:/home/dac-android/AndroidStudioProjects/SafarApp/app/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.10.1/res/values-nb/values-nb.xml -->
+    <!-- From: file:/home/dac-android/AndroidStudioProjects/SafarApp/app/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.7.0/res/values-nb/values-nb.xml -->
     <eat-comment/>
     <string name="messenger_send_button_text">Send</string>
 </resources>
