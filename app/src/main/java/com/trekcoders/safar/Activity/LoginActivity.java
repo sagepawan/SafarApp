@@ -249,8 +249,7 @@ public class LoginActivity extends AppCompatActivity {
                     Log.d("FbUserName", ": " + response.getJSONObject().getString("name"));
 
                     //email is username
-                    saveNewUser(response.getJSONObject().getString("name"),
-                            response.getJSONObject().getString("email"),
+                    saveNewUser(response.getJSONObject().getString("email"),
                             response.getJSONObject().getString("email"));
 
                 } catch (Exception e) {
@@ -263,18 +262,17 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    private void saveNewUser(final String name, String email, String username) {
+    private void saveNewUser(final String email, String username) {
         ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
         progressDialog.setMessage("Logging in...");
         progressDialog.show();
 
-        if (name != null || !name.isEmpty()) {
+        if (email != null && !email.isEmpty()) {
             user = ParseUser.getCurrentUser();
             installDevice();
-            user.put("name", name.toString());
-            if (email != null)
-                user.setEmail(email);
+//            user.put("name", name.toString());
+            user.setEmail(email);
             if (username != null)
                 user.setUsername(username);
 
@@ -283,11 +281,11 @@ public class LoginActivity extends AppCompatActivity {
                 public void done(ParseException e) {
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
-                    Toast.makeText(LoginActivity.this, "New user:" + name + " Signed up", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, email + " signed up", Toast.LENGTH_SHORT).show();
                 }
             });
         } else {
-            Toast.makeText(LoginActivity.this, "Sorry, sign up failed!! Please, try again.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(LoginActivity.this, "Sorry, sign up failed! Please, try again.", Toast.LENGTH_SHORT).show();
         }
         progressDialog.dismiss();
     }
